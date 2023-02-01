@@ -1,0 +1,21 @@
+@import "./assets/variables";
+
+* {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: $font-main;
+  font-size: $font-size;
+  color: $font-color;
+  background-color: $background-color;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
