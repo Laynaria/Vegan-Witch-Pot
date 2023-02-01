@@ -27,6 +27,7 @@
     border: none;
     border-radius: $border-radius;
     padding: $half-space * 1.5 $basic-space * 5;
+    cursor: pointer;
 
     &:active {
       transition: 0.25s ease;
