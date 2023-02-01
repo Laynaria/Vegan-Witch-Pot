@@ -9,9 +9,10 @@ footer {
   text-align: center;
   font-family: $font-title;
   font-size: $title-size;
-  position: fixed;
   width: 100%;
-  bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+
+  grid-row: 3 / 4;
 
   a {
     text-decoration: none;

@@ -13,9 +13,16 @@ body {
   background-color: $background-color;
 }
 
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  grid-row: 2 / 3;
 }

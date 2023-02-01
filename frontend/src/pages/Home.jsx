@@ -6,14 +6,16 @@ import Recipes from "@components/Home/Recipes";
 export default function Home() {
   const [isLanding, setIsLanding] = useState(true);
   return (
-    <main>
+    <>
       {isLanding ? (
-        <Landing setIsLanding={setIsLanding} />
+        <main>
+          <Landing setIsLanding={setIsLanding} />
+        </main>
       ) : (
         <Layout>
           <Recipes />
         </Layout>
       )}
-    </main>
+    </>
   );
 }
