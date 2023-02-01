@@ -1,5 +1,19 @@
 @import "../../assets/variables";
 
 .Recipes {
-  // min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: $basic-space * 2;
+  padding: $basic-space;
+
+  @media screen and (min-width: 480px) {
+    width: 80%;
+  }
+
+  h1 {
+    width: 100%;
+  }
 }
