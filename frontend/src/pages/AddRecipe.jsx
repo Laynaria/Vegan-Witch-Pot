@@ -19,7 +19,7 @@ export default function AddRecipe() {
     <main id="flex-row">
       <section className="edit">
         <form>a</form>
-        <form>b</form>
+        <form>Yet to come.</form>
       </section>
       <section className="preview">
         <h2>Preview</h2>
