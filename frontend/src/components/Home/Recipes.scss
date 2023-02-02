@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: $basic-space * 2;
+  gap: $basic-space * 5;
   padding: $basic-space;
 
   @media screen and (min-width: 480px) {
@@ -15,5 +15,56 @@
 
   h1 {
     width: 100%;
+  }
+
+  .card {
+    background-color: $primary-color;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    gap: $basic-space;
+    box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+    width: 25rem;
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    .card-img {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    p {
+      font-size: 1.6rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.5);
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      span {
+        width: 100%;
+        padding: $basic-space 0;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $basic-space;
+
+        img {
+          height: $basic-space * 2;
+        }
+
+        .greyed-spoon {
+          filter: grayscale(100%);
+        }
+
+        &:first-of-type {
+          gap: 0.1rem;
+          border-right: 1px solid rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
   }
 }
