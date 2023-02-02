@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import instance from "@services/instance";
 
 import spoon from "@assets/icons/spoon.svg";
 import timeImg from "@assets/logos/logo_mini.svg";
@@ -13,9 +15,20 @@ export default function AddRecipe() {
     cooking_time: "3h",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    // must add validations of having nothing null etc
+
+    instance
+      .post("/recipes", recipe)
+      .then(() => navigate("/recipes"))
+      .catch(() => console.warn("Une erreur est survenue!"));
   };
 
   return (
@@ -92,7 +105,7 @@ export default function AddRecipe() {
             </span>
           </p>
         </div>
-        <button type="button" className="add-button">
+        <button type="button" className="add-button" onClick={handleSubmit}>
           +
         </button>
       </section>
