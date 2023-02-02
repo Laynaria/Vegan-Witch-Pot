@@ -21,9 +21,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: $basic-space;
 
       &:last-of-type {
         min-height: 60vh;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        font-size: $basic-space;
       }
     }
   }
