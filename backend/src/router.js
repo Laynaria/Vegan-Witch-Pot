@@ -12,5 +12,6 @@ router.post("/items", itemControllers.add);
 router.delete("/items/:id", itemControllers.destroy);
 
 router.get("/recipes", recipeControllers.browse);
+router.post("/recipes", recipeControllers.add);
 
 module.exports = router;
