@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import instance from "@services/instance";
 
 import spoon from "@assets/icons/spoon.svg";
@@ -64,6 +65,9 @@ export default function Recipes() {
           </p>
         </div>
       ))}
+      <Link to="/add-recipe" className="add-button">
+        <h2>+</h2>
+      </Link>
     </section>
   );
 }
