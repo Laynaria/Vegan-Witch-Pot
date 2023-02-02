@@ -17,6 +17,7 @@
   },
   "plugins": ["react", "import"],
   "rules": {
+    "react/jsx-no-useless-fragment": [2, { "allowExpressions": true }],
     "react/prop-types": 0,
     "import/no-unresolved": [0, { "caseSensitive": false }],
     "no-console": "off",

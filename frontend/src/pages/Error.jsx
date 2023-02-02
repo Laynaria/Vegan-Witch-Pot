@@ -1,7 +1,7 @@
 export default function Error() {
   return (
-    <header className="App-header">
+    <main>
       <p>Error</p>
-    </header>
+    </main>
   );
 }
