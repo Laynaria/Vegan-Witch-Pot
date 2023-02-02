@@ -1,6 +1,9 @@
-CREATE TABLE item (
-  id int(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  title varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS recipe;
 
-INSERT INTO item (title) VALUES ('Stuff'), ('Doodads');
+CREATE TABLE recipe (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  picture VARCHAR(250) NOT NULL DEFAULT 'grilled_peas.png',
+  title VARCHAR(25) NOT NULL,
+  difficulty INT NOT NULL,
+  time VARCHAR(10) NOT NULL
+);
