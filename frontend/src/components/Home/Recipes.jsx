@@ -59,7 +59,7 @@ export default function Recipes() {
             </span>
             <span>
               <img src={timeImg} alt="Time" />
-              {recipe.time}
+              {recipe.cooking_time}
             </span>
           </p>
         </div>
