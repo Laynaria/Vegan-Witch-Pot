@@ -11,7 +11,9 @@ export default function Header() {
       <nav>
         <ul>
           <li>About Us</li>
-          <li>Recipes</li>
+          <Link to="/recipes">
+            <li>Recipes</li>
+          </Link>
           <li>Your Menu</li>
           <li>Contact</li>
           <li>Profile</li>
