@@ -13,13 +13,33 @@ export default function AddRecipe() {
     cooking_time: "3h",
   });
 
-  console.warn(setRecipe);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRecipe({ ...recipe, [name]: value });
+  };
 
   return (
     <main id="flex-row">
       <section className="edit">
-        <form>a</form>
-        <form>Yet to come.</form>
+        <form onChange={handleChange}>
+          <label>
+            <input type="text" name="title" value={recipe.title} />
+          </label>
+          <label>
+            <input type="text" name="picture" value={recipe.picture} />
+          </label>
+          <label>
+            <input type="number" name="difficulty" value={recipe.difficulty} />
+          </label>
+          <label>
+            <input
+              type="text"
+              name="cooking_time"
+              value={recipe.cooking_time}
+            />
+          </label>
+        </form>
+        <form onChange={handleChange}>Yet to come.</form>
       </section>
       <section className="preview">
         <h2>Preview</h2>
