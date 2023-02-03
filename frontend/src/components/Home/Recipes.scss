@@ -18,26 +18,26 @@
     width: 100%;
   }
 
-  .recipe-button {
-    background-color: $primary-color;
-    border-radius: $border-radius;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
-    width: 25rem;
-    text-decoration: none;
-    color: $font-color;
+  // .recipe-button {
+  //   background-color: $primary-color;
+  //   border-radius: $border-radius;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   text-align: center;
+  //   box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+  //   width: 25rem;
+  //   text-decoration: none;
+  //   color: $font-color;
 
-    &:hover {
-      color: $secondary-color;
-      transition: 0.25s ease;
-      transform: scale(0.9);
-    }
+  //   &:hover {
+  //     color: $secondary-color;
+  //     transition: 0.25s ease;
+  //     transform: scale(0.9);
+  //   }
 
-    h2 {
-      padding-bottom: $half-space * 1.4;
-    }
-  }
+  //   h2 {
+  //     padding-bottom: $half-space * 1.4;
+  //   }
+  // }
 }

@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
 
+import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
+import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+
+import buttonIcon from "@assets/logos/logo_mini.svg";
 
 import "@components/AddRecipe/AddRecipe.scss";
-import FormsRecipe from "@components/Recipes/FormsRecipe";
 
 export default function AddRecipe() {
   const [recipe, setRecipe] = useState({
@@ -32,9 +35,15 @@ export default function AddRecipe() {
       <section className="preview">
         <h2>Preview</h2>
         <Card recipe={recipe} />
-        <button type="button" className="recipe-button" onClick={handleSubmit}>
+        {/* <button type="button" className="recipe-button" onClick={handleSubmit}>
           +
-        </button>
+        </button> */}
+
+        <ButtonRecipe
+          icon={buttonIcon}
+          text="Add recipe"
+          handleClick={handleSubmit}
+        />
       </section>
     </main>
   );

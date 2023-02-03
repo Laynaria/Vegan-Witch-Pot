@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
+
+import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import buttonIcon from "@assets/logos/logo_mini.svg";
 
 import "./Recipes.scss";
 import Card from "@components/Card/Card";
 
 export default function Recipes() {
   const [arrayRecipes, setArrayRecipes] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     instance
@@ -24,9 +29,12 @@ export default function Recipes() {
     <section className="Recipes">
       <h1>Recipes</h1>
       {arrayRecipes.map((recipe) => <Card recipe={recipe} />).reverse()}
-      <Link to="/add-recipe" className="recipe-button">
-        <h2>+</h2>
-      </Link>
+
+      <ButtonRecipe
+        icon={buttonIcon}
+        text="New recipe"
+        handleClick={() => navigate("/add-recipe")}
+      />
     </section>
   );
 }
