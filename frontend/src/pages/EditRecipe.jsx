@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import instance from "@services/instance";
 
@@ -38,6 +38,17 @@ export default function EditRecipe() {
       .then(() => navigate("/recipes"))
       .catch(() => console.warn("Une erreur est survenue!"));
   };
+
+  useEffect(() => {
+    instance
+      .get(`/recipes/${id}`)
+      .then((result) => {
+        setRecipe(result.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <main id="flex-row">
