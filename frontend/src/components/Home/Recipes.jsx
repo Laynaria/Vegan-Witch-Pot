@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import instance from "@services/instance";
 
-import spoon from "@assets/icons/spoon.svg";
-import timeImg from "@assets/logos/logo_mini.svg";
-
 import "./Recipes.scss";
+import Card from "@components/Card/Card";
 
 export default function Recipes() {
   const [arrayRecipes, setArrayRecipes] = useState([]);
@@ -25,48 +23,7 @@ export default function Recipes() {
   return (
     <section className="Recipes">
       <h1>Recipes</h1>
-      {arrayRecipes
-        .map((recipe) => (
-          <div className="card" key={recipe.id}>
-            <img
-              src={`http://localhost:3000/src/assets/recipes/mini/${recipe.picture}`}
-              alt={recipe.title}
-              className="card-img"
-            />
-            <h2>{recipe.title}</h2>
-            <p>
-              <span>
-                {/* {recipe.difficulty} */}
-                <img src={spoon} alt="Difficulty" />
-                <img
-                  src={spoon}
-                  alt="Difficulty"
-                  className={recipe.difficulty >= 2 ? "" : "greyed-spoon"}
-                />
-                <img
-                  src={spoon}
-                  alt="Difficulty"
-                  className={recipe.difficulty >= 3 ? "" : "greyed-spoon"}
-                />
-                <img
-                  src={spoon}
-                  alt="Difficulty"
-                  className={recipe.difficulty >= 4 ? "" : "greyed-spoon"}
-                />
-                <img
-                  src={spoon}
-                  alt="Difficulty"
-                  className={recipe.difficulty >= 5 ? "" : "greyed-spoon"}
-                />
-              </span>
-              <span>
-                <img src={timeImg} alt="Time" />
-                {recipe.cooking_time}
-              </span>
-            </p>
-          </div>
-        ))
-        .reverse()}
+      {arrayRecipes.map((recipe) => <Card recipe={recipe} />).reverse()}
       <Link to="/add-recipe" className="add-button">
         <h2>+</h2>
       </Link>
