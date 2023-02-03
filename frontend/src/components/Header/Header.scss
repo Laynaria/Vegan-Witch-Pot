@@ -38,11 +38,8 @@ header {
     width: 70%;
     box-sizing: border-box;
     padding: 0 $basic-space * 3 0 $basic-space * 5;
-    // box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25);
     clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
-    // clip-path: polygon(100% 0, 0% 100%, 0% 100%, 100% 100%);
-    // -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0);
-    // clip-path: polygon(75% 0, 0 100%, 100% 100%, 100% 25%, 100% 0);
+    -webkit-clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
 
     ul {
       height: 100%;

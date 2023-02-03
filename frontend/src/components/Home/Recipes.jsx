@@ -18,7 +18,6 @@ export default function Recipes() {
       .get("/recipes")
       .then((result) => {
         setArrayRecipes(result.data);
-        console.warn(result.data);
       })
       .catch((err) => {
         console.error(err);

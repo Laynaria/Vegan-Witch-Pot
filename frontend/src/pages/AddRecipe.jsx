@@ -35,9 +35,6 @@ export default function AddRecipe() {
       <section className="preview">
         <h2>Preview</h2>
         <Card recipe={recipe} />
-        {/* <button type="button" className="recipe-button" onClick={handleSubmit}>
-          +
-        </button> */}
 
         <ButtonRecipe
           icon={buttonIcon}
