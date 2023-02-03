@@ -24,7 +24,7 @@ export default function Recipes() {
     <section className="Recipes">
       <h1>Recipes</h1>
       {arrayRecipes.map((recipe) => <Card recipe={recipe} />).reverse()}
-      <Link to="/add-recipe" className="add-button">
+      <Link to="/add-recipe" className="recipe-button">
         <h2>+</h2>
       </Link>
     </section>

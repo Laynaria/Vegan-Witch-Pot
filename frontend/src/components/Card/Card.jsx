@@ -1,5 +1,5 @@
 import spoon from "@assets/icons/spoon.svg";
-import timeImg from "@assets/logos/logo_mini.svg";
+import sand from "@assets/icons/sand.svg";
 
 import "./Card.scss";
 
@@ -38,7 +38,7 @@ export default function Card({ recipe }) {
           />
         </span>
         <span>
-          <img src={timeImg} alt="Time" />
+          <img src={sand} alt="Time" />
           {recipe.cooking_time}
         </span>
       </p>
