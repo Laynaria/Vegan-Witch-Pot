@@ -1,0 +1,20 @@
+@import "../../assets/variables";
+
+.Recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: $basic-space * 5;
+  padding: $basic-space;
+  margin: $basic-space * 4 0;
+
+  @media screen and (min-width: 480px) {
+    width: 80%;
+  }
+
+  h1 {
+    width: 100%;
+  }
+}

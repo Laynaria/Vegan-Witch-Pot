@@ -1,0 +1,25 @@
+@import "../../assets/variables";
+
+footer {
+  background-color: $primary-color;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: $font-title;
+  font-size: $title-size;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+
+  grid-row: 3 / 4;
+
+  a {
+    text-decoration: none;
+    color: $font-color;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+// Importing the two fonts and making their variables
+@font-face {
+  font-family: "Itim-Regular";
+  // src: url(../../../ItimRegular.ttf);
+  src: url(@assets/fonts/ItimRegular.ttf);
+}
+
+@font-face {
+  font-family: "DancingScript";
+  src: url(@assets/fonts/DancingScript.ttf);
+}
+
+$font-main: "Itim-Regular", sans-serif;
+$font-title: "DancingScript", sans-serif;
+
+// font parameters variables
+$font-color: white;
+
+$font-size: 2rem;
+$title-size: 2.25rem;
+
+// Colors parameters
+$background-color: #473663;
+$primary-color: #623d9f;
+$secondary-color: #56b972;
+
+// border radius
+$border-radius: 10px;
+
+// margin and padding
+$basic-space: 1rem;
+$half-space: calc($basic-space / 2);

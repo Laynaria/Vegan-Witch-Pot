@@ -1,0 +1,31 @@
+@import "../../assets/variables";
+
+.recipe-button {
+  background-color: $primary-color;
+  border-radius: $border-radius;
+  border: none;
+  text-align: center;
+  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+  width: 25rem;
+  text-decoration: none;
+  color: $font-color;
+  padding: $half-space * 1.4 0;
+  font-family: $font-main;
+  font-size: $font-size;
+  font-weight: 500;
+  margin-top: $basic-space * 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $basic-space;
+
+  &:hover {
+    color: $secondary-color;
+    transition: 0.25s ease;
+    transform: scale(0.9);
+  }
+
+  img {
+    height: $font-size;
+  }
+}

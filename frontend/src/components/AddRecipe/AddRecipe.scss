@@ -1,0 +1,18 @@
+@import "../../assets/variables";
+
+#flex-row {
+  @media screen and (min-width: 720px) {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: center;
+    gap: $basic-space * 5;
+    width: 100%;
+    margin: $basic-space * 4 0;
+  }
+
+  .preview {
+    display: flex;
+    flex-direction: column;
+    gap: $basic-space * 2;
+  }
+}
