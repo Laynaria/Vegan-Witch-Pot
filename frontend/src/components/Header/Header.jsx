@@ -7,6 +7,12 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   window.addEventListener("scroll", () => {
+    // if (window.scrollY > 100) {
+    setIsOpen(false);
+    // }
+  });
+
+  window.addEventListener("resize", () => {
     setIsOpen(false);
   });
 
