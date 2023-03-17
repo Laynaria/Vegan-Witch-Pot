@@ -7,7 +7,12 @@
   flex-direction: column;
   gap: $basic-space;
   box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
-  width: 25rem;
+  width: 100%;
+  z-index: -1;
+
+  @media screen and (min-width: 480px) {
+    width: 25rem;
+  }
 
   h2 {
     font-size: 1.6rem;

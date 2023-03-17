@@ -1,6 +1,9 @@
 @import "../../assets/variables";
 
 header {
+  position: fixed;
+  top: -1px;
+  left: 0;
   background-color: $primary-color;
   box-sizing: border-box;
   height: 100px;
@@ -13,11 +16,21 @@ header {
   width: 100%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   padding-left: $basic-space * 2;
-
   grid-row: 1 / 2;
 
-  a {
+  @media screen and (min-width: 1160px) {
+    position: static;
+  }
+
+  li {
+    filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+  }
+
+  #logoMenu {
     height: 100%;
+  }
+
+  a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -33,21 +46,48 @@ header {
   }
 
   nav {
+    position: fixed;
+    top: 103px;
+    right: 0;
     background-color: $secondary-color;
-    height: 100%;
-    width: 70%;
+    width: 100%;
+    height: calc(100vh - 102px);
     box-sizing: border-box;
-    padding: 0 $basic-space * 3 0 $basic-space * 5;
-    clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
-    -webkit-clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transition: transform 0.25s ease;
+
+    @media screen and (min-width: 1160px) {
+      padding: 0 $basic-space * 3 0 $basic-space * 5;
+      position: static;
+      width: 70%;
+      height: 100%;
+      clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
+      -webkit-clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
 
     ul {
       height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       list-style: none;
       font-size: $title-size;
+
+      @media screen and (min-width: 1160px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+  .showNav {
+    transform: translateX(0px);
+  }
+
+  .hideNav {
+    transform: translateX(1200px);
+
+    @media screen and (min-width: 1160px) {
+      transform: translateX(0px);
     }
   }
 }
