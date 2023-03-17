@@ -5,7 +5,7 @@ import "./Card.scss";
 
 export default function Card({ recipe }) {
   return (
-    <div className="card" key={recipe.id}>
+    <div className="card">
       <img
         src={`http://localhost:3000/src/assets/recipes/mini/${recipe.picture}`}
         alt={recipe.title}

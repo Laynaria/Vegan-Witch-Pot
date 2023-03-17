@@ -4,8 +4,12 @@ import logo from "@assets/logos/logo.svg";
 import "./Header.scss";
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(true);
-  console.warn(setIsOpen);
+  const [isOpen, setIsOpen] = useState(false);
+
+  window.addEventListener("scroll", () => {
+    setIsOpen(false);
+  });
+
   return (
     <header>
       <Link to="/" id="logoMenu">

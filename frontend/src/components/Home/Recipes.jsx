@@ -27,7 +27,9 @@ export default function Recipes() {
   return (
     <section className="Recipes">
       <h1>Recipes</h1>
-      {arrayRecipes.map((recipe) => <Card recipe={recipe} />).reverse()}
+      {arrayRecipes
+        .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
+        .reverse()}
 
       <ButtonRecipe
         icon={buttonIcon}
