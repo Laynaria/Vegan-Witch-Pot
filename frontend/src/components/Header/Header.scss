@@ -22,10 +22,6 @@ header {
     position: static;
   }
 
-  li {
-    filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
-  }
-
   #logoMenu {
     filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
     height: 100%;
@@ -46,6 +42,98 @@ header {
     }
   }
 
+  div {
+    z-index: 6;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 25%;
+    background-color: $secondary-color;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transition: 0.75s height 0.25s;
+
+    @media screen and (min-width: 1160px) {
+      display: none;
+    }
+  }
+
+  .burger {
+    z-index: 6;
+    position: fixed;
+    box-sizing: border-box;
+    right: 1.6rem;
+    padding: 1rem;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: white;
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+      transform: rotate(0deg);
+      transition: 0.25s ease;
+    }
+
+    span:nth-of-type(1) {
+      top: 0px;
+      transform-origin: left center;
+    }
+
+    span:nth-of-type(2) {
+      top: 50%;
+      transform: translateY(-50%);
+      transform-origin: left center;
+    }
+
+    span:nth-of-type(3) {
+      top: 100%;
+      transform-origin: left center;
+      transform: translateY(-100%);
+    }
+
+    input:checked ~ span:nth-of-type(1) {
+      transform: rotate(45deg);
+      width: 125%;
+      top: 0px;
+      left: 2px;
+    }
+
+    input:checked ~ span:nth-of-type(2) {
+      transform: translateX(-10px);
+      width: 0%;
+      opacity: 0;
+    }
+
+    input:checked ~ span:nth-of-type(3) {
+      transform: rotate(-45deg);
+      width: 125%;
+      top: 28px;
+      left: 2px;
+      box-shadow: 0 0 10px #495057;
+    }
+  }
+
+  #openBurger {
+    height: 104px;
+  }
+
   nav {
     position: fixed;
     top: 103px;
@@ -54,7 +142,7 @@ header {
     width: 100%;
     height: calc(100vh - 102px);
     box-sizing: border-box;
-    transition: transform 1s ease;
+    transition: transform 1s ease, opacity 1s ease;
 
     @media screen and (min-width: 1160px) {
       padding: 0 $basic-space * 3 0 $basic-space * 5;
@@ -78,6 +166,10 @@ header {
         flex-direction: row;
         justify-content: space-between;
       }
+
+      li {
+        filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+      }
     }
   }
   .showNav {
@@ -91,6 +183,8 @@ header {
 
     @media screen and (min-width: 1160px) {
       opacity: 1;
+      /*si on veut ne pas faire d'animation en switch de taille d'écran*/
+      // transition: none;
       transform: translateX(0px);
     }
   }

@@ -6,6 +6,10 @@ import "./Header.scss";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const burgerHandler = () => {
+    setIsOpen(!isOpen);
+  };
+
   window.addEventListener("scroll", () => {
     // if (window.scrollY > 100) {
     setIsOpen(false);
@@ -21,6 +25,19 @@ export default function Header() {
       <Link to="/" id="logoMenu">
         <img src={logo} alt="logo" />
       </Link>
+      <div id={isOpen ? "openBurger" : ""}>
+        <label htmlFor="burger" className="burger">
+          <input
+            id="burger"
+            type="checkbox"
+            onClick={burgerHandler}
+            checked={isOpen ? "true" : ""}
+          />
+          <span />
+          <span />
+          <span />
+        </label>
+      </div>
       <nav className={isOpen ? "showNav" : "hideNav"}>
         <ul>
           <li>About Us</li>
