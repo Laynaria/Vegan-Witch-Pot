@@ -25,7 +25,7 @@ export default function Header() {
       <Link to="/" id="logoMenu">
         <img src={logo} alt="logo" />
       </Link>
-      <div id={isOpen ? "openBurger" : ""}>
+      <div>
         <label htmlFor="burger" className="burger">
           <input
             id="burger"
