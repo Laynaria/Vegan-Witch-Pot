@@ -19,7 +19,7 @@ header {
   padding-left: $basic-space;
   transition: 1s ease;
 
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 490px) {
     padding-left: $basic-space * 2;
   }
 
@@ -32,7 +32,7 @@ header {
     transition: 1s ease;
     height: 80%;
 
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 490px) {
       height: 100%;
     }
   }
@@ -40,6 +40,7 @@ header {
   a {
     display: flex;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: $font-color;
 
@@ -180,8 +181,6 @@ header {
         padding: 2rem;
         border-bottom: 1px solid;
         width: 40%;
-        display: flex;
-        justify-content: center;
 
         &:last-of-type {
           border: none;
