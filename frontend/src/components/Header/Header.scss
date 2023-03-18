@@ -175,8 +175,21 @@ header {
         justify-content: space-between;
       }
 
-      li {
+      a {
         filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+        padding: 2rem;
+        border-bottom: 1px solid;
+        width: 40%;
+        display: flex;
+        justify-content: center;
+
+        &:last-of-type {
+          border: none;
+        }
+
+        @media screen and (min-width: 1160px) {
+          border: none;
+        }
       }
     }
   }

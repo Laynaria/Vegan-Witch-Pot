@@ -40,13 +40,21 @@ export default function Header() {
       </div>
       <nav className={isOpen ? "showNav" : "hideNav"}>
         <ul>
-          <li>About Us</li>
+          <Link to="/">
+            <li>About Us</li>
+          </Link>
           <Link to="/recipes">
             <li>Recipes</li>
           </Link>
-          <li>Your Menu</li>
-          <li>Contact</li>
-          <li>Profile</li>
+          <Link to="/">
+            <li>Your Menu</li>
+          </Link>
+          <Link to="/">
+            <li>Contact</li>
+          </Link>
+          <Link to="/">
+            <li>Profile</li>
+          </Link>
         </ul>
       </nav>
     </header>
