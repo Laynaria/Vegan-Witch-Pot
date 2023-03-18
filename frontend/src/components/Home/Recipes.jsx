@@ -7,8 +7,10 @@ import buttonIcon from "@assets/logos/logo_mini.svg";
 
 import "./Recipes.scss";
 import Card from "@components/Card/Card";
+import Loading from "@components/Loading/Loading";
 
 export default function Recipes() {
+  const [isLoading, setIsLoading] = useState(true);
   const [arrayRecipes, setArrayRecipes] = useState([]);
 
   const navigate = useNavigate();
@@ -19,21 +21,30 @@ export default function Recipes() {
       .then((result) => {
         setArrayRecipes(result.data);
       })
+      .then(() => setIsLoading(false))
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
   return (
-    <section className="Recipes">
-      <h1>Recipes</h1>
-      {arrayRecipes.map((recipe) => <Card recipe={recipe} />).reverse()}
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <section className="Recipes">
+          <h1>Recipes</h1>
+          {arrayRecipes
+            .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
+            .reverse()}
 
-      <ButtonRecipe
-        icon={buttonIcon}
-        text="New recipe"
-        handleClick={() => navigate("/add-recipe")}
-      />
-    </section>
+          <ButtonRecipe
+            icon={buttonIcon}
+            text="New recipe"
+            handleClick={() => navigate("/add-recipe")}
+          />
+        </section>
+      )}
+    </>
   );
 }

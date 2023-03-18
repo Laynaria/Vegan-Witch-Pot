@@ -1,8 +1,22 @@
+import { useState } from "react";
+import Landing from "@components/Home/Landing";
+
 import Router from "./router/router";
 import "./App.scss";
 
 function App() {
-  return <Router />;
+  const [isLanding, setIsLanding] = useState(true);
+  return (
+    <>
+      {isLanding ? (
+        <main>
+          <Landing setIsLanding={setIsLanding} />
+        </main>
+      ) : (
+        <Router />
+      )}
+    </>
+  );
 }
 
 export default App;

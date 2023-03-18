@@ -11,6 +11,7 @@ body {
   font-size: $font-size;
   color: $font-color;
   background-color: $background-color;
+  overflow-x: hidden;
 }
 
 #root {
@@ -25,4 +26,9 @@ main {
   align-items: center;
   justify-content: center;
   grid-row: 2 / 3;
+  margin-top: 91px;
+
+  @media screen and (min-width: 1160px) {
+    margin-top: 0;
+  }
 }
