@@ -8,6 +8,8 @@
   justify-content: space-around;
   z-index: 1000;
   overflow-y: hidden;
+  /*to improve later if possible: this margin -91px*/
+  margin-top: -91px;
 
   .WitchLottie {
     position: absolute;
