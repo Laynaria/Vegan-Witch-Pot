@@ -1,15 +1,13 @@
 @import "../../assets/variables";
 
 .Landing {
-  min-height: 100vh;
+  min-height: calc(100vh - 91px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   z-index: 1000;
   overflow-y: hidden;
-  /*to improve later if possible: this margin -91px*/
-  margin-top: -91px;
 
   .WitchLottie {
     position: absolute;
