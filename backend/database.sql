@@ -52,25 +52,19 @@ value VARCHAR(10),
 type_id INT NOT NULL,
 CONSTRAINT fk_quantity_type FOREIGN KEY (type_id) REFERENCES type(id));
 
-CREATE TABLE recipe_quantity(
-id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-line TINYINT NOT NULL,
-recipe_id INT NOT NULL,
-CONSTRAINT fk_recipe_quantity_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id),
-quantity_id INT NOT NULL,
-CONSTRAINT fk_recipe_quantity_quantity FOREIGN KEY (quantity_id) REFERENCES quantity(id));
-
 CREATE TABLE ingredient(
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 name VARCHAR(80) NOT NULL);
 
-CREATE TABLE recipe_ingredient(
+CREATE TABLE recipe_ingredient_quantity(
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 line TINYINT NOT NULL,
 recipe_id INT NOT NULL,
 CONSTRAINT fk_recipe_ingredient_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id),
 ingredient_id INT NOT NULL,
-CONSTRAINT fk_recipe_ingredient_ingredient FOREIGN KEY (ingredient_id) REFERENCES ingredient(id));
+CONSTRAINT fk_recipe_ingredient_ingredient FOREIGN KEY (ingredient_id) REFERENCES ingredient(id),
+quantity_id INT NOT NULL,
+CONSTRAINT fk_recipe_quantity_quantity FOREIGN KEY (quantity_id) REFERENCES quantity(id));
 
 CREATE TABLE menu(
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -205,11 +199,6 @@ INSERT INTO quantity (value, type_id) VALUES
 ('800', 7),
 ('', 8);
 
-INSERT INTO recipe_quantity (line, recipe_id, quantity_id) VALUES
-(1, 1, 82),
-(2, 1, 20),
-(3, 1, 20),
-(4, 1, 86);
 
 INSERT INTO ingredient (name) VALUES
 ('Peas'),
@@ -226,11 +215,11 @@ INSERT INTO ingredient (name) VALUES
 ('Red Cabbage'),
 ('Mangoe');
 
-INSERT INTO recipe_ingredient (line, recipe_id, ingredient_id) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4);
+INSERT INTO recipe_ingredient_quantity (line, recipe_id, ingredient_id, quantity_id) VALUES
+(1, 1, 1, 82),
+(2, 1, 2, 20),
+(3, 1, 3, 20),
+(4, 1, 4, 86);
 
 -- INSERT INTO menu (start_date) VALUES
 -- ();
