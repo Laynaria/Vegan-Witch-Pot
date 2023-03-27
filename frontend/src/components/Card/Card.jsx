@@ -7,7 +7,7 @@ export default function Card({ recipe }) {
   return (
     <div className="card">
       <img
-        src={`http://localhost:3000/src/assets/recipes/mini/${recipe.picture}`}
+        src={`http://localhost:3000/src/assets/recipes/mini/${recipe.thumbnail}`}
         alt={recipe.title}
         className="card-img"
       />

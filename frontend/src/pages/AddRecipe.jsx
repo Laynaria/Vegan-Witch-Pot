@@ -12,7 +12,7 @@ import "@components/AddRecipe/AddRecipe.scss";
 
 export default function AddRecipe() {
   const [recipe, setRecipe] = useState({
-    picture: "grilled_peas.png",
+    thumbnail: "grilled_peas.png",
     title: "Grilled Peas",
     difficulty: 1,
     cooking_time: "3h",

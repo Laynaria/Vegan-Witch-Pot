@@ -15,7 +15,7 @@ export default function FormsRecipe({ setRecipe, recipe }) {
         <label>
           Picture Link
           {/* should maybe change it to an input type link */}
-          <input type="text" name="picture" value={recipe.picture} />
+          <input type="text" name="thumbnail" value={recipe.thumbnail} />
         </label>
         <label>
           Difficulty
