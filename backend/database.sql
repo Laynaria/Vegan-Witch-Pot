@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS menu_recipe;
 DROP TABLE IF EXISTS menu;
-DROP TABLE IF EXISTS recipe_ingredient;
+DROP TABLE IF EXISTS recipe_ingredient_quantity;
 DROP TABLE IF EXISTS ingredient;
-DROP TABLE IF EXISTS recipe_quantity;
 DROP TABLE IF EXISTS quantity;
 DROP TABLE IF EXISTS type;
 DROP TABLE IF EXISTS recipe;
@@ -226,3 +225,5 @@ INSERT INTO recipe_ingredient_quantity (line, recipe_id, ingredient_id, quantity
 
 -- INSERT INTO menu_recipe (menu_id, recipe_id) VALUES
 -- ();
+
+SELECT u.id as user_id, r.id as recipe_id, riq.id as recipe_ingredient_quantity_id FROM user AS u INNER JOIN recipe as r ON u.id = r.user_id INNER JOIN recipe_ingredient_quantity as riq ON r.id = riq.recipe_id WHERE u.id = 1;

@@ -21,6 +21,7 @@ export default function EditRecipe() {
     cooking_time: "3h",
   });
 
+  const [jointDataToDelete, setJointDataToDelete] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -33,10 +34,32 @@ export default function EditRecipe() {
   };
 
   const handleDelete = () => {
+    // First we get the recipe_ingredient_quantity ids needed for deleting all users info
+    const recipeIngredientQuantityIds = [];
+
     instance
-      .delete(`/recipes/${id}`)
-      .then(() => navigate("/recipes"))
+      .get(`/users/delete-info/${recipe.user_id}`)
+      .then((res) =>
+        res.data.forEach((el) => {
+          // we check if recipe_id from each entry are equal to the current recipe id
+          // and push the valid ones in an array
+          if (el.recipe_id === parseInt(id, 2)) {
+            recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
+          }
+        })
+      )
+      .then(() => setJointDataToDelete(recipeIngredientQuantityIds))
       .catch(() => console.warn("Une erreur est survenue!"));
+
+    console.warn(jointDataToDelete);
+
+    // We can now delete entries from the joint table using the array
+
+    // finally we delete the recipe
+    // instance
+    //   .delete(`/recipes/${id}`)
+    //   .then(() => navigate("/recipes"))
+    //   .catch(() => console.warn("Une erreur est survenue!"));
   };
 
   useEffect(() => {
