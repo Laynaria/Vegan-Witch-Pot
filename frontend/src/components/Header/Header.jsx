@@ -30,8 +30,8 @@ export default function Header() {
           <input
             id="burger"
             type="checkbox"
-            onClick={burgerHandler}
-            checked={isOpen ? "true" : ""}
+            onChange={burgerHandler}
+            checked={isOpen ? true : ""}
           />
           <span />
           <span />
