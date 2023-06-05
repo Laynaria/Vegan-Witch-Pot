@@ -21,7 +21,6 @@ export default function EditRecipe() {
     cooking_time: "3h",
   });
 
-  const [jointDataToDelete, setJointDataToDelete] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -48,18 +47,23 @@ export default function EditRecipe() {
           }
         })
       )
-      .then(() => setJointDataToDelete(recipeIngredientQuantityIds))
+      // We can now delete entries from the joint table using the array
+      .then(() =>
+        instance
+          .delete("/recipe/delete-info/", {
+            data: { arr: recipeIngredientQuantityIds },
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+      )
+      // finally we delete the recipe
+      //      .then(() =>
+      // instance
+      //   .delete(`/recipes/${id}`)
+      //   .then(() => navigate("/recipes"))
+      //   .catch(() => console.warn("Une erreur est survenue!")))
       .catch(() => console.warn("Une erreur est survenue!"));
-
-    console.warn(jointDataToDelete);
-
-    // We can now delete entries from the joint table using the array
-
-    // finally we delete the recipe
-    // instance
-    //   .delete(`/recipes/${id}`)
-    //   .then(() => navigate("/recipes"))
-    //   .catch(() => console.warn("Une erreur est survenue!"));
   };
 
   useEffect(() => {
