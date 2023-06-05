@@ -48,17 +48,23 @@ export default function EditRecipe() {
         })
       )
       // We can now delete entries from the joint table using the array
-      .then(() =>
-        instance
-          .delete("/recipe/delete-info/", {
-            data: { arr: recipeIngredientQuantityIds },
-          })
-          .catch((err) => {
-            console.error(err);
-          })
-      )
+      .then(() => {
+        if (recipeIngredientQuantityIds.length !== 0) {
+          instance
+            .delete("/recipe/delete-info/", {
+              data: { arr: recipeIngredientQuantityIds },
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+      })
       // finally we delete the recipe and navigate back to recipes page
-      .then(() => instance.delete(`/recipes/${id}`))
+      .then(() =>
+        instance.delete(`/recipes/${id}`).catch((err) => {
+          console.error(err);
+        })
+      )
       .then(() => navigate("/recipes"))
       .catch(() => console.warn("Une erreur est survenue!"));
   };
