@@ -29,48 +29,6 @@ const read = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  // atm it only delete user, it needs to first delete recipes and menus
-  // where user id = req.params.id
-  // and menu_recipes where menu.id and recipe_ingredient_quantity
-
-  // can replace by a req.body.id à la place. Pour permettre de delete multiple
-
-  // const recipesIdArray = [];
-  // const recipesIngredientQuantityIdArray = [];
-
-  // models.recipe
-  //   .findByUserId(req.params.id)
-  //   .then(([rows]) => {
-  //     if (rows[0] == null) {
-  //       res.sendStatus(404);
-  //     } else {
-  //       rows.forEach((element) => {
-  //         recipesIdArray.push(element.id);
-  //       });
-  //     }
-  //   })
-  //   .then(() => {
-  //     models.recipe_ingredient_quantity
-  //       .findByRecipeId(recipesIdArray)
-  //       .then(([rows]) => {
-  //         if (rows[0] == null) {
-  //           res.sendStatus(404);
-  //         } else {
-  //           rows.forEach((element) => {
-  //             recipesIngredientQuantityIdArray.push(element.id);
-  //           });
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //         res.sendStatus(500);
-  //       });
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.sendStatus(500);
-  //   });
-
   models.user
     .delete(req.params.id)
     .then(([result]) => {

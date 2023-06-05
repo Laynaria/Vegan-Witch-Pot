@@ -18,9 +18,9 @@ class UserManager extends AbstractManager {
   }
 
   findForDelete(id) {
-    // on peut potentiellement retirer les select user id
-    // et recipe id, pour ne récupérer au final que les ingredients quantity
-    // tout dépendra de nos nécessités
+    // we can maybe remove user id and recipe id from this one depending on
+    // next course of action for users related requests
+    // in that case it could be better to switch those functions to other managers/controllers
     return this.connection.query(
       `SELECT u.id as user_id, r.id as recipe_id, riq.id as recipe_ingredient_quantity_id FROM ${this.table} AS u INNER JOIN recipe as r ON u.id = r.user_id INNER JOIN recipe_ingredient_quantity as riq ON r.id = riq.recipe_id WHERE u.id = ?`,
       [id]

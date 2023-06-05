@@ -57,10 +57,9 @@ export default function EditRecipe() {
             console.error(err);
           })
       )
-      // finally we delete the recipe and navigate back
+      // finally we delete the recipe and navigate back to recipes page
       .then(() => instance.delete(`/recipes/${id}`))
       .then(() => navigate("/recipes"))
-      //   .catch(() => console.warn("Une erreur est survenue!")))
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 

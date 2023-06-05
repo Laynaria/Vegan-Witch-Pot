@@ -25,6 +25,7 @@ router.get("/recipes/:id", recipeControllers.read);
 router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
 
+// recipes routes used to delete recipes
 router.get("/users/delete-info/:id", userControllers.selectForDelete);
 router.delete(
   "/recipe/delete-info/",
