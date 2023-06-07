@@ -18,8 +18,8 @@ router.get("/recipes", recipeControllers.browse);
 router.get("/recipes/:id", recipeControllers.read);
 
 // authentification routes
-// router.post("/register", userControllers.add);
-// router.post("/login", userControllers.log);
+router.post("/register", userControllers.add);
+router.post("/login", userControllers.log);
 
 // recipe routes for authentificated users only
 router.post("/recipes", recipeControllers.add);
@@ -34,7 +34,7 @@ router.delete(
 router.delete("/recipes/:id", recipeControllers.destroy);
 
 // routes accessible des admin uniquement
-// router.get("/users", userControllers.browse);
+router.get("/users", userControllers.browse);
 // router.get("/users/:id", userControllers.read);
 router.delete("/users/:id", userControllers.destroy);
 
