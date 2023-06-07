@@ -37,7 +37,10 @@
   }
 
   .LogoLanding {
-    width: 80%;
     filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+
+    @media screen and (min-width: 480px) {
+      width: 25vw;
+    }
   }
 }
