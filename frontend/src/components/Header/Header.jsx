@@ -20,9 +20,13 @@ export default function Header() {
     setIsOpen(false);
   });
 
+  const linkOnClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header>
-      <Link to="/" id="logoMenu">
+      <Link to="/" id="logoMenu" onClick={linkOnClick}>
         <img src={logo} alt="logo" />
       </Link>
       <div>
@@ -40,19 +44,19 @@ export default function Header() {
       </div>
       <nav className={isOpen ? "showNav" : "hideNav"}>
         <ul>
-          <Link to="/about">
+          <Link to="/about" onClick={linkOnClick}>
             <li>About Us</li>
           </Link>
-          <Link to="/recipes">
+          <Link to="/recipes" onClick={linkOnClick}>
             <li>Recipes</li>
           </Link>
-          <Link to="/menu">
+          <Link to="/menu" onClick={linkOnClick}>
             <li>Your Menu</li>
           </Link>
-          <Link to="/contact">
+          <Link to="/contact" onClick={linkOnClick}>
             <li>Contact</li>
           </Link>
-          <Link to="/profile">
+          <Link to="/profile" onClick={linkOnClick}>
             <li>Profile</li>
           </Link>
         </ul>

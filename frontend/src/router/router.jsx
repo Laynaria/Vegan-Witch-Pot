@@ -11,9 +11,9 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
         <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="*" element={<Error />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/add-recipe" element={<AddRecipe />} />
