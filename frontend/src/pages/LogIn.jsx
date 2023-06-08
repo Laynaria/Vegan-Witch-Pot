@@ -4,6 +4,8 @@ import { useState } from "react";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
+import "@components/Authentification/LogIn.scss";
+
 export default function LogIn() {
   const [loginInfo, setLoginInfo] = useState({
     email: "",
@@ -25,7 +27,7 @@ export default function LogIn() {
           <input
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             value={loginInfo.email}
             onChange={handleChangeLogin}
           />
@@ -34,17 +36,22 @@ export default function LogIn() {
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             value={loginInfo.password}
             onChange={handleChangeLogin}
           />
         </label>
+        <p>Forgotten Password?</p>
       </form>
       <ButtonRecipe
         icon={icon}
         text="Log In"
         // handleClick={handleSubmit}
       />
+      <p>
+        No Account? <span>Register</span>
+        {/* span should be change to a link later */}
+      </p>
     </section>
   );
 }
