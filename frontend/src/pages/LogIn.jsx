@@ -1,6 +1,6 @@
 // import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import instance from "@services/instance";
+import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
@@ -17,6 +17,15 @@ export default function LogIn() {
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
     setLoginInfo({ ...loginInfo, [name]: value });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    instance
+      .post("/login", loginInfo)
+      .then((res) => localStorage.setItem("token", res.data.token))
+      // .then(() => navigate("/"))
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -43,11 +52,7 @@ export default function LogIn() {
         </label>
         <p>Forgotten Password?</p>
       </form>
-      <ButtonRecipe
-        icon={icon}
-        text="Log In"
-        // handleClick={handleSubmit}
-      />
+      <ButtonRecipe icon={icon} text="Log In" handleClick={handleLogin} />
       <p>
         No Account? <span>Register</span>
         {/* span should be change to a link later */}

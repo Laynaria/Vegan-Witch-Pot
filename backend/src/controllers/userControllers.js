@@ -106,7 +106,7 @@ const log = (req, res) => {
           if (match) {
             const token = generateToken({
               id: user.id,
-              email: user.email,
+              role_id: user.role_id,
             });
             return res
               .cookie("user_auth", token, { httpOnly: true, secure: false })

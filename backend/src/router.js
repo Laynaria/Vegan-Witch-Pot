@@ -35,7 +35,7 @@ router.delete("/recipes/:id", recipeControllers.destroy);
 
 // routes accessible des admin uniquement
 router.get("/users", userControllers.browse);
-// router.get("/users/:id", userControllers.read);
+router.get("/users/:id", userControllers.read);
 router.delete("/users/:id", userControllers.destroy);
 
 module.exports = router;
