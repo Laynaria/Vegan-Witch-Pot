@@ -106,10 +106,13 @@ const log = (req, res) => {
           if (match) {
             const token = generateToken({
               id: user.id,
-              role_id: user.role_id,
             });
             return res
-              .cookie("user_auth", token, { httpOnly: true, secure: false })
+              .cookie("user_auth", token, {
+                httpOnly: true,
+                secure: false,
+                expires: new Date(Date.now() + 1000 * 60 * 60),
+              })
               .status(200)
               .json({ token, sucess: "User logged" });
           }
