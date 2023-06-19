@@ -14,7 +14,7 @@ function AuthContextProvider({ children }) {
       setUser(decodeToken);
     }
 
-    if (user.exp * 1000 > Date.now()) {
+    if (user.exp * 1000 < Date.now()) {
       setUser({});
       localStorage.removeItem("token");
     }
