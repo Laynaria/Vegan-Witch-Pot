@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 
 const AuthContext = createContext();
 
@@ -15,8 +15,8 @@ function AuthContextProvider({ children }) {
     }
 
     if (user.exp * 1000 < Date.now()) {
-      setUser({});
       localStorage.removeItem("token");
+      setUser({});
     }
   };
 
@@ -24,16 +24,18 @@ function AuthContextProvider({ children }) {
     handleAuth();
   }, []);
 
-  //   console.log(user.exp * 1000);
-  //   console.log(Date.now());
-  //   console.log(user);
+  const userMemo = useMemo(
+    () => ({
+      user,
+      setUser,
+      handleAuth,
+    }),
+    [user, setUser, handleAuth]
+  );
+
   return (
-    <AuthContext.Provider value={(user, setUser, handleAuth)}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={userMemo}>{children}</AuthContext.Provider>
   );
 }
 
-const AuthExport = { AuthContext, AuthContextProvider };
-
-export default AuthExport;
+export { AuthContext, AuthContextProvider };

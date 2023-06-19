@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AuthExport from "./contexts/AuthContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 import App from "./App";
 
@@ -8,8 +8,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <AuthExport.AuthContextProvider>
+    <AuthContextProvider>
       <App />
-    </AuthExport.AuthContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );

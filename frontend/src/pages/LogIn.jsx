@@ -1,5 +1,6 @@
 // import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
@@ -12,7 +13,7 @@ export default function LogIn() {
     password: "",
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
@@ -24,7 +25,7 @@ export default function LogIn() {
     instance
       .post("/login", loginInfo)
       .then((res) => localStorage.setItem("token", res.data.token))
-      // .then(() => navigate("/"))
+      .then(() => navigate("/"))
       .catch((err) => console.error(err));
   };
 

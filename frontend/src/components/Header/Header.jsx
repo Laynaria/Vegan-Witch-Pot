@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "@assets/logos/logo.svg";
+import { AuthContext } from "../../contexts/AuthContext";
 import "./Header.scss";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const burgerHandler = () => {
     setIsOpen(!isOpen);
@@ -56,9 +59,15 @@ export default function Header() {
           <Link to="/contact" onClick={linkOnClick}>
             <li>Contact</li>
           </Link>
-          <Link to="/profile" onClick={linkOnClick}>
-            <li>Profile</li>
-          </Link>
+          {user.id === undefined ? (
+            <Link to="/login" onClick={linkOnClick}>
+              <li>Login</li>
+            </Link>
+          ) : (
+            <Link to="/profile" onClick={linkOnClick}>
+              <li>Profile</li>
+            </Link>
+          )}
         </ul>
       </nav>
     </header>
