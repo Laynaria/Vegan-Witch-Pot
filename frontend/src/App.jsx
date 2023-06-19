@@ -6,6 +6,9 @@ import "./App.scss";
 
 function App() {
   const [isLanding, setIsLanding] = useState(true);
+
+  // AuthExport.handleAuth();
+
   return (
     <>
       {isLanding ? (
