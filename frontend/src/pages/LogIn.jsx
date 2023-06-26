@@ -1,13 +1,15 @@
 // import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
 import "@components/Authentification/LogIn.scss";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function LogIn() {
+  const { handleAuth } = useContext(AuthContext);
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -25,6 +27,7 @@ export default function LogIn() {
     instance
       .post("/login", loginInfo)
       .then((res) => localStorage.setItem("token", res.data.token))
+      .then(() => handleAuth())
       .then(() => navigate("/"))
       .catch((err) => console.error(err));
   };
