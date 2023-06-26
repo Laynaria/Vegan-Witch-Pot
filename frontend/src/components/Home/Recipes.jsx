@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
 
@@ -9,9 +9,13 @@ import "./Recipes.scss";
 import Card from "@components/Card/Card";
 import Loading from "@components/Loading/Loading";
 
+import { AuthContext } from "../../contexts/AuthContext";
+
 export default function Recipes() {
   const [isLoading, setIsLoading] = useState(true);
   const [arrayRecipes, setArrayRecipes] = useState([]);
+
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -38,11 +42,15 @@ export default function Recipes() {
             .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
             .reverse()}
 
-          <ButtonRecipe
-            icon={buttonIcon}
-            text="New recipe"
-            handleClick={() => navigate("/add-recipe")}
-          />
+          {user.id !== undefined ? (
+            <ButtonRecipe
+              icon={buttonIcon}
+              text="New recipe"
+              handleClick={() => navigate("/add-recipe")}
+            />
+          ) : (
+            ""
+          )}
         </section>
       )}
     </>

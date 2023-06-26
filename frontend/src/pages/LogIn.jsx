@@ -10,6 +10,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 export default function LogIn() {
   const { handleAuth } = useContext(AuthContext);
+
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
