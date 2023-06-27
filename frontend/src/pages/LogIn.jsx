@@ -1,15 +1,14 @@
-// import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
 import "@components/Authentification/LogIn.scss";
-import { AuthContext } from "@contexts/AuthContext";
 
 export default function LogIn() {
-  const { handleAuth } = useContext(AuthContext);
+  const { handleAuth, user } = useContext(AuthContext);
 
   const [loginInfo, setLoginInfo] = useState({
     email: "",
@@ -17,6 +16,12 @@ export default function LogIn() {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.id !== undefined) {
+      navigate("/");
+    }
+  }, []);
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;

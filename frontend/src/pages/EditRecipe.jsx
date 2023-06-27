@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 
 import FormsRecipe from "@components/Recipes/FormsRecipe";
@@ -12,6 +13,7 @@ import deleteIcon from "@assets/icons/broom.svg";
 import "@components/AddRecipe/AddRecipe.scss";
 
 export default function EditRecipe() {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
 
   const [recipe, setRecipe] = useState({
@@ -22,6 +24,12 @@ export default function EditRecipe() {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.id === undefined) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleSubmit = () => {
     // must add validations of having nothing null etc
