@@ -97,7 +97,7 @@ export default function Register() {
           <span>See Password</span>
         </p>
       </form>
-      <ButtonRecipe icon={icon} text="Log In" handleClick={handleRegister} />
+      <ButtonRecipe icon={icon} text="Register" handleClick={handleRegister} />
     </section>
   );
 }
