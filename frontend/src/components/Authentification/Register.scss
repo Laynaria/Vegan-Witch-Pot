@@ -47,6 +47,16 @@
       grid-column: 1 / -1;
 
       span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0 1rem;
+        width: 210px;
+
+        img {
+          height: 29px;
+        }
+
         &:hover {
           // transform this to a link later
           color: $secondary-color;

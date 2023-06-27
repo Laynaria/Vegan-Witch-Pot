@@ -4,12 +4,15 @@ import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
+import hide from "@assets/icons/hide.svg";
+import show from "@assets/icons/show.svg";
 
 import "@components/Authentification/Register.scss";
 
 export default function Register() {
   const { user } = useContext(AuthContext);
 
+  const [isShown, setIsShown] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     email: "",
     username: "",
@@ -77,7 +80,7 @@ export default function Register() {
         </label>
         <label>
           <input
-            type="password"
+            type={isShown ? "text" : "password"}
             name="password"
             placeholder="Password"
             value={registerInfo.password}
@@ -86,7 +89,7 @@ export default function Register() {
         </label>
         <label>
           <input
-            type="password"
+            type={isShown ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
             value={registerInfo.confirmPassword}
@@ -94,7 +97,13 @@ export default function Register() {
           />
         </label>
         <p>
-          <span>See Password</span>
+          <span onClick={() => setIsShown(!isShown)} aria-hidden="true">
+            <img
+              src={isShown ? hide : show}
+              alt={isShown ? "hide password" : "show password"}
+            />
+            {isShown ? "Hide Password" : "Show Password"}
+          </span>
         </p>
       </form>
       <ButtonRecipe icon={icon} text="Register" handleClick={handleRegister} />
