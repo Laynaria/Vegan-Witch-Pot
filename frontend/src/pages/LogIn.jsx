@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
@@ -30,6 +30,12 @@ export default function LogIn() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const { email, password } = loginInfo;
+
+    if (email === "" || password === "") {
+      return;
+    }
+
     instance
       .post("/login", loginInfo)
       .then((res) => localStorage.setItem("token", res.data.token))
@@ -39,7 +45,7 @@ export default function LogIn() {
   };
 
   return (
-    <section className="Authentification">
+    <section className="LogIn">
       <h1>Log In</h1>
       <form>
         <label>
@@ -64,7 +70,7 @@ export default function LogIn() {
       </form>
       <ButtonRecipe icon={icon} text="Log In" handleClick={handleLogin} />
       <p>
-        No Account? <span>Register</span>
+        No Account? <Link to="/register">Register</Link>
         {/* span should be change to a link later */}
       </p>
     </section>

@@ -1,6 +1,6 @@
 @import "../../assets/variables";
 
-.LogIn {
+.Register {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,10 +8,11 @@
   margin: 3rem auto;
 
   form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     align-items: center;
-    gap: 1.5rem;
+    gap: 3rem 1.5rem;
     background-color: transparentize($font-color, 0.71);
     border-radius: $border-radius;
     padding: 3rem 9rem;
@@ -39,25 +40,17 @@
       border: 2px solid rgb(192, 66, 66);
     }
 
-    :nth-child(2) {
-      margin-top: 1.5rem;
-    }
+    p {
+      font-size: calc($font-size / 1.35);
+      // width: max-content;
+      text-align: center;
+      grid-column: 1 / -1;
 
-    p:hover {
-      // transform this to a link later
-      color: $secondary-color;
-    }
-  }
-
-  p {
-    font-size: calc($font-size / 1.35);
-
-    a {
-      text-decoration: none;
-      color: $secondary-color;
-
-      &:hover {
-        color: $font-color;
+      span {
+        &:hover {
+          // transform this to a link later
+          color: $secondary-color;
+        }
       }
     }
   }
