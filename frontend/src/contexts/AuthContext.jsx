@@ -13,8 +13,12 @@ function AuthContextProvider({ children }) {
       const decodeToken = jwtDecode(getToken);
       setUser(decodeToken);
     }
+  };
 
-    if (user.exp * 1000 < Date.now()) {
+  const handleDelog = () => {
+    const getToken = localStorage.getItem("token");
+
+    if (getToken && user.exp * 1000 < Date.now()) {
       localStorage.removeItem("token");
       setUser({});
     }
@@ -23,6 +27,9 @@ function AuthContextProvider({ children }) {
   useEffect(() => {
     handleAuth();
   }, []);
+
+  // test setInterval to handleDelog every 5minutes
+  setInterval(handleDelog, 60000 * 5);
 
   const userMemo = useMemo(
     () => ({
