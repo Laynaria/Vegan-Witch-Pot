@@ -1,5 +1,5 @@
-import jwtDecode from "jwt-decode";
 import { createContext, useState, useEffect, useMemo } from "react";
+import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext();
 
@@ -21,6 +21,8 @@ function AuthContextProvider({ children }) {
     if (getToken && user.exp * 1000 < Date.now()) {
       localStorage.removeItem("token");
       setUser({});
+      // reload the app, to remove next login issues
+      window.location.reload();
     }
   };
 
@@ -28,8 +30,8 @@ function AuthContextProvider({ children }) {
     handleAuth();
   }, []);
 
-  // test setInterval to handleDelog every 5minutes
-  setInterval(handleDelog, 60000 * 5);
+  // test setInterval to handleDelog every minute
+  setInterval(handleDelog, 60000 * 1);
 
   const userMemo = useMemo(
     () => ({
