@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "@assets/logos/logo.svg";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "@contexts/AuthContext";
 import "./Header.scss";
 
 export default function Header() {

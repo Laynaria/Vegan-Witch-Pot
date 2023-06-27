@@ -9,7 +9,7 @@ import "./Recipes.scss";
 import Card from "@components/Card/Card";
 import Loading from "@components/Loading/Loading";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "@contexts/AuthContext";
 
 export default function Recipes() {
   const [isLoading, setIsLoading] = useState(true);

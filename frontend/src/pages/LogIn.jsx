@@ -6,7 +6,7 @@ import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
 import "@components/Authentification/LogIn.scss";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "@contexts/AuthContext";
 
 export default function LogIn() {
   const { handleAuth } = useContext(AuthContext);
