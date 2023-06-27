@@ -19,6 +19,13 @@ export default function AddRecipe() {
     title: "Grilled Peas",
     difficulty: 1,
     cooking_time: "3h",
+    user_id: user.id,
+    // Waiting their form inputs
+    is_shared: 1,
+    is_approved: 1,
+    origin: "",
+    steps: "",
+    category_id: 4,
   });
 
   const navigate = useNavigate();

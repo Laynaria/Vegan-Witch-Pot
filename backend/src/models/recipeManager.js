@@ -16,20 +16,36 @@ class RecipeManager extends AbstractManager {
   insert(recipe) {
     // a ajouter : steps, origin, is_shared, user_id, category_id
     return this.connection.query(
-      `insert into ${this.table} (thumbnail, title, difficulty, cooking_time) values (?, ?, ?, ?)`,
-      [recipe.thumbnail, recipe.title, recipe.difficulty, recipe.cooking_time]
-    );
-  }
-
-  update(recipe) {
-    // a ajouter : steps, origin, is_shared, is_approved, user_id, category_id
-    return this.connection.query(
-      `update ${this.table} set thumbnail = ?, title = ?, difficulty = ?, cooking_time = ? where id = ?`,
+      `insert into ${this.table} (thumbnail, title, difficulty, cooking_time, user_id, is_shared, is_approved, origin, steps, category_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         recipe.thumbnail,
         recipe.title,
         recipe.difficulty,
         recipe.cooking_time,
+        recipe.user_id,
+        recipe.is_shared,
+        recipe.is_approved,
+        recipe.origin,
+        recipe.steps,
+        recipe.category_id,
+      ]
+    );
+  }
+
+  update(recipe) {
+    // a ajouter : steps, origin, is_shared, is_approved, category_id
+    return this.connection.query(
+      `update ${this.table} set thumbnail = ?, title = ?, difficulty = ?, cooking_time = ?, is_shared = ?, is_approved = ?, origin = ?, steps = ?, category_id = ? where id = ?`,
+      [
+        recipe.thumbnail,
+        recipe.title,
+        recipe.difficulty,
+        recipe.cooking_time,
+        recipe.is_shared,
+        recipe.is_approved,
+        recipe.origin,
+        recipe.steps,
+        recipe.category_id,
         recipe.id,
       ]
     );

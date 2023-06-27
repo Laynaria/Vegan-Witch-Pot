@@ -21,6 +21,13 @@ export default function EditRecipe() {
     title: "Grilled Peas",
     difficulty: 1,
     cooking_time: "3h",
+    user_id: user.id,
+    // Waiting their form inputs
+    is_shared: 1,
+    is_approved: 1,
+    origin: "",
+    steps: "",
+    category_id: 4,
   });
 
   const navigate = useNavigate();
@@ -81,6 +88,10 @@ export default function EditRecipe() {
     instance
       .get(`/recipes/${id}`)
       .then((result) => {
+        if (user.id !== result.data.user_id) {
+          navigate("/login");
+        }
+
         setRecipe(result.data);
       })
       .catch((err) => {
