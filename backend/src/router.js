@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const { checkAuth, checkRole } = require("./middlewares/auth");
+
 const itemControllers = require("./controllers/itemControllers");
 const recipeControllers = require("./controllers/recipeControllers");
 const userControllers = require("./controllers/userControllers");
@@ -21,6 +23,13 @@ router.get("/recipes/:id", recipeControllers.read);
 router.post("/register", userControllers.add);
 router.post("/login", userControllers.log);
 
+// Middleware verifying if user is logged for routes security
+router.use(checkAuth);
+
+// Users routes for authentificated users only
+router.get("/users/:id", userControllers.read);
+router.delete("/users/:id", userControllers.destroy);
+
 // recipe routes for authentificated users only
 router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
@@ -33,9 +42,10 @@ router.delete(
 );
 router.delete("/recipes/:id", recipeControllers.destroy);
 
+// Middleware for checking roles
+router.use(checkRole);
+
 // routes accessible des admin uniquement
 router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.delete("/users/:id", userControllers.destroy);
 
 module.exports = router;
