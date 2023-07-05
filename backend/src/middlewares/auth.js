@@ -32,8 +32,19 @@ const checkAuth = (req, res, next) => {
 };
 
 const checkRole = (req, res, next) => {
-  //   console.log(req.user);
-  next();
+  // we most likely will have to do front instructions to get the role id
+  //   console.warn(req.user.id);
+  //   console.warn(req.body.role_id);
+
+  const roleId = req.body.role_id;
+
+  if (roleId === 3) {
+    next();
+  } else {
+    res
+      .status(403)
+      .json({ error: "You don't have authorisation for this action!" });
+  }
 };
 
 module.exports = { checkAuth, checkRole };

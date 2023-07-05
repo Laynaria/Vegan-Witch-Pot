@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useMemo } from "react";
 import jwtDecode from "jwt-decode";
+import instance from "@services/instance";
 
 const AuthContext = createContext();
 
@@ -23,6 +24,15 @@ function AuthContextProvider({ children }) {
       setUser({});
       // reload the app, to remove next login issues
       window.location.reload();
+    }
+
+    // if there is no token, it will remove cookie from backend if it still exists
+    if (getToken === null) {
+      instance
+        .get("/logout")
+        .then(localStorage.removeItem("token"))
+        .then(() => setUser({}))
+        .catch(() => console.warn("Une erreur est survenue!"));
     }
   };
 

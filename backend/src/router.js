@@ -6,6 +6,7 @@ const { checkAuth, checkRole } = require("./middlewares/auth");
 
 const itemControllers = require("./controllers/itemControllers");
 const recipeControllers = require("./controllers/recipeControllers");
+const authControllers = require("./controllers/authControllers");
 const userControllers = require("./controllers/userControllers");
 const recipeIngredientQuantityControllers = require("./controllers/recipeIngredientQuantityControllers");
 
@@ -20,8 +21,9 @@ router.get("/recipes", recipeControllers.browse);
 router.get("/recipes/:id", recipeControllers.read);
 
 // authentification routes
-router.post("/register", userControllers.add);
-router.post("/login", userControllers.log);
+router.post("/register", authControllers.add);
+router.post("/login", authControllers.log);
+router.get("/logout", authControllers.logout);
 
 // Middleware verifying if user is logged for routes security
 router.use(checkAuth);
