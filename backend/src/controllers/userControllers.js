@@ -29,6 +29,26 @@ const read = (req, res) => {
     });
 };
 
+const edit = (req, res) => {
+  const user = req.body;
+
+  user.id = parseInt(req.params.id, 10);
+
+  models.user
+    .update(user)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const editPassword = (req, res) => {
   const { password } = req.body;
 
@@ -50,7 +70,7 @@ const editPassword = (req, res) => {
         if (rows.affectedRows === 1) {
           return res.status(201).json({ success: "User password updated" });
         }
-        return res.status(403).json({ error: "une erreur s'est produite" });
+        return res.status(403).json({ error: "An error has occured" });
       })
       .catch((err) => {
         console.error(err);
@@ -91,7 +111,7 @@ const destroy = (req, res) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   editPassword,
   selectForDelete,
   destroy,
