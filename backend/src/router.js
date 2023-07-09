@@ -21,6 +21,8 @@ router.get("/recipes", recipeControllers.browse);
 router.get("/recipes/:id", recipeControllers.read);
 
 // authentification routes
+router.get("/verify-email/:email", authControllers.checkEmail);
+router.get("/verify-username/:username", authControllers.checkUsername);
 router.post("/register", authControllers.add);
 router.post("/login", authControllers.log);
 router.get("/logout", authControllers.logout);

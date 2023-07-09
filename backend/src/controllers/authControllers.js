@@ -2,6 +2,36 @@ const { verify, hash, argon2id } = require("argon2");
 const { generateToken } = require("../services/jwt");
 const models = require("../models");
 
+// function use to verify is email already exist
+const checkEmail = (req, res) => {
+  const { email } = req.params;
+
+  models.user
+    .findIfEmailExist(email)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+// function use to verify is username already exist
+const checkUsername = (req, res) => {
+  const { username } = req.params;
+
+  models.user
+    .findIfUsernameExist(username)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 // This function creates a new user with a hashed password
 const add = (req, res) => {
   // First we extract the password from the body
@@ -82,6 +112,8 @@ const logout = (req, res) => {
 };
 
 module.exports = {
+  checkUsername,
+  checkEmail,
   add,
   log,
   logout,

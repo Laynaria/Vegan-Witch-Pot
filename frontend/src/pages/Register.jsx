@@ -50,9 +50,30 @@ export default function Register() {
       return;
     }
 
+    // We check if email exist
     instance
-      .post("/register", registerInfo)
-      .then(() => navigate("/login"))
+      .get(`/verify-email/${registerInfo.email}`)
+      .then((res) => {
+        if (!res.data[0]) {
+          // Then we check if username exist
+          instance
+            .get(`/verify-username/${registerInfo.username}`)
+            .then((result) => {
+              if (!result.data[0]) {
+                // If none exist, then we create a new user
+                instance
+                  .post("/register", registerInfo)
+                  .then(() => navigate("/login"))
+                  .catch((err) => console.error(err));
+              } else {
+                console.error("Username already exist");
+              }
+            })
+            .catch((err) => console.error(err));
+        } else {
+          console.error("Email already exist");
+        }
+      })
       .catch((err) => console.error(err));
   };
 

@@ -7,7 +7,7 @@ class UserManager extends AbstractManager {
 
   findAll() {
     return this.connection.query(
-      `select id, username, email, role_id from  ${this.table}`
+      `select id, username, email, role_id from ${this.table}`
     );
   }
 
@@ -22,6 +22,20 @@ class UserManager extends AbstractManager {
     return this.connection.query(
       `select id, role_id, email, password from ${this.table} where email = ?`,
       [email]
+    );
+  }
+
+  findIfEmailExist(email) {
+    return this.connection.query(
+      `select email from  ${this.table} where email = ?`,
+      [email]
+    );
+  }
+
+  findIfUsernameExist(username) {
+    return this.connection.query(
+      `select username from  ${this.table} where username = ?`,
+      [username]
     );
   }
 
