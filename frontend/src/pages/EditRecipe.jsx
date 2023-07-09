@@ -95,7 +95,8 @@ export default function EditRecipe() {
         setRecipe(result.data);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Error: This recipe doesn't exist", err);
+        navigate("/");
       });
   }, []);
 
