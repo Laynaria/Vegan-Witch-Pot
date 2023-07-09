@@ -83,7 +83,7 @@ INSERT INTO role (role) VALUES
 
 INSERT INTO user (username, email, password, role_id) VALUES
 ('Layne', 'layne@layne.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', 3),
-('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', 1);
+('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$HB7WoL7htUrpFQT+JnazCA$42lqJNUaTvY3+13akIRIDl6uCka5mzMp7xzRoOa0C0A', 1);
 
 INSERT INTO category (name) VALUES
 ('Breakfasts'),

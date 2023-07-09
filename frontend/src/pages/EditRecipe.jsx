@@ -88,7 +88,7 @@ export default function EditRecipe() {
     instance
       .get(`/recipes/${id}`)
       .then((result) => {
-        if (user.id !== result.data.user_id) {
+        if (user.id !== result.data.user_id && user.role_id !== 3) {
           navigate("/login");
         }
 
