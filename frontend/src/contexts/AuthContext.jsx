@@ -12,7 +12,11 @@ function AuthContextProvider({ children }) {
 
     if (getToken) {
       const decodeToken = jwtDecode(getToken);
-      setUser(decodeToken);
+
+      instance
+        .get(`/users/${decodeToken.id}`)
+        .then((res) => setUser({ ...decodeToken, ...res.data }))
+        .catch(() => console.warn("Une erreur est survenue!"));
     }
   };
 
