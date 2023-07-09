@@ -1,3 +1,4 @@
+const { hash, argon2id } = require("argon2");
 const models = require("../models");
 
 const browse = (req, res) => {
@@ -57,11 +58,41 @@ const selectForDelete = (req, res) => {
     });
 };
 
+const editPassword = (req, res) => {
+  const { password } = req.body;
+
+  const hashingOptions = {
+    type: argon2id,
+    memoryCost: 2 ** 16,
+    timeCost: 5,
+    parallelism: 1,
+  };
+
+  hash(password, hashingOptions).then((hashedPassword) => {
+    const user = { ...req.body, hashedPassword };
+
+    user.id = parseInt(req.params.id, 10);
+
+    models.user
+      .updatePassword(user)
+      .then(([rows]) => {
+        if (rows.affectedRows === 1) {
+          return res.status(201).json({ success: "User password updated" });
+        }
+        return res.status(403).json({ error: "une erreur s'est produite" });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  });
+};
+
 module.exports = {
   browse,
   read,
   destroy,
   selectForDelete,
   // edit,
-  // editPassword,
+  editPassword,
 };

@@ -31,6 +31,7 @@ router.use(checkAuth);
 // Users routes for authentificated users only
 router.get("/users/:id", userControllers.read);
 router.delete("/users/:id", userControllers.destroy);
+router.put("/users/edit-password/:id", userControllers.editPassword);
 
 // recipe routes for authentificated users only
 router.post("/recipes", recipeControllers.add);
