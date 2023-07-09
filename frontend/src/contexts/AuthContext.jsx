@@ -33,7 +33,7 @@ function AuthContextProvider({ children }) {
     // if there is no token, it will remove cookie from backend if it still exists
     if (getToken === null) {
       instance
-        .get("/logout")
+        .post("/logout")
         .then(localStorage.removeItem("token"))
         .then(() => setUser({}))
         .catch(() => console.warn("Une erreur est survenue!"));

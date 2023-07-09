@@ -105,10 +105,9 @@ const log = (req, res) => {
 const logout = (req, res) => {
   // clear authentification token from cookie
   return res
-    .status(200)
     .clearCookie("user_auth")
+    .status(200)
     .json({ success: "User disconnected" });
-  // the json isn't sent to postman, not sure why
 };
 
 module.exports = {

@@ -25,7 +25,7 @@ router.get("/verify-email/:email", authControllers.checkEmail);
 router.get("/verify-username/:username", authControllers.checkUsername);
 router.post("/register", authControllers.add);
 router.post("/login", authControllers.log);
-router.get("/logout", authControllers.logout);
+router.post("/logout", authControllers.logout);
 
 // Middleware verifying if user is logged for routes security
 router.use(checkAuth);
