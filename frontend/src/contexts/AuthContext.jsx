@@ -24,11 +24,20 @@ function AuthContextProvider({ children }) {
     const getToken = localStorage.getItem("token");
 
     if (getToken && user.exp * 1000 < Date.now()) {
-      localStorage.removeItem("token");
-      setUser({});
-      // reload the app, to remove next login issues
-      window.location.reload();
+      instance
+        .post("/logout")
+        .then(localStorage.removeItem("token"))
+        .then(() => setUser({}))
+        // reload the app, to remove next login issues
+        .then(() => window.location.reload())
+        .catch(() => console.warn("Une erreur est survenue!"));
     }
+  };
+
+  useEffect(() => {
+    handleAuth();
+
+    const getToken = localStorage.getItem("token");
 
     // if there is no token, it will remove cookie from backend if it still exists
     if (getToken === null) {
@@ -38,10 +47,6 @@ function AuthContextProvider({ children }) {
         .then(() => setUser({}))
         .catch(() => console.warn("Une erreur est survenue!"));
     }
-  };
-
-  useEffect(() => {
-    handleAuth();
   }, []);
 
   // test setInterval to handleDelog every minute
