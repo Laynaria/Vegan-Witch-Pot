@@ -6,12 +6,10 @@ import Header from "@components/Header/Header";
 import Footer from "@components/Footer/Footer";
 
 export default function Layout({ children }) {
-  const { handleAuth, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
   const location = useLocation();
 
   useEffect(() => {
-    handleAuth();
-
     const getToken = localStorage.getItem("token");
 
     // if there is no token, it will remove cookie from backend if it still exists
