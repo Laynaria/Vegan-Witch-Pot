@@ -42,7 +42,6 @@
 
     p {
       font-size: calc($font-size / 1.35);
-      // width: max-content;
       text-align: center;
       grid-column: 1 / -1;
 
@@ -58,7 +57,6 @@
         }
 
         &:hover {
-          // transform this to a link later
           color: $secondary-color;
         }
       }

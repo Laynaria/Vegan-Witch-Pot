@@ -71,7 +71,6 @@ export default function LogIn() {
       <ButtonRecipe icon={icon} text="Log In" handleClick={handleLogin} />
       <p>
         No Account? <Link to="/register">Register</Link>
-        {/* span should be change to a link later */}
       </p>
     </section>
   );

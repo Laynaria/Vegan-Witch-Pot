@@ -14,7 +14,6 @@ class RecipeManager extends AbstractManager {
   }
 
   insert(recipe) {
-    // a ajouter : steps, origin, is_shared, user_id, category_id
     return this.connection.query(
       `insert into ${this.table} (thumbnail, title, difficulty, cooking_time, user_id, is_shared, is_approved, origin, steps, category_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -33,7 +32,6 @@ class RecipeManager extends AbstractManager {
   }
 
   update(recipe) {
-    // a ajouter : steps, origin, is_shared, is_approved, category_id
     return this.connection.query(
       `update ${this.table} set thumbnail = ?, title = ?, difficulty = ?, cooking_time = ?, is_shared = ?, is_approved = ?, origin = ?, steps = ?, category_id = ? where id = ?`,
       [

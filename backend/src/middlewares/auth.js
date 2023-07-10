@@ -32,10 +32,6 @@ const checkAuth = (req, res, next) => {
 };
 
 const checkRole = (req, res, next) => {
-  // we most likely will have to do front instructions to get the role id
-  //   console.warn(req.user.id);
-  //   console.warn(req.body.role_id);
-
   const roleId = req.body.role_id;
 
   if (roleId === 3) {
