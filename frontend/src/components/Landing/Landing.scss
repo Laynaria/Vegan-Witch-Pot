@@ -1,5 +1,9 @@
 @import "../../assets/variables";
 
+.hide {
+  opacity: 0;
+}
+
 .Landing {
   min-height: calc(100vh - 91px);
   display: flex;
@@ -8,6 +12,7 @@
   justify-content: space-around;
   z-index: 1000;
   overflow-y: hidden;
+  transition: opacity 0.3s ease;
 
   .WitchLottie {
     position: absolute;
@@ -29,6 +34,7 @@
     border-radius: $border-radius;
     padding: $half-space * 1.5 $basic-space * 5;
     cursor: pointer;
+    transition: opacity 1s ease;
 
     &:active {
       transition: 0.25s ease;
