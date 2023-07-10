@@ -1,6 +1,7 @@
 @import "../../assets/variables";
 
 header {
+  z-index: 6;
   position: fixed;
   top: -8px;
   left: 0;
@@ -93,7 +94,7 @@ header {
         position: absolute;
         height: 4px;
         width: 100%;
-        background: $background-color;
+        background: $primary-color;
         border-radius: 9px;
         opacity: 1;
         left: 0;

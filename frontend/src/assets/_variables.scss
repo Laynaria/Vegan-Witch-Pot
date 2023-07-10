@@ -22,7 +22,7 @@ $title-size: 2.25rem;
 // Colors parameters
 $background-color: #473663;
 $primary-color: #623d9f;
-$secondary-color: #56b972;
+$secondary-color: lighten(complement($primary-color), 10%);
 
 // border radius
 $border-radius: 10px;

@@ -6,6 +6,7 @@ import "./App.scss";
 
 function App() {
   const [isLanding, setIsLanding] = useState(true);
+
   return (
     <>
       {isLanding ? (

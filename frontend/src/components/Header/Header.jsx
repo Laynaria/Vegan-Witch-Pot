@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "@assets/logos/logo.svg";
+import { AuthContext } from "@contexts/AuthContext";
 import "./Header.scss";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const burgerHandler = () => {
     setIsOpen(!isOpen);
@@ -20,9 +23,13 @@ export default function Header() {
     setIsOpen(false);
   });
 
+  const linkOnClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header>
-      <Link to="/" id="logoMenu">
+      <Link to="/" id="logoMenu" onClick={linkOnClick}>
         <img src={logo} alt="logo" />
       </Link>
       <div>
@@ -30,8 +37,8 @@ export default function Header() {
           <input
             id="burger"
             type="checkbox"
-            onClick={burgerHandler}
-            checked={isOpen ? "true" : ""}
+            onChange={burgerHandler}
+            checked={isOpen ? true : ""}
           />
           <span />
           <span />
@@ -40,21 +47,27 @@ export default function Header() {
       </div>
       <nav className={isOpen ? "showNav" : "hideNav"}>
         <ul>
-          <Link to="/about">
+          <Link to="/about" onClick={linkOnClick}>
             <li>About Us</li>
           </Link>
-          <Link to="/recipes">
+          <Link to="/recipes" onClick={linkOnClick}>
             <li>Recipes</li>
           </Link>
-          <Link to="/menu">
+          <Link to="/menu" onClick={linkOnClick}>
             <li>Your Menu</li>
           </Link>
-          <Link to="/contact">
+          <Link to="/contact" onClick={linkOnClick}>
             <li>Contact</li>
           </Link>
-          <Link to="/profile">
-            <li>Profile</li>
-          </Link>
+          {user.id === undefined ? (
+            <Link to="/login" onClick={linkOnClick}>
+              <li>Login</li>
+            </Link>
+          ) : (
+            <Link to="/profile" onClick={linkOnClick}>
+              <li>Profile</li>
+            </Link>
+          )}
         </ul>
       </nav>
     </header>

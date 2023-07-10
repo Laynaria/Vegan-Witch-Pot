@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS menu_recipe;
 DROP TABLE IF EXISTS menu;
-DROP TABLE IF EXISTS recipe_ingredient;
+DROP TABLE IF EXISTS recipe_ingredient_quantity;
 DROP TABLE IF EXISTS ingredient;
-DROP TABLE IF EXISTS recipe_quantity;
 DROP TABLE IF EXISTS quantity;
 DROP TABLE IF EXISTS type;
 DROP TABLE IF EXISTS recipe;
@@ -83,8 +82,8 @@ INSERT INTO role (role) VALUES
 ('admin');
 
 INSERT INTO user (username, email, password, role_id) VALUES
-('Layne', 'layne@layne.fr', 'admin', 3),
-('test', 'test@test.fr', 'test', 1);
+('Layne', 'layne@layne.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', 3),
+('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$HB7WoL7htUrpFQT+JnazCA$42lqJNUaTvY3+13akIRIDl6uCka5mzMp7xzRoOa0C0A', 1);
 
 INSERT INTO category (name) VALUES
 ('Breakfasts'),
@@ -226,3 +225,5 @@ INSERT INTO recipe_ingredient_quantity (line, recipe_id, ingredient_id, quantity
 
 -- INSERT INTO menu_recipe (menu_id, recipe_id) VALUES
 -- ();
+
+SELECT u.id as user_id, r.id as recipe_id, riq.id as recipe_ingredient_quantity_id FROM user AS u INNER JOIN recipe as r ON u.id = r.user_id INNER JOIN recipe_ingredient_quantity as riq ON r.id = riq.recipe_id WHERE u.id = 1;
