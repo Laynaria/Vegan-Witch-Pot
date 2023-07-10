@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import instance from "@services/instance";
 
@@ -36,6 +36,10 @@ function AuthContextProvider({ children }) {
 
   // test setInterval to handleDelog every minute
   setInterval(handleDelog, 60000 * 1);
+
+  useEffect(() => {
+    handleAuth();
+  }, []);
 
   const userMemo = useMemo(
     () => ({
