@@ -11,7 +11,7 @@ export default function Error({ setIsLanding }) {
     setIsLanding(false);
     localStorage.setItem(
       "landing_animation",
-      JSON.stringify({ state: false, exp: Date.now() + 60000 * 60 * 24 })
+      JSON.stringify({ exp: Date.now() + 60000 * 60 * 24 })
     );
   };
 
