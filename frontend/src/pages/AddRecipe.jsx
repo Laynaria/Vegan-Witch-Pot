@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 
 import FormsRecipe from "@components/Recipes/FormsRecipe";
@@ -11,14 +12,29 @@ import buttonIcon from "@assets/logos/logo_mini.svg";
 import "@components/AddRecipe/AddRecipe.scss";
 
 export default function AddRecipe() {
+  const { user } = useContext(AuthContext);
+
   const [recipe, setRecipe] = useState({
-    picture: "grilled_peas.png",
+    thumbnail: "grilled_peas.png",
     title: "Grilled Peas",
     difficulty: 1,
     cooking_time: "3h",
+    user_id: user.id,
+    // Waiting their form inputs
+    is_shared: 1,
+    is_approved: 1,
+    origin: "",
+    steps: "",
+    category_id: 4,
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.id === undefined) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleSubmit = () => {
     // must add validations of having nothing null etc

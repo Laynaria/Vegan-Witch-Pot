@@ -11,15 +11,26 @@ footer {
   font-size: $title-size;
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
+  z-index: -1;
 
   grid-row: 3 / 4;
 
-  a {
-    text-decoration: none;
-    color: $font-color;
+  p {
+    gap: 0.5rem;
+    filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
 
-    &:hover {
-      color: $secondary-color;
+    @media screen and (min-width: 480px) {
+      display: flex;
+      flex-direction: row;
+    }
+
+    a {
+      text-decoration: none;
+      color: $font-color;
+
+      &:hover {
+        color: $secondary-color;
+      }
     }
   }
 }

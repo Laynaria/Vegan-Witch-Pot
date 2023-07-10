@@ -7,7 +7,11 @@
   flex-direction: column;
   gap: $basic-space;
   box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
-  width: 25rem;
+  width: 100%;
+
+  @media screen and (min-width: 480px) {
+    width: 25rem;
+  }
 
   h2 {
     font-size: 1.6rem;
@@ -17,6 +21,10 @@
   .card-img {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: $border-radius $border-radius 0 0;
+
+    @media screen and (min-width: 480px) {
+      height: 267px;
+    }
   }
 
   p {
