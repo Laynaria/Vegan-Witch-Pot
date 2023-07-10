@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useMemo } from "react";
+import { createContext, useState, useMemo } from "react";
 import jwtDecode from "jwt-decode";
 import instance from "@services/instance";
 
@@ -33,21 +33,6 @@ function AuthContextProvider({ children }) {
         .catch(() => console.warn("Une erreur est survenue!"));
     }
   };
-
-  useEffect(() => {
-    handleAuth();
-
-    const getToken = localStorage.getItem("token");
-
-    // if there is no token, it will remove cookie from backend if it still exists
-    if (getToken === null) {
-      instance
-        .post("/logout")
-        .then(localStorage.removeItem("token"))
-        .then(() => setUser({}))
-        .catch(() => console.warn("Une erreur est survenue!"));
-    }
-  }, []);
 
   // test setInterval to handleDelog every minute
   setInterval(handleDelog, 60000 * 1);
