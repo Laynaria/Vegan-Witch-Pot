@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
+import Loading from "@components/Loading/Loading";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
@@ -12,6 +13,7 @@ import "@components/Authentification/Register.scss";
 export default function Register() {
   const { user } = useContext(AuthContext);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [isShown, setIsShown] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     email: "",
@@ -23,9 +25,12 @@ export default function Register() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.id !== undefined) {
-      navigate("/");
-    }
+    setTimeout(() => {
+      if (user.id !== undefined) {
+        navigate("/");
+      }
+      setIsLoading(false);
+    }, 550);
   }, []);
 
   const handleChangeRegister = (e) => {
@@ -78,56 +83,66 @@ export default function Register() {
   };
 
   return (
-    <section className="Register">
-      <h1>Register</h1>
-      <form>
-        <label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={registerInfo.email}
-            onChange={handleChangeRegister}
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <section className="Register">
+          <h1>Register</h1>
+          <form>
+            <label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={registerInfo.email}
+                onChange={handleChangeRegister}
+              />
+            </label>
+            <label>
+              <input
+                type="name"
+                name="username"
+                placeholder="Username"
+                value={registerInfo.username}
+                onChange={handleChangeRegister}
+              />
+            </label>
+            <label>
+              <input
+                type={isShown ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={registerInfo.password}
+                onChange={handleChangeRegister}
+              />
+            </label>
+            <label>
+              <input
+                type={isShown ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={registerInfo.confirmPassword}
+                onChange={handleChangeRegister}
+              />
+            </label>
+            <p>
+              <span onClick={() => setIsShown(!isShown)} aria-hidden="true">
+                <img
+                  src={isShown ? hide : show}
+                  alt={isShown ? "hide password" : "show password"}
+                />
+                {isShown ? "Hide Password" : "Show Password"}
+              </span>
+            </p>
+          </form>
+          <ButtonRecipe
+            icon={icon}
+            text="Register"
+            handleClick={handleRegister}
           />
-        </label>
-        <label>
-          <input
-            type="name"
-            name="username"
-            placeholder="Username"
-            value={registerInfo.username}
-            onChange={handleChangeRegister}
-          />
-        </label>
-        <label>
-          <input
-            type={isShown ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            value={registerInfo.password}
-            onChange={handleChangeRegister}
-          />
-        </label>
-        <label>
-          <input
-            type={isShown ? "text" : "password"}
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={registerInfo.confirmPassword}
-            onChange={handleChangeRegister}
-          />
-        </label>
-        <p>
-          <span onClick={() => setIsShown(!isShown)} aria-hidden="true">
-            <img
-              src={isShown ? hide : show}
-              alt={isShown ? "hide password" : "show password"}
-            />
-            {isShown ? "Hide Password" : "Show Password"}
-          </span>
-        </p>
-      </form>
-      <ButtonRecipe icon={icon} text="Register" handleClick={handleRegister} />
-    </section>
+        </section>
+      )}
+    </>
   );
 }
