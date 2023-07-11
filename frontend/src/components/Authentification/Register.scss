@@ -7,21 +7,37 @@
   gap: 2rem;
   margin: 3rem auto;
   transition: opacity 0.55s ease;
+  max-width: 95vw;
 
   form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 3rem 1.5rem;
     background-color: transparentize($font-color, 0.71);
     border-radius: $border-radius;
-    padding: 3rem 9rem;
+    padding: 3rem 1.5rem;
+    transition: padding 0.3s ease;
+
+    @media screen and (min-width: 480px) {
+      padding: 3rem 2.5rem;
+    }
+
+    @media screen and (min-width: 880px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      padding: 3rem 4rem;
+    }
+
+    @media screen and (min-width: 1080px) {
+      padding: 3rem 9rem;
+    }
 
     input {
       font-family: $font-main;
       font-size: calc($font-size / 1.5);
-      width: 20rem;
+      width: 18rem;
       padding: 0.5rem 0.2rem;
 
       resize: none;
@@ -30,6 +46,10 @@
       border-radius: calc($border-radius / 2);
       padding: calc($basic-space / 2);
       outline: none;
+
+      @media screen and (min-width: 480px) {
+        width: 20rem;
+      }
     }
 
     input:focus,
