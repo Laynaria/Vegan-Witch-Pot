@@ -13,7 +13,12 @@ export default function Loading() {
   }, 800);
   return (
     <>
-      <Player autoplay loop src={loading} style={{ marginBottom: "5rem" }} />
+      <Player
+        autoplay
+        loop
+        src={loading}
+        style={{ marginBottom: "5rem", maxWidth: "95vw" }}
+      />
       <p style={{ width: "132px" }}>Loading.{loadArray[loadCount]}</p>
     </>
   );
