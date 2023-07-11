@@ -17,7 +17,7 @@
     background-color: transparentize($font-color, 0.71);
     border-radius: $border-radius;
     padding: 3rem 1.5rem;
-    transition: padding 0.3s ease;
+    transition: padding-left 0.3s ease, padding-right 0.3s ease;
 
     @media screen and (min-width: 480px) {
       padding: 3rem 2.5rem;
