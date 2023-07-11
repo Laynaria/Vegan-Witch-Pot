@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Landing from "@components/Home/Landing";
+import Landing from "@components/Landing/Landing";
 
 import Router from "./router/router";
 import "./App.scss";
@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       {isLanding ? (
-        <main>
+        <main className="LandingMain">
           <Landing setIsLanding={setIsLanding} />
         </main>
       ) : (
