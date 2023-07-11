@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 
-import Loading from "@components/Loading/Loading";
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
@@ -38,7 +37,7 @@ export default function AddRecipe() {
         navigate("/login");
       }
       setIsLoading(false);
-    }, 550);
+    }, 100);
   }, []);
 
   const handleSubmit = () => {
@@ -51,24 +50,18 @@ export default function AddRecipe() {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <main id="flex-row">
-          <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
-          <section className="preview">
-            <h2>Preview</h2>
-            <Card recipe={recipe} />
+    <main className={isLoading ? "hide" : "flex-row"}>
+      <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
+      <section className="preview">
+        <h2>Preview</h2>
+        <Card recipe={recipe} />
 
-            <ButtonRecipe
-              icon={buttonIcon}
-              text="Add recipe"
-              handleClick={handleSubmit}
-            />
-          </section>
-        </main>
-      )}
-    </>
+        <ButtonRecipe
+          icon={buttonIcon}
+          text="Add recipe"
+          handleClick={handleSubmit}
+        />
+      </section>
+    </main>
   );
 }

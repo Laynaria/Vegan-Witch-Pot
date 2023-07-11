@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 
-import Loading from "@components/Loading/Loading";
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
@@ -102,34 +101,24 @@ export default function EditRecipe() {
           console.error("Error: This recipe doesn't exist", err);
           navigate("/");
         });
-    }, 550);
+    }, 100);
   }, []);
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <main id="flex-row">
-          <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
-          <section className="preview">
-            <h2>Preview</h2>
-            <Card recipe={recipe} />
+    <main className={isLoading ? "hide" : "flex-row"}>
+      <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
+      <section className="preview">
+        <h2>Preview</h2>
+        <Card recipe={recipe} />
 
-            <ButtonRecipe
-              icon={editIcon}
-              text="Edit"
-              handleClick={handleSubmit}
-            />
+        <ButtonRecipe icon={editIcon} text="Edit" handleClick={handleSubmit} />
 
-            <ButtonRecipe
-              icon={deleteIcon}
-              text="Delete"
-              handleClick={handleDelete}
-            />
-          </section>
-        </main>
-      )}
-    </>
+        <ButtonRecipe
+          icon={deleteIcon}
+          text="Delete"
+          handleClick={handleDelete}
+        />
+      </section>
+    </main>
   );
 }

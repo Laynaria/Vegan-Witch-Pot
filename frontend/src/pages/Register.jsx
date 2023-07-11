@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
-import Loading from "@components/Loading/Loading";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
@@ -30,7 +29,7 @@ export default function Register() {
         navigate("/");
       }
       setIsLoading(false);
-    }, 550);
+    }, 100);
   }, []);
 
   const handleChangeRegister = (e) => {
@@ -83,66 +82,56 @@ export default function Register() {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <section className="Register">
-          <h1>Register</h1>
-          <form>
-            <label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={registerInfo.email}
-                onChange={handleChangeRegister}
-              />
-            </label>
-            <label>
-              <input
-                type="name"
-                name="username"
-                placeholder="Username"
-                value={registerInfo.username}
-                onChange={handleChangeRegister}
-              />
-            </label>
-            <label>
-              <input
-                type={isShown ? "text" : "password"}
-                name="password"
-                placeholder="Password"
-                value={registerInfo.password}
-                onChange={handleChangeRegister}
-              />
-            </label>
-            <label>
-              <input
-                type={isShown ? "text" : "password"}
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                value={registerInfo.confirmPassword}
-                onChange={handleChangeRegister}
-              />
-            </label>
-            <p>
-              <span onClick={() => setIsShown(!isShown)} aria-hidden="true">
-                <img
-                  src={isShown ? hide : show}
-                  alt={isShown ? "hide password" : "show password"}
-                />
-                {isShown ? "Hide Password" : "Show Password"}
-              </span>
-            </p>
-          </form>
-          <ButtonRecipe
-            icon={icon}
-            text="Register"
-            handleClick={handleRegister}
+    <section className={isLoading ? "hide" : "Register"}>
+      <h1>Register</h1>
+      <form>
+        <label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={registerInfo.email}
+            onChange={handleChangeRegister}
           />
-        </section>
-      )}
-    </>
+        </label>
+        <label>
+          <input
+            type="name"
+            name="username"
+            placeholder="Username"
+            value={registerInfo.username}
+            onChange={handleChangeRegister}
+          />
+        </label>
+        <label>
+          <input
+            type={isShown ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            value={registerInfo.password}
+            onChange={handleChangeRegister}
+          />
+        </label>
+        <label>
+          <input
+            type={isShown ? "text" : "password"}
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={registerInfo.confirmPassword}
+            onChange={handleChangeRegister}
+          />
+        </label>
+        <p>
+          <span onClick={() => setIsShown(!isShown)} aria-hidden="true">
+            <img
+              src={isShown ? hide : show}
+              alt={isShown ? "hide password" : "show password"}
+            />
+            {isShown ? "Hide Password" : "Show Password"}
+          </span>
+        </p>
+      </form>
+      <ButtonRecipe icon={icon} text="Register" handleClick={handleRegister} />
+    </section>
   );
 }

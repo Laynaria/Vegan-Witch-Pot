@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
-import Loading from "@components/Loading/Loading";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
@@ -25,7 +24,7 @@ export default function LogIn() {
         navigate("/");
       }
       setIsLoading(false);
-    }, 550);
+    }, 100);
   }, []);
 
   const handleChangeLogin = (e) => {
@@ -50,39 +49,33 @@ export default function LogIn() {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <section className="LogIn">
-          <h1>Log In</h1>
-          <form>
-            <label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={loginInfo.email}
-                onChange={handleChangeLogin}
-              />
-            </label>
-            <label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={loginInfo.password}
-                onChange={handleChangeLogin}
-              />
-            </label>
-            <p>Forgotten Password?</p>
-          </form>
-          <ButtonRecipe icon={icon} text="Log In" handleClick={handleLogin} />
-          <p>
-            No Account? <Link to="/register">Register</Link>
-          </p>
-        </section>
-      )}
-    </>
+    <section className={isLoading ? "hide" : "LogIn"}>
+      <h1>Log In</h1>
+      <form>
+        <label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={loginInfo.email}
+            onChange={handleChangeLogin}
+          />
+        </label>
+        <label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={loginInfo.password}
+            onChange={handleChangeLogin}
+          />
+        </label>
+        <p>Forgotten Password?</p>
+      </form>
+      <ButtonRecipe icon={icon} text="Log In" handleClick={handleLogin} />
+      <p>
+        No Account? <Link to="/register">Register</Link>
+      </p>
+    </section>
   );
 }
