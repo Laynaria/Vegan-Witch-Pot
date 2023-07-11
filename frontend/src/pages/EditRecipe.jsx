@@ -16,6 +16,7 @@ export default function EditRecipe() {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
 
+  const [isLoading, setIsLoading] = useState(true);
   const [recipe, setRecipe] = useState({
     thumbnail: "grilled_peas.png",
     title: "Grilled Peas",
@@ -31,12 +32,6 @@ export default function EditRecipe() {
   });
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user.id === undefined) {
-      navigate("/login");
-    }
-  }, []);
 
   const handleSubmit = () => {
     // must add validations of having nothing null etc
@@ -85,23 +80,32 @@ export default function EditRecipe() {
   };
 
   useEffect(() => {
-    instance
-      .get(`/recipes/${id}`)
-      .then((result) => {
-        if (user.id !== result.data.user_id && user.role_id !== 3) {
-          navigate("/login");
-        }
+    setTimeout(() => {
+      // check if user is logged, else reddirect user
+      if (user.id === undefined) {
+        navigate("/login");
+      }
 
-        setRecipe(result.data);
-      })
-      .catch((err) => {
-        console.error("Error: This recipe doesn't exist", err);
-        navigate("/");
-      });
+      // get data from recipe
+      instance
+        .get(`/recipes/${id}`)
+        .then((result) => {
+          if (user.id !== result.data.user_id && user.role_id !== 3) {
+            navigate("/login");
+          }
+
+          setRecipe(result.data);
+        })
+        .then(() => setIsLoading(false))
+        .catch((err) => {
+          console.error("Error: This recipe doesn't exist", err);
+          navigate("/");
+        });
+    }, 100);
   }, []);
 
   return (
-    <main id="flex-row">
+    <main className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
       <section className="preview">
         <h2>Preview</h2>

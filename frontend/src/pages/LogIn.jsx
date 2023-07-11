@@ -10,6 +10,7 @@ import "@components/Authentification/LogIn.scss";
 export default function LogIn() {
   const { handleAuth, user } = useContext(AuthContext);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -18,9 +19,12 @@ export default function LogIn() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.id !== undefined) {
-      navigate("/");
-    }
+    setTimeout(() => {
+      if (user.id !== undefined) {
+        navigate("/");
+      }
+      setIsLoading(false);
+    }, 100);
   }, []);
 
   const handleChangeLogin = (e) => {
@@ -45,7 +49,7 @@ export default function LogIn() {
   };
 
   return (
-    <section className="LogIn">
+    <section className={isLoading ? "hide" : "LogIn"}>
       <h1>Log In</h1>
       <form>
         <label>

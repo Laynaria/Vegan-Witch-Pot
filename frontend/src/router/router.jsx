@@ -3,7 +3,7 @@ import Home from "@pages/Home";
 import Layout from "@components/Layout/Layout";
 
 import Error from "@pages/Error";
-import Recipes from "@components/Home/Recipes";
+import Recipes from "@pages/Recipes";
 
 import LogIn from "@pages/LogIn";
 import Register from "@pages/Register";

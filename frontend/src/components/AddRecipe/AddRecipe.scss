@@ -1,6 +1,6 @@
 @import "../../assets/variables";
 
-#flex-row {
+.flex-row {
   @media screen and (min-width: 720px) {
     flex-direction: row;
     align-items: flex-start;
@@ -8,6 +8,7 @@
     gap: $basic-space * 5;
     width: 100%;
     margin: $basic-space * 4 0;
+    transition: opacity 0.55s ease;
   }
 
   .preview {

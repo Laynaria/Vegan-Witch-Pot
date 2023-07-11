@@ -14,6 +14,7 @@ import "@components/AddRecipe/AddRecipe.scss";
 export default function AddRecipe() {
   const { user } = useContext(AuthContext);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [recipe, setRecipe] = useState({
     thumbnail: "grilled_peas.png",
     title: "Grilled Peas",
@@ -31,9 +32,12 @@ export default function AddRecipe() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.id === undefined) {
-      navigate("/login");
-    }
+    setTimeout(() => {
+      if (user.id === undefined) {
+        navigate("/login");
+      }
+      setIsLoading(false);
+    }, 100);
   }, []);
 
   const handleSubmit = () => {
@@ -46,7 +50,7 @@ export default function AddRecipe() {
   };
 
   return (
-    <main id="flex-row">
+    <main className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
       <section className="preview">
         <h2>Preview</h2>

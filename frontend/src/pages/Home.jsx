@@ -1,4 +1,4 @@
-import Recipes from "@components/Home/Recipes";
+import Recipes from "@pages/Recipes";
 
 export default function Home() {
   return <Recipes />;

@@ -12,6 +12,7 @@ import "@components/Authentification/Register.scss";
 export default function Register() {
   const { user } = useContext(AuthContext);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [isShown, setIsShown] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     email: "",
@@ -23,9 +24,12 @@ export default function Register() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.id !== undefined) {
-      navigate("/");
-    }
+    setTimeout(() => {
+      if (user.id !== undefined) {
+        navigate("/");
+      }
+      setIsLoading(false);
+    }, 100);
   }, []);
 
   const handleChangeRegister = (e) => {
@@ -78,7 +82,7 @@ export default function Register() {
   };
 
   return (
-    <section className="Register">
+    <section className={isLoading ? "hide" : "Register"}>
       <h1>Register</h1>
       <form>
         <label>
