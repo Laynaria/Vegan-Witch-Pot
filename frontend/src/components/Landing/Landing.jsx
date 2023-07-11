@@ -40,7 +40,11 @@ export default function Error({ setIsLanding }) {
       >
         Enter
       </button>
-      <img src={logo} alt="logo" className="LogoLanding" />
+      <img
+        src={logo}
+        alt="logo"
+        className={!isLoading ? "LogoLanding" : "LogoLanding hide"}
+      />
     </section>
   );
 }
