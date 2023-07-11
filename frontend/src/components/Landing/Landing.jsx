@@ -1,7 +1,6 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useEffect, useState } from "react";
 import witch from "@assets/lotties/witch_home.json";
-import logo from "@assets/logos/logo.svg";
 import "./Landing.scss";
 
 export default function Error({ setIsLanding }) {
@@ -40,8 +39,7 @@ export default function Error({ setIsLanding }) {
       >
         Enter
       </button>
-      <img
-        src={logo}
+      <div
         alt="logo"
         className={!isLoading ? "LogoLanding" : "LogoLanding hide"}
       />

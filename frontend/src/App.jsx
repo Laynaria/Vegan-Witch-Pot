@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       {isLanding ? (
-        <main>
+        <main className="LandingMain">
           <Landing setIsLanding={setIsLanding} />
         </main>
       ) : (

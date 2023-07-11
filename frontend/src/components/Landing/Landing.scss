@@ -1,5 +1,11 @@
 @import "../../assets/variables";
 
+.LandingMain {
+  @media screen and (min-width: 480px) {
+    margin-top: 0 !important;
+  }
+}
+
 .hide {
   opacity: 0;
 }
@@ -36,10 +42,15 @@
     cursor: pointer;
     transition: opacity 1s ease;
     transition-delay: 0.6s;
+    margin-top: 10rem;
 
     &:active {
       transition: 0.25s ease;
       transform: scale(0.9);
+    }
+
+    @media screen and (min-width: 480px) {
+      margin-top: 5rem;
     }
   }
 
@@ -47,9 +58,12 @@
     filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
     transition: opacity 1s ease;
     transition-delay: 0.3s;
+    width: 80%;
+    content: url("@assets/logos/logo_mobile.svg");
 
     @media screen and (min-width: 480px) {
-      width: 25vw;
+      content: url("@assets/logos/logo.svg");
+      width: 28rem;
     }
   }
 }
