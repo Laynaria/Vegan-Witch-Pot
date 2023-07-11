@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 
+import Loading from "@components/Loading/Loading";
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
@@ -14,6 +15,7 @@ import "@components/AddRecipe/AddRecipe.scss";
 export default function AddRecipe() {
   const { user } = useContext(AuthContext);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [recipe, setRecipe] = useState({
     thumbnail: "grilled_peas.png",
     title: "Grilled Peas",
@@ -31,9 +33,12 @@ export default function AddRecipe() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.id === undefined) {
-      navigate("/login");
-    }
+    setTimeout(() => {
+      if (user.id === undefined) {
+        navigate("/login");
+      }
+      setIsLoading(false);
+    }, 550);
   }, []);
 
   const handleSubmit = () => {
@@ -46,18 +51,24 @@ export default function AddRecipe() {
   };
 
   return (
-    <main id="flex-row">
-      <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
-      <section className="preview">
-        <h2>Preview</h2>
-        <Card recipe={recipe} />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <main id="flex-row">
+          <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
+          <section className="preview">
+            <h2>Preview</h2>
+            <Card recipe={recipe} />
 
-        <ButtonRecipe
-          icon={buttonIcon}
-          text="Add recipe"
-          handleClick={handleSubmit}
-        />
-      </section>
-    </main>
+            <ButtonRecipe
+              icon={buttonIcon}
+              text="Add recipe"
+              handleClick={handleSubmit}
+            />
+          </section>
+        </main>
+      )}
+    </>
   );
 }
