@@ -45,7 +45,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       <label>
         Type
         <select name="category_id" onChange={handleChange}>
-          <option value="0">All</option>
+          {isEdit ? "" : <option value="0">All</option>}
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
