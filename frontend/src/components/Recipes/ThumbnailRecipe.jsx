@@ -44,13 +44,23 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       )}
       <label>
         Type
-        <select name="category_id" onChange={handleChange}>
+        <select
+          name="category_id"
+          onChange={handleChange}
+          value={recipe.category_id}
+        >
           {isEdit ? "" : <option value="0">All</option>}
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
+          {categories.map((category) =>
+            isEdit ? (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ) : (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            )
+          )}
         </select>
       </label>
 
