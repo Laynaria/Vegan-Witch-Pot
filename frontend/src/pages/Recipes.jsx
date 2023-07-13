@@ -72,6 +72,7 @@ export default function Recipes() {
           ) : (
             ""
           )}
+          <div className="recipeMargin" />
         </section>
       )}
     </>
