@@ -9,7 +9,7 @@ import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 
 import buttonIcon from "@assets/logos/logo_mini.svg";
 
-import "@components/AddRecipe/AddRecipe.scss";
+import "@components/Recipes/AddRecipe.scss";
 
 export default function AddRecipe() {
   const { user } = useContext(AuthContext);
