@@ -9,7 +9,11 @@ export default function FormsRecipe({ setRecipe, recipe }) {
   };
   return (
     <section className="edit">
-      <ThumbnailRecipe recipe={recipe} handleChange={handleChange} />
+      <ThumbnailRecipe
+        recipe={recipe}
+        handleChange={handleChange}
+        isEdit="true"
+      />
       <form onChange={handleChange}>Yet to come.</form>
     </section>
   );

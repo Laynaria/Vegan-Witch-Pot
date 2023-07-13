@@ -1,0 +1,20 @@
+@import "../../assets/variables";
+
+form {
+  background-color: rgba(255, 255, 255, 0.29);
+  border-radius: $border-radius;
+  min-height: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $basic-space;
+  padding: $half-space;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: $basic-space;
+  }
+}

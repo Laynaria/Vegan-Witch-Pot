@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
 
+import ThumbnailRecipe from "@components/Recipes/ThumbnailRecipe";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import buttonIcon from "@assets/logos/logo_mini.svg";
 
@@ -14,10 +15,21 @@ import { AuthContext } from "@contexts/AuthContext";
 export default function Recipes() {
   const [isLoading, setIsLoading] = useState(true);
   const [arrayRecipes, setArrayRecipes] = useState([]);
+  const [filters, setFilters] = useState({
+    title: "",
+    difficulty: 1,
+    category: "",
+    cooking_time: "",
+  });
 
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFilters({ ...filters, [name]: value });
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,6 +52,7 @@ export default function Recipes() {
       ) : (
         <section className="Recipes">
           <h1>Recipes</h1>
+          <ThumbnailRecipe recipe={filters} handleChange={handleChange} />
           {arrayRecipes
             .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
             .reverse()}
