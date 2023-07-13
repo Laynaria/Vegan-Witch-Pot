@@ -64,7 +64,7 @@ export default function Recipes() {
                   .includes(filters.title.toLowerCase()) &&
                 recipe.cooking_time
                   .toLowerCase()
-                  .includes(filters.cooking_time.toLowerCase())
+                  .startsWith(filters.cooking_time.toLowerCase())
             )
             .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
             .reverse()}
