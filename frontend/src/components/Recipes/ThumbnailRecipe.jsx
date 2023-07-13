@@ -3,7 +3,7 @@ import instance from "@services/instance";
 import "./ThumbnailRecipe.scss";
 
 export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
-  const [categories, setCategories] = useState([{ id: 0 }]);
+  const [categories, setCategories] = useState([{ id: 1 }]);
 
   useEffect(() => {
     instance

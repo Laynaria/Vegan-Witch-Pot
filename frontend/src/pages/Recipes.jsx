@@ -18,7 +18,7 @@ export default function Recipes() {
   const [filters, setFilters] = useState({
     title: "",
     difficulty: 1,
-    category: "",
+    category_id: "0",
     cooking_time: "",
   });
 
