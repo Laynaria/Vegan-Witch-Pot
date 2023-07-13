@@ -56,8 +56,9 @@ export default function Recipes() {
           {arrayRecipes
             .filter(
               (recipe) =>
-                recipe.category_id === parseInt(filters.category_id, 10) ||
-                filters.category_id === "0"
+                (recipe.category_id === parseInt(filters.category_id, 10) ||
+                  filters.category_id === "0") &&
+                recipe.difficulty >= filters.difficulty
             )
             .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
             .reverse()}
