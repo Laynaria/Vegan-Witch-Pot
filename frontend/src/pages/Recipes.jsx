@@ -58,7 +58,13 @@ export default function Recipes() {
               (recipe) =>
                 (recipe.category_id === parseInt(filters.category_id, 10) ||
                   filters.category_id === "0") &&
-                recipe.difficulty >= filters.difficulty
+                recipe.difficulty >= filters.difficulty &&
+                recipe.title
+                  .toLowerCase()
+                  .includes(filters.title.toLowerCase()) &&
+                recipe.cooking_time
+                  .toLowerCase()
+                  .includes(filters.cooking_time.toLowerCase())
             )
             .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
             .reverse()}
