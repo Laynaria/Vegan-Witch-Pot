@@ -3,7 +3,7 @@ import instance from "@services/instance";
 import "./ThumbnailRecipe.scss";
 
 export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
-  const [categories, setCategories] = useState([{}]);
+  const [categories, setCategories] = useState([{ id: 0 }]);
 
   useEffect(() => {
     instance
@@ -44,11 +44,11 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       )}
       <label>
         Type
-        <select name="category" onChange={handleChange}>
-          <option defaultValue="All">All</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.name}>
-              {cat.name}
+        <select name="category_id" onChange={handleChange}>
+          <option value="0">All</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
             </option>
           ))}
         </select>

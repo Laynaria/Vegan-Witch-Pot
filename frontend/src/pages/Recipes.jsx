@@ -54,6 +54,11 @@ export default function Recipes() {
           <h1>Recipes</h1>
           <ThumbnailRecipe recipe={filters} handleChange={handleChange} />
           {arrayRecipes
+            .filter(
+              (recipe) =>
+                recipe.category_id === parseInt(filters.category_id, 10) ||
+                filters.category_id === "0"
+            )
             .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
             .reverse()}
 
