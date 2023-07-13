@@ -59,7 +59,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       </label>
 
       <label>
-        Difficulty
+        {isEdit ? "Difficulty" : "Min Difficulty"}
         <input
           type="range"
           name="difficulty"
