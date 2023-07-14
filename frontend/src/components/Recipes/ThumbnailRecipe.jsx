@@ -59,6 +59,17 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       </label>
 
       <label>
+        {isEdit ? "Cooking Time" : "Time"}
+        <input
+          type={isEdit ? "text" : "search"}
+          className="cookingTime"
+          name="cooking_time"
+          defaultValue={recipe.cooking_time}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
         {isEdit ? "Difficulty" : "Min Difficulty"}
         <input
           type="range"
@@ -67,17 +78,6 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
           onChange={handleChange}
           min="1"
           max="5"
-        />
-      </label>
-
-      <label>
-        {isEdit ? "Cooking Time" : "Time"}
-        <input
-          type={isEdit ? "text" : "search"}
-          className="cookingTime"
-          name="cooking_time"
-          defaultValue={recipe.cooking_time}
-          onChange={handleChange}
         />
       </label>
     </form>
