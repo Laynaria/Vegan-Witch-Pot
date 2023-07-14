@@ -69,6 +69,9 @@ export default function Recipes() {
                       .split(" ")
                       .some((el) => el.startsWith(element.toLowerCase()))
                   ) &&
+                recipe.title
+                  .toLowerCase()
+                  .includes(filters.title.trim().toLowerCase()) &&
                 recipe.cooking_time
                   .toLowerCase()
                   .startsWith(filters.cooking_time.toLowerCase())
