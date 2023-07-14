@@ -59,12 +59,15 @@ export default function Recipes() {
                 (recipe.category_id === parseInt(filters.category_id, 10) ||
                   filters.category_id === "0") &&
                 recipe.difficulty >= filters.difficulty &&
-                filters.title.split(" ").some((element) =>
-                  recipe.title
-                    .toLowerCase()
-                    .split(" ")
-                    .some((el) => el.startsWith(element.toLowerCase()))
-                ) &&
+                filters.title
+                  .trim()
+                  .split(" ")
+                  .some((element) =>
+                    recipe.title
+                      .toLowerCase()
+                      .split(" ")
+                      .some((el) => el.startsWith(element.toLowerCase()))
+                  ) &&
                 recipe.cooking_time
                   .toLowerCase()
                   .startsWith(filters.cooking_time.toLowerCase())
