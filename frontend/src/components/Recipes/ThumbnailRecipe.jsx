@@ -17,7 +17,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
   }, []);
 
   return (
-    <form>
+    <form className="recipeForm">
       <label>
         {isEdit ? "Title" : "Search"}
         <input
