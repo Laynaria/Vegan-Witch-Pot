@@ -6,6 +6,7 @@ const { checkAuth, checkRole } = require("./middlewares/auth");
 
 const itemControllers = require("./controllers/itemControllers");
 const recipeControllers = require("./controllers/recipeControllers");
+const categoryControllers = require("./controllers/categoryControllers");
 const authControllers = require("./controllers/authControllers");
 const userControllers = require("./controllers/userControllers");
 const recipeIngredientQuantityControllers = require("./controllers/recipeIngredientQuantityControllers");
@@ -19,6 +20,9 @@ router.delete("/items/:id", itemControllers.destroy);
 // recipes routes accessible by everyone
 router.get("/recipes", recipeControllers.browse);
 router.get("/recipes/:id", recipeControllers.read);
+
+// category routes accessible by everyone
+router.get("/categories", categoryControllers.browse);
 
 // authentification routes
 router.get("/verify-email/:email", authControllers.checkEmail);

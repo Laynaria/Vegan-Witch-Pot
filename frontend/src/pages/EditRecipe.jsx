@@ -10,7 +10,7 @@ import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 import editIcon from "@assets/icons/wand.svg";
 import deleteIcon from "@assets/icons/broom.svg";
 
-import "@components/AddRecipe/AddRecipe.scss";
+import "@components/Recipes/AddRecipe.scss";
 
 export default function EditRecipe() {
   const { user } = useContext(AuthContext);
