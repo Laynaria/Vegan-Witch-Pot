@@ -73,7 +73,8 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       <label>
         {isEdit ? "Cooking Time" : "Time"}
         <input
-          type="text"
+          type={isEdit ? "text" : "search"}
+          className="cookingTime"
           name="cooking_time"
           defaultValue={recipe.cooking_time}
           onChange={handleChange}
