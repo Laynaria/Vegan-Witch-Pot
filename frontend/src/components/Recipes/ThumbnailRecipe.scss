@@ -1,0 +1,84 @@
+@import "../../assets/variables";
+
+.recipeForm {
+  background-color: rgba(255, 255, 255, 0.29);
+  border-radius: $border-radius;
+  min-height: 5.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $basic-space;
+  padding: $half-space;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 61.5938px;
+    font-size: $basic-space;
+    gap: calc($basic-space / 10);
+
+    input[type="text"],
+    input[type="search"],
+    select {
+      font-family: $font-main;
+      font-size: calc($font-size / 2);
+      padding: 0.5rem 0.2rem;
+      height: 41px;
+
+      resize: none;
+      background: $font-color;
+      border: 2px solid $background-color;
+      border-radius: calc($border-radius / 2);
+      outline: none;
+    }
+
+    input[type="search"],
+    input[type="text"] {
+      width: 280px;
+    }
+
+    input[type="range"] {
+      margin: auto;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 10px;
+      border-radius: 5px;
+      background-color: $background-color;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 17px;
+      width: 17px;
+      border-radius: 60px;
+      border: none;
+      background-color: $secondary-color;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 17px;
+      width: 17px;
+      border-radius: 60px;
+      border: none;
+      background-color: $secondary-color;
+      cursor: pointer;
+    }
+
+    input[type="search"].cookingTime,
+    input[type="text"].cookingTime {
+      width: 80px;
+    }
+
+    input[type="text"]:focus,
+    input[type="search"]:focus,
+    select:focus {
+      border: 2px solid $secondary-color;
+    }
+  }
+}
