@@ -17,7 +17,7 @@ export default function Recipes() {
   const [arrayRecipes, setArrayRecipes] = useState([]);
   const [filters, setFilters] = useState({
     title: "",
-    difficulty: 1,
+    difficulty: "0",
     category_id: "0",
     cooking_time: "",
   });
@@ -58,7 +58,8 @@ export default function Recipes() {
               (recipe) =>
                 (recipe.category_id === parseInt(filters.category_id, 10) ||
                   filters.category_id === "0") &&
-                recipe.difficulty >= filters.difficulty &&
+                (recipe.difficulty === parseInt(filters.difficulty, 10) ||
+                  filters.difficulty === "0") &&
                 filters.title
                   .trim()
                   .split(" ")

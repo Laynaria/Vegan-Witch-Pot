@@ -70,13 +70,13 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
       </label>
 
       <label>
-        {isEdit ? "Difficulty" : "Min Difficulty"}
+        {isEdit ? "Difficulty" : "Difficulty"}
         <input
           type="range"
           name="difficulty"
           defaultValue={recipe.difficulty}
           onChange={handleChange}
-          min="1"
+          min={isEdit ? "1" : "0"}
           max="5"
         />
       </label>
