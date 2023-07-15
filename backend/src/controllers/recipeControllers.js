@@ -12,6 +12,18 @@ const browse = (req, res) => {
     });
 };
 
+const browseLast = (req, res) => {
+  models.recipe
+    .findLast()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const add = (req, res) => {
   const recipe = req.body;
 
@@ -84,6 +96,7 @@ const destroy = (req, res) => {
 
 module.exports = {
   browse,
+  browseLast,
   add,
   read,
   edit,
