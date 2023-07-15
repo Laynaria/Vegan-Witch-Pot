@@ -5,7 +5,7 @@ import Card from "@components/Card/Card";
 import Loading from "@components/Loading/Loading";
 import "@components/Recipes/Recipes.scss";
 
-export default function Recipes() {
+export default function LastRecipes() {
   const [isLoading, setIsLoading] = useState(true);
   const [arrayRecipes, setArrayRecipes] = useState([]);
 
