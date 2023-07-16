@@ -5,6 +5,12 @@ class RecipeManager extends AbstractManager {
     super({ table: "recipe" });
   }
 
+  findLast() {
+    return this.connection.query(
+      `select * from  ${this.table} ORDER BY id DESC LIMIT 3`
+    );
+  }
+
   findByUserId(userId) {
     // This requset is to find all recipes from a user, to get their id for some delete purposes.
     return this.connection.query(
