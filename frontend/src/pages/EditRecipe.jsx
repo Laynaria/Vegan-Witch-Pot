@@ -99,7 +99,7 @@ export default function EditRecipe() {
         .then(() => setIsLoading(false))
         .catch((err) => {
           console.error("Error: This recipe doesn't exist", err);
-          navigate("/");
+          navigate("/error-404");
         });
     }, 100);
   }, []);

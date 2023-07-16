@@ -20,6 +20,7 @@ router.delete("/items/:id", itemControllers.destroy);
 // recipes routes accessible by everyone
 router.get("/recipes", recipeControllers.browse);
 router.get("/recipes/:id", recipeControllers.read);
+router.get("/last-recipes", recipeControllers.browseLast);
 
 // category routes accessible by everyone
 router.get("/categories", categoryControllers.browse);

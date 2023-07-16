@@ -1,5 +1,5 @@
-import Recipes from "@pages/Recipes";
+import LastRecipes from "@components/Home/LastRecipes";
 
 export default function Home() {
-  return <Recipes />;
+  return <LastRecipes />;
 }
