@@ -19,6 +19,7 @@ export default function Router() {
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error />} />
+          <Route path="/error-404" element={<Error />} />
           <Route path="/recipes" element={<Recipes />} />
 
           <Route path="/login" element={<LogIn />} />
