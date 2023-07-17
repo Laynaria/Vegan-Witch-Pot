@@ -4,36 +4,78 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: $basic-space * 5;
 
-  .Avatar {
-    width: 250px;
-    height: 250px;
-    border-radius: 300px;
-    object-fit: cover;
-    object-position: center;
+  h1 {
+    text-align: center;
+    grid-area: h;
   }
 
-  form {
+  @media screen and (min-width: 1380px) {
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    grid-template-areas:
+      "h h"
+      "av av"
+      "f1 f2"
+      "b1 b2"
+      "b3 b3";
+  }
+
+  .AvatarForm {
+    grid-area: av;
+
+    @media screen and (min-width: 480px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 100%;
+    }
+
+    .Avatar {
+      width: 250px;
+      height: 250px;
+      border-radius: 300px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  form:not(.AvatarForm) {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     background-color: transparentize($font-color, 0.71);
     border-radius: $border-radius;
-    padding: 3rem 1.5rem;
+    padding: $basic-space * 2 1.5rem;
     transition: padding-left 0.3s ease, padding-right 0.3s ease;
+    max-width: 95%;
+
+    @media screen and (min-width: 1380px) {
+      min-height: 173px;
+    }
+
+    &:nth-of-type(2) {
+      grid-area: f1;
+    }
+
+    &:nth-of-type(3) {
+      grid-area: f2;
+    }
 
     @media screen and (min-width: 480px) {
-      padding: 3rem 4rem;
+      padding: $basic-space * 2 4rem;
     }
 
     @media screen and (min-width: 580px) {
-      padding: 3rem 7rem;
+      padding: $basic-space * 2 7rem;
     }
 
     @media screen and (min-width: 680px) {
-      padding: 3rem 9rem;
+      padding: $basic-space * 2 9rem;
     }
 
     input {
@@ -89,6 +131,18 @@
       &:hover {
         color: $secondary-color;
       }
+    }
+  }
+
+  button {
+    grid-area: b1;
+
+    &:nth-of-type(2) {
+      grid-area: b2;
+    }
+
+    &:nth-of-type(3) {
+      grid-area: b3;
     }
   }
 }

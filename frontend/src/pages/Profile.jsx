@@ -1,10 +1,13 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+
 import avatar from "@assets/icons/avatar.svg";
 import hide from "@assets/icons/hide.svg";
 import show from "@assets/icons/show.svg";
-import icon from "@assets/icons/login.svg";
+import editIcon from "@assets/icons/wand.svg";
+import changeIcon from "@assets/icons/login.svg";
+import deleteIcon from "@assets/icons/broom.svg";
 
 import "@components/Profile/Profile.scss";
 
@@ -28,7 +31,11 @@ export default function Profile() {
   return (
     <section className="Profile">
       <h1>Profile</h1>
-      <img className="Avatar" src={avatar} alt="avatar" />
+
+      <form className="AvatarForm">
+        <img className="Avatar" src={avatar} alt="avatar" />
+      </form>
+
       <form>
         <label>
           <input
@@ -39,6 +46,7 @@ export default function Profile() {
             onChange={handleChangeRegister}
           />
         </label>
+
         <label>
           <input
             type="name"
@@ -49,9 +57,10 @@ export default function Profile() {
           />
         </label>
       </form>
+
       <ButtonRecipe
-        icon={icon}
-        text="Register"
+        icon={editIcon}
+        text="Edit"
         handleClick={(e) => console.warn(e)}
       />
 
@@ -65,6 +74,7 @@ export default function Profile() {
             onChange={handleChangeRegister}
           />
         </label>
+
         <label>
           <input
             type={isShown ? "text" : "password"}
@@ -74,6 +84,7 @@ export default function Profile() {
             onChange={handleChangeRegister}
           />
         </label>
+
         <p>
           <span onClick={() => setIsShown(!isShown)} aria-hidden="true">
             <img
@@ -84,15 +95,16 @@ export default function Profile() {
           </span>
         </p>
       </form>
+
       <ButtonRecipe
-        icon={icon}
-        text="Register"
+        icon={changeIcon}
+        text="Change Password"
         handleClick={(e) => console.warn(e)}
       />
 
       <ButtonRecipe
-        icon={icon}
-        text="Register"
+        icon={deleteIcon}
+        text="Delete Account"
         handleClick={(e) => console.warn(e)}
       />
     </section>
