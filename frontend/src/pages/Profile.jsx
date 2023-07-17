@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
 
@@ -15,6 +16,7 @@ export default function Profile() {
   const { user, setUser } = useContext(AuthContext);
   console.warn(setUser);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [isShown, setIsShown] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     email: user.email,
@@ -23,13 +25,24 @@ export default function Profile() {
     confirmPassword: "",
   });
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (user.id === undefined) {
+        navigate("/login");
+      }
+      setIsLoading(false);
+    }, 100);
+  }, []);
+
   const handleChangeRegister = (e) => {
     const { name, value } = e.target;
     setRegisterInfo({ ...registerInfo, [name]: value });
   };
 
   return (
-    <section className="Profile">
+    <section className={isLoading ? "hide" : "Profile"}>
       <h1>Profile</h1>
 
       <form className="AvatarForm">
