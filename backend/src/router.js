@@ -45,13 +45,15 @@ router.put("/users/edit-password/:id", userControllers.editPassword);
 router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
 
-// recipes routes used to delete recipes
+// recipes routes used to delete recipes and users
 router.get("/users/delete-info/:id", userControllers.selectForDelete);
 router.delete(
   "/recipe/delete-info/",
   recipeIngredientQuantityControllers.destroy
 );
 router.delete("/recipes/:id", recipeControllers.destroy);
+router.delete("/users/recipes/:id", recipeControllers.destroyByUser);
+router.delete("/users/:id", userControllers.destroy);
 
 // Middleware for checking roles
 router.use(checkRole);

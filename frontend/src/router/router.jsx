@@ -7,6 +7,7 @@ import Recipes from "@pages/Recipes";
 
 import LogIn from "@pages/LogIn";
 import Register from "@pages/Register";
+import Profile from "@pages/Profile";
 
 import AddRecipe from "@pages/AddRecipe";
 import EditRecipe from "@pages/EditRecipe";
@@ -24,6 +25,7 @@ export default function Router() {
 
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
 
           <Route path="/add-recipe" element={<AddRecipe />} />
           <Route path="/edit-recipe/:id" element={<EditRecipe />} />
