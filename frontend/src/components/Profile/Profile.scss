@@ -1,36 +1,38 @@
 @import "../../assets/variables";
 
-.Register {
+.Profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  margin: 3rem auto;
-  transition: opacity 0.55s ease;
-  max-width: 95vw;
+  gap: $basic-space * 5;
+
+  .Avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
 
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem 1.5rem;
+    gap: 1.5rem;
     background-color: transparentize($font-color, 0.71);
     border-radius: $border-radius;
     padding: 3rem 1.5rem;
     transition: padding-left 0.3s ease, padding-right 0.3s ease;
 
     @media screen and (min-width: 480px) {
-      padding: 3rem 2.5rem;
-    }
-
-    @media screen and (min-width: 880px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
       padding: 3rem 4rem;
     }
 
-    @media screen and (min-width: 1080px) {
+    @media screen and (min-width: 580px) {
+      padding: 3rem 7rem;
+    }
+
+    @media screen and (min-width: 680px) {
       padding: 3rem 9rem;
     }
 
@@ -39,6 +41,7 @@
       font-size: calc($font-size / 1.5);
       width: 18rem;
       padding: 0.5rem 0.2rem;
+      transition: width 0.3s ease;
 
       resize: none;
       background: $font-color;
@@ -61,30 +64,31 @@
       border: 2px solid rgb(192, 66, 66);
     }
 
-    p {
-      font-size: calc($font-size / 1.35);
-      text-align: center;
-      grid-column: 1 / -1;
-
-      span {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0 1rem;
-        width: 210px;
-
-        img {
-          height: 29px;
-        }
-
-        &:hover {
-          color: $secondary-color;
-        }
-      }
+    p:hover {
+      // transform this to a link later
+      color: $secondary-color;
     }
   }
 
-  button {
-    margin-top: $basic-space;
+  p {
+    font-size: calc($font-size / 1.35);
+    text-align: center;
+    grid-column: 1 / -1;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0 1rem;
+      width: 210px;
+
+      img {
+        height: 29px;
+      }
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
   }
 }
