@@ -2,12 +2,14 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import instance from "@services/instance";
 
 import avatar from "@assets/icons/avatar.svg";
 import hide from "@assets/icons/hide.svg";
 import show from "@assets/icons/show.svg";
 import editIcon from "@assets/icons/wand.svg";
-import changeIcon from "@assets/icons/login.svg";
+import changeIcon from "@assets/icons/register.svg";
+import disconnectIcon from "@assets/icons/login.svg";
 import deleteIcon from "@assets/icons/broom.svg";
 
 import "@components/Profile/Profile.scss";
@@ -18,7 +20,7 @@ export default function Profile() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isShown, setIsShown] = useState(false);
-  const [registerInfo, setRegisterInfo] = useState({
+  const [editInfo, setEditInfo] = useState({
     email: user.email,
     username: user.username,
     password: "",
@@ -36,9 +38,59 @@ export default function Profile() {
     }, 100);
   }, []);
 
-  const handleChangeRegister = (e) => {
+  const handleEditInfo = (e) => {
     const { name, value } = e.target;
-    setRegisterInfo({ ...registerInfo, [name]: value });
+    setEditInfo({ ...editInfo, [name]: value });
+  };
+
+  const handleSubmitInfo = (e) => {
+    e.preventDefault();
+
+    const { email, username } = editInfo;
+
+    if (email === "" || username === "") {
+      // return;
+    }
+  };
+
+  const handleSubmitPassword = (e) => {
+    e.preventDefault();
+
+    const { password, confirmPassword } = editInfo;
+
+    if (password !== confirmPassword) {
+      return;
+    }
+
+    if (password === "" || confirmPassword === "") {
+      return;
+    }
+
+    instance
+      .put(`/users/edit-password/${user.id}`, editInfo)
+      .then(() =>
+        setEditInfo({
+          email: user.email,
+          username: user.username,
+          password: "",
+          confirmPassword: "",
+        })
+      )
+      .catch(() => console.warn("Une erreur est survenue!"));
+  };
+
+  const handleDisconnect = (e) => {
+    e.preventDefault();
+    instance
+      .post("/logout")
+      .then(localStorage.removeItem("token"))
+      .then(() => setUser({}))
+      .then(() => navigate("/"))
+      .catch(() => console.warn("Une erreur est survenue!"));
+  };
+
+  const handleDeleteUser = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -55,8 +107,8 @@ export default function Profile() {
             type="email"
             name="email"
             placeholder="Email"
-            value={registerInfo.email}
-            onChange={handleChangeRegister}
+            value={editInfo.email}
+            onChange={handleEditInfo}
           />
         </label>
 
@@ -65,8 +117,8 @@ export default function Profile() {
             type="name"
             name="username"
             placeholder="Username"
-            value={registerInfo.username}
-            onChange={handleChangeRegister}
+            value={editInfo.username}
+            onChange={handleEditInfo}
           />
         </label>
       </form>
@@ -74,7 +126,7 @@ export default function Profile() {
       <ButtonRecipe
         icon={editIcon}
         text="Edit"
-        handleClick={(e) => console.warn(e)}
+        handleClick={handleSubmitInfo}
       />
 
       <form>
@@ -83,8 +135,8 @@ export default function Profile() {
             type={isShown ? "text" : "password"}
             name="password"
             placeholder="Password"
-            value={registerInfo.password}
-            onChange={handleChangeRegister}
+            value={editInfo.password}
+            onChange={handleEditInfo}
           />
         </label>
 
@@ -93,8 +145,8 @@ export default function Profile() {
             type={isShown ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
-            value={registerInfo.confirmPassword}
-            onChange={handleChangeRegister}
+            value={editInfo.confirmPassword}
+            onChange={handleEditInfo}
           />
         </label>
 
@@ -112,13 +164,19 @@ export default function Profile() {
       <ButtonRecipe
         icon={changeIcon}
         text="Change Password"
-        handleClick={(e) => console.warn(e)}
+        handleClick={handleSubmitPassword}
+      />
+
+      <ButtonRecipe
+        icon={disconnectIcon}
+        text="Disconnect"
+        handleClick={handleDisconnect}
       />
 
       <ButtonRecipe
         icon={deleteIcon}
         text="Delete Account"
-        handleClick={(e) => console.warn(e)}
+        handleClick={handleDeleteUser}
       />
     </section>
   );
