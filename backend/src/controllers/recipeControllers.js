@@ -94,6 +94,22 @@ const destroy = (req, res) => {
     });
 };
 
+const destroyByUser = (req, res) => {
+  models.recipe
+    .deleteByUser(req.params.id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   browseLast,
@@ -101,4 +117,5 @@ module.exports = {
   read,
   edit,
   destroy,
+  destroyByUser,
 };

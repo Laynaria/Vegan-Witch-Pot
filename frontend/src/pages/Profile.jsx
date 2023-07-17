@@ -16,7 +16,6 @@ import "@components/Profile/Profile.scss";
 
 export default function Profile() {
   const { user, setUser } = useContext(AuthContext);
-  console.warn(setUser);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isShown, setIsShown] = useState(false);
@@ -96,6 +95,7 @@ export default function Profile() {
 
   const handleDisconnect = (e) => {
     e.preventDefault();
+
     instance
       .post("/logout")
       .then(localStorage.removeItem("token"))
@@ -106,6 +106,49 @@ export default function Profile() {
 
   const handleDeleteUser = (e) => {
     e.preventDefault();
+    // First we get the recipe_ingredient_quantity ids needed for deleting all users info
+    const recipeIngredientQuantityIds = [];
+
+    instance
+      .get(`/users/delete-info/${user.id}`)
+      .then((res) =>
+        res.data.forEach((el) => {
+          recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
+        })
+      )
+      // We can now delete entries from the joint table using the array
+      .then(() => {
+        if (recipeIngredientQuantityIds.length !== 0) {
+          instance
+            .delete("/recipe/delete-info/", {
+              data: { arr: recipeIngredientQuantityIds },
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+      })
+      // Now we delete all recipes based on user ID
+      .then(() =>
+        instance.delete(`/users/recipes/${user.id}`).catch((err) => {
+          console.error(err);
+        })
+      )
+      // And finally we delete user
+      .then(() =>
+        instance.delete(`/users/${user.id}`).catch((err) => {
+          console.error(err);
+        })
+      )
+      .then(() =>
+        instance
+          .post("/logout")
+          .catch(() => console.warn("Une erreur est survenue!"))
+      )
+      .then(localStorage.removeItem("token"))
+      .then(() => setUser({}))
+      .then(() => navigate("/"))
+      .catch(() => console.warn("Une erreur est survenue!"));
   };
 
   return (
