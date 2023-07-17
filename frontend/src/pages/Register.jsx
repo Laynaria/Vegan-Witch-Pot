@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Recipes/ButtonRecipe";
-import icon from "@assets/icons/login.svg";
+import icon from "@assets/icons/register.svg";
 import hide from "@assets/icons/hide.svg";
 import show from "@assets/icons/show.svg";
 

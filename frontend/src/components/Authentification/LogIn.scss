@@ -69,6 +69,10 @@
     }
   }
 
+  button {
+    margin-top: $basic-space;
+  }
+
   p {
     font-size: calc($font-size / 1.35);
 
