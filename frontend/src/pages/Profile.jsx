@@ -49,8 +49,23 @@ export default function Profile() {
     const { email, username } = editInfo;
 
     if (email === "" || username === "") {
-      // return;
+      return;
     }
+
+    instance
+      .put(`/users/${user.id}`, editInfo)
+      .then(() =>
+        setUser(...user, { username: editInfo.username, email: editInfo.email })
+      )
+      .then(() =>
+        setEditInfo({
+          email: user.email,
+          username: user.username,
+          password: "",
+          confirmPassword: "",
+        })
+      )
+      .catch(() => console.warn("Une erreur est survenue!"));
   };
 
   const handleSubmitPassword = (e) => {
