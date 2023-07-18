@@ -27,14 +27,14 @@ class UserManager extends AbstractManager {
 
   findIfEmailExist(email) {
     return this.connection.query(
-      `select email from  ${this.table} where email = ?`,
+      `select id, email from  ${this.table} where email = ?`,
       [email]
     );
   }
 
   findIfUsernameExist(username) {
     return this.connection.query(
-      `select username from  ${this.table} where username = ?`,
+      `select id, username from  ${this.table} where username = ?`,
       [username]
     );
   }
