@@ -1,0 +1,45 @@
+@import "../../assets/variables";
+
+.CookiesPopUp {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  bottom: 8%;
+  flex-wrap: wrap;
+  z-index: 1000;
+  padding: $basic-space;
+  gap: $basic-space;
+  background-color: $primary-color;
+  transition: opacity 1s ease;
+  border-radius: $basic-space;
+  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  max-width: 85%;
+  margin: 0;
+
+  p {
+    text-align: center;
+  }
+
+  p,
+  button {
+    font-size: calc($font-size / 1.25);
+  }
+
+  button {
+    font-family: $font-main;
+    color: $font-color;
+    background-color: $secondary-color;
+    border: none;
+    border-radius: $border-radius;
+    padding: $half-space $basic-space * 2;
+    cursor: pointer;
+    transition: opacity 1s ease;
+
+    &:active {
+      transition: 0.25s ease;
+      transform: scale(0.9);
+    }
+  }
+}
