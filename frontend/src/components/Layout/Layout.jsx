@@ -1,12 +1,15 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import Header from "@components/Header/Header";
+import CookiesPopUp from "@components/CookiesPopUp/CookiesPopUp";
 import Footer from "@components/Footer/Footer";
 
 export default function Layout({ children }) {
   const { setUser } = useContext(AuthContext);
+  const [IsCookiesPopUpShown, setIsCookiesPopUpShown] = useState(true);
+
   const location = useLocation();
 
   useEffect(() => {
@@ -28,6 +31,11 @@ export default function Layout({ children }) {
       <main>
         {children}
         <Outlet />
+        {IsCookiesPopUpShown ? (
+          <CookiesPopUp setIsCookiesPopUpShown={setIsCookiesPopUpShown} />
+        ) : (
+          ""
+        )}
       </main>
       <Footer />
     </>
