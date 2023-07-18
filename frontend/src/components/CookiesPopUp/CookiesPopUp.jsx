@@ -6,8 +6,11 @@ export default function Error({ setIsCookiesPopUpShown }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleCookiesPopUp = () => {
-    setIsCookiesPopUpShown(false);
+    setIsLoading(true);
     localStorage.setItem("cookies_pop_up", JSON.stringify({ state: false }));
+    setTimeout(() => {
+      setIsCookiesPopUpShown(false);
+    }, 750);
   };
 
   useEffect(() => {

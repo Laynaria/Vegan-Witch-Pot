@@ -11,7 +11,7 @@
   padding: $basic-space;
   gap: $basic-space;
   background-color: $primary-color;
-  transition: opacity 1s ease;
+  transition: opacity 0.75s ease;
   border-radius: $basic-space;
   box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -36,7 +36,7 @@
     border: 2px solid $background-color;
     padding: $half-space $basic-space * 2;
     cursor: pointer;
-    transition: opacity 1s ease;
+    transition: opacity 0.75s ease;
 
     &:active {
       transition: 0.25s ease;
