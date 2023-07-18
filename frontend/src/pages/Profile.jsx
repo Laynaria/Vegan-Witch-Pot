@@ -51,20 +51,44 @@ export default function Profile() {
       return;
     }
 
+    // We check if email exist
     instance
-      .put(`/users/${user.id}`, editInfo)
-      .then(() =>
-        setUser(...user, { username: editInfo.username, email: editInfo.email })
-      )
-      .then(() =>
-        setEditInfo({
-          email: user.email,
-          username: user.username,
-          password: "",
-          confirmPassword: "",
-        })
-      )
-      .catch(() => console.warn("Une erreur est survenue!"));
+      .get(`/verify-email/${editInfo.email}`)
+      .then((res) => {
+        if (!res.data[0] || res.data[0].id === user.id) {
+          // Then we check if username exist
+          instance
+            .get(`/verify-username/${editInfo.username}`)
+            .then((result) => {
+              if (!result.data[0] || result.data[0].id === user.id) {
+                // If none exist, then we create a new user
+                instance
+                  .put(`/users/${user.id}`, editInfo)
+                  .then(() =>
+                    setUser({
+                      ...user,
+                      email,
+                      username,
+                    })
+                  )
+                  .then(() =>
+                    setEditInfo({
+                      email: editInfo.email,
+                      username: editInfo.username,
+                      password: "",
+                      confirmPassword: "",
+                    })
+                  );
+              } else {
+                console.error("Username already exist");
+              }
+            })
+            .catch((err) => console.error(err));
+        } else {
+          console.error("Email already exist");
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleSubmitPassword = (e) => {
