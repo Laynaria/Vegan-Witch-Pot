@@ -33,6 +33,7 @@
     background-color: $secondary-color;
     border: none;
     border-radius: $border-radius;
+    border: 2px solid $background-color;
     padding: $half-space $basic-space * 2;
     cursor: pointer;
     transition: opacity 1s ease;
