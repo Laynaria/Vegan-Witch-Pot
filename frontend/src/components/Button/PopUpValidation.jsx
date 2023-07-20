@@ -12,12 +12,22 @@ export default function PopUpValidation({
 
   return (
     <div className="PopUpValidation">
-      <p>
-        <span>Do you really want to {textValidation} ?</span>
-        <button type="button" onClick={(e) => handleClickPlus(e)}>
+      <p className="PopUpText">
+        <span className="PopUpSpan">
+          Do you really want to {textValidation} ?
+        </span>
+        <button
+          className="PopUpButton"
+          type="button"
+          onClick={(e) => handleClickPlus(e)}
+        >
           Yes
         </button>
-        <button type="button" onClick={() => setIsPopUp(false)}>
+        <button
+          className="PopUpButton"
+          type="button"
+          onClick={() => setIsPopUp(false)}
+        >
           No
         </button>
       </p>
