@@ -5,7 +5,7 @@ import instance from "@services/instance";
 
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 
 import editIcon from "@assets/icons/wand.svg";
 import deleteIcon from "@assets/icons/broom.svg";
@@ -111,12 +111,20 @@ export default function EditRecipe() {
         <h2>Preview</h2>
         <Card recipe={recipe} />
 
-        <ButtonRecipe icon={editIcon} text="Edit" handleClick={handleSubmit} />
+        <ButtonRecipe
+          icon={editIcon}
+          text="Edit"
+          handleClick={handleSubmit}
+          hassPopUp
+          textValidation="edit this recipe"
+        />
 
         <ButtonRecipe
           icon={deleteIcon}
           text="Delete"
           handleClick={handleDelete}
+          hassPopUp
+          textValidation="delete this recipe"
         />
       </section>
     </main>

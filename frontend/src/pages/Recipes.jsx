@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import instance from "@services/instance";
 
 import ThumbnailRecipe from "@components/Recipes/ThumbnailRecipe";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 import buttonIcon from "@assets/logos/logo_mini.svg";
 
 import Card from "@components/Card/Card";

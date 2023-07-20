@@ -16,7 +16,7 @@
     flex-direction: column;
     gap: $basic-space * 2;
 
-    button {
+    button:not(.PopUpButton) {
       margin-top: $basic-space * 3;
     }
   }
