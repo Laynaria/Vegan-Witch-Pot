@@ -5,7 +5,7 @@ import instance from "@services/instance";
 
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 
 import buttonIcon from "@assets/logos/logo_mini.svg";
 
@@ -60,6 +60,8 @@ export default function AddRecipe() {
           icon={buttonIcon}
           text="Add recipe"
           handleClick={handleSubmit}
+          hassPopUp
+          textValidation="create this recipe"
         />
       </section>
     </main>

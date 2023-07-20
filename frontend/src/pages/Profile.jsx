@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 import instance from "@services/instance";
 
 import avatar from "@assets/icons/avatar.svg";
@@ -209,6 +209,8 @@ export default function Profile() {
         icon={editIcon}
         text="Edit"
         handleClick={handleSubmitInfo}
+        hassPopUp
+        textValidation="change your informations"
       />
 
       <form>
@@ -247,6 +249,8 @@ export default function Profile() {
         icon={changeIcon}
         text="Change Password"
         handleClick={handleSubmitPassword}
+        hassPopUp
+        textValidation="change your password"
       />
 
       <ButtonRecipe
@@ -259,6 +263,8 @@ export default function Profile() {
         icon={deleteIcon}
         text="Delete Account"
         handleClick={handleDeleteUser}
+        hassPopUp
+        textValidation="delete your account"
       />
     </section>
   );

@@ -23,7 +23,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
         <input
           type={isEdit ? "text" : "search"}
           name="title"
-          defaultValue={recipe.title}
+          value={recipe.title}
           onChange={handleChange}
         />
       </label>
@@ -35,7 +35,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
           <input
             type="text"
             name="thumbnail"
-            defaultValue={recipe.thumbnail}
+            value={recipe.thumbnail}
             onChange={handleChange}
           />
         </label>
@@ -64,7 +64,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
           type={isEdit ? "text" : "search"}
           className="cookingTime"
           name="cooking_time"
-          defaultValue={recipe.cooking_time}
+          value={recipe.cooking_time}
           onChange={handleChange}
         />
       </label>
@@ -74,7 +74,7 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
         <input
           type="range"
           name="difficulty"
-          defaultValue={recipe.difficulty}
+          value={recipe.difficulty}
           onChange={handleChange}
           min={isEdit ? "1" : "0"}
           max="5"

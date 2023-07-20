@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
 import "@components/Authentification/LogIn.scss";
@@ -44,7 +44,7 @@ export default function LogIn() {
       .post("/login", loginInfo)
       .then((res) => localStorage.setItem("token", res.data.token))
       .then(() => handleAuth())
-      .then(() => navigate("/"))
+      .then(() => navigate("/recipes"))
       .catch((err) => console.error(err));
   };
 

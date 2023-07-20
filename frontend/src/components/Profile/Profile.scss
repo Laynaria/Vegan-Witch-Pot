@@ -113,7 +113,7 @@
     }
   }
 
-  p {
+  p:not(.PopUpText) {
     font-size: calc($font-size / 1.35);
     text-align: center;
     grid-column: 1 / -1;
@@ -135,7 +135,7 @@
     }
   }
 
-  button {
+  button:not(.PopUpButton) {
     grid-area: b1;
 
     &:nth-of-type(2) {
