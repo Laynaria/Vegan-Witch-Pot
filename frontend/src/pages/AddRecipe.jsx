@@ -60,6 +60,8 @@ export default function AddRecipe() {
           icon={buttonIcon}
           text="Add recipe"
           handleClick={handleSubmit}
+          hassPopUp
+          textValidation="create this recipe"
         />
       </section>
     </main>
