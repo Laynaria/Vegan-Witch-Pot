@@ -111,12 +111,20 @@ export default function EditRecipe() {
         <h2>Preview</h2>
         <Card recipe={recipe} />
 
-        <ButtonRecipe icon={editIcon} text="Edit" handleClick={handleSubmit} />
+        <ButtonRecipe
+          icon={editIcon}
+          text="Edit"
+          handleClick={handleSubmit}
+          hassPopUp
+          textValidation="edit this recipe"
+        />
 
         <ButtonRecipe
           icon={deleteIcon}
           text="Delete"
           handleClick={handleDelete}
+          hassPopUp
+          textValidation="delete this recipe"
         />
       </section>
     </main>
