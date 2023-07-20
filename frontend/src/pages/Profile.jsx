@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 import instance from "@services/instance";
 
 import avatar from "@assets/icons/avatar.svg";

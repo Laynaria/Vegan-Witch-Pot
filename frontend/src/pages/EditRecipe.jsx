@@ -5,7 +5,7 @@ import instance from "@services/instance";
 
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
-import ButtonRecipe from "@components/Recipes/ButtonRecipe";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
 
 import editIcon from "@assets/icons/wand.svg";
 import deleteIcon from "@assets/icons/broom.svg";
