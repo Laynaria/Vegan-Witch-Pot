@@ -5,16 +5,16 @@ export default function PopUpValidation({
   setIsPopUp,
   textValidation,
 }) {
-  const handleClickPlus = () => {
+  const handleClickPlus = (e) => {
     setIsPopUp(false);
-    handleClick();
+    handleClick(e);
   };
 
   return (
     <div className="PopUpValidation">
       <p>
         <span>Do you really want to {textValidation} ?</span>
-        <button type="button" onClick={handleClickPlus}>
+        <button type="button" onClick={(e) => handleClickPlus(e)}>
           Yes
         </button>
         <button type="button" onClick={() => setIsPopUp(false)}>
