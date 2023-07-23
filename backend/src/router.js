@@ -6,6 +6,7 @@ const { checkAuth, checkRole } = require("./middlewares/auth");
 
 const itemControllers = require("./controllers/itemControllers");
 const recipeControllers = require("./controllers/recipeControllers");
+const contactControllers = require("./controllers/contactControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 const authControllers = require("./controllers/authControllers");
 const userControllers = require("./controllers/userControllers");
@@ -24,6 +25,10 @@ router.get("/last-recipes", recipeControllers.browseLast);
 
 // category routes accessible by everyone
 router.get("/categories", categoryControllers.browse);
+
+// contact routes accessible by everyone
+router.get("/contacts", contactControllers.browse);
+router.get("/contacts/:id", contactControllers.read);
 
 // authentification routes
 router.get("/verify-email/:email", authControllers.checkEmail);
