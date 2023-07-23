@@ -31,6 +31,7 @@ router.post("/contacts", contactControllers.add);
 
 router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
+router.put("/contacts/:id", contactControllers.edit);
 
 // authentification routes
 router.get("/verify-email/:email", authControllers.checkEmail);
