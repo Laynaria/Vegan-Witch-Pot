@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
@@ -8,20 +8,10 @@ export default function Contact() {
   const { user } = useContext(AuthContext);
 
   const [contactMail, setContactMail] = useState({
-    email: "",
+    email: user.email ? user.email : "",
     object: "",
     message: "",
   });
-
-  useEffect(() => {
-    if (user.email) {
-      setContactMail({
-        email: user.email,
-        object: "",
-        message: "",
-      });
-    }
-  }, []);
 
   const handleChangeMail = (e) => {
     const { name, value } = e.target;
