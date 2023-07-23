@@ -27,6 +27,8 @@ router.get("/last-recipes", recipeControllers.browseLast);
 router.get("/categories", categoryControllers.browse);
 
 // contact routes accessible by everyone
+router.post("/contacts", contactControllers.add);
+
 router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
 

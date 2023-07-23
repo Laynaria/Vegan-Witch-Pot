@@ -8,7 +8,7 @@ class ContactManager extends AbstractManager {
   insert(contact) {
     return this.connection.query(
       `insert into ${this.table} (email, object, message) values (?, ?, ?)`,
-      [contact.email]
+      [contact.email, contact.object, contact.message]
     );
   }
 
