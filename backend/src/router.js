@@ -29,10 +29,6 @@ router.get("/categories", categoryControllers.browse);
 // contact routes accessible by everyone
 router.post("/contacts", contactControllers.add);
 
-router.get("/contacts", contactControllers.browse);
-router.get("/contacts/:id", contactControllers.read);
-router.put("/contacts/:id", contactControllers.edit);
-
 // authentification routes
 router.get("/verify-email/:email", authControllers.checkEmail);
 router.get("/verify-username/:username", authControllers.checkUsername);
@@ -66,7 +62,13 @@ router.delete("/users/:id", userControllers.destroy);
 // Middleware for checking roles
 router.use(checkRole);
 
-// routes accessible des admin uniquement
+// user routes for admins only
 router.get("/users", userControllers.browse);
+
+// contact routes for admin only
+router.get("/contacts", contactControllers.browse);
+router.get("/contacts/:id", contactControllers.read);
+router.put("/contacts/:id", contactControllers.edit);
+router.delete("/contacts/:id", contactControllers.destroy);
 
 module.exports = router;
