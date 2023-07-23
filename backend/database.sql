@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS contact;
 DROP TABLE IF EXISTS menu_recipe;
 DROP TABLE IF EXISTS menu;
 DROP TABLE IF EXISTS recipe_ingredient_quantity;
@@ -75,6 +76,13 @@ menu_id INT NOT NULL,
 CONSTRAINT fk_menu_recipe_menu FOREIGN KEY (menu_id) REFERENCES menu(id),
 recipe_id INT NOT NULL,
 CONSTRAINT fk_menu_recipe_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id));
+
+CREATE TABLE contact(
+id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+email VARCHAR(30) NOT NULL,
+object VARCHAR(60) NOT NULL,
+message TEXT NOT NULL,
+is_read BOOLEAN NOT NULL DEFAULT FALSE);
 
 INSERT INTO role (role) VALUES 
 ('user'),
@@ -226,4 +234,6 @@ INSERT INTO recipe_ingredient_quantity (line, recipe_id, ingredient_id, quantity
 -- INSERT INTO menu_recipe (menu_id, recipe_id) VALUES
 -- ();
 
-SELECT u.id as user_id, r.id as recipe_id, riq.id as recipe_ingredient_quantity_id FROM user AS u INNER JOIN recipe as r ON u.id = r.user_id INNER JOIN recipe_ingredient_quantity as riq ON r.id = riq.recipe_id WHERE u.id = 1;
+INSERT INTO contact (email, object, message, is_read) VALUES
+("firstmail@mail.fr", "This is a first mail which is not read", "If this mail isn't marked as not read, then there is a big issue to resolve...", 0),
+("secondmail@mail.fr", "This is a second mail which should be marked as read", "If this email isn't shown as read, then there are some issues to fix!", 1)
