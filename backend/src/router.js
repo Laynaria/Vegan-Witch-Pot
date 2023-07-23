@@ -6,6 +6,7 @@ const { checkAuth, checkRole } = require("./middlewares/auth");
 
 const itemControllers = require("./controllers/itemControllers");
 const recipeControllers = require("./controllers/recipeControllers");
+const contactControllers = require("./controllers/contactControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 const authControllers = require("./controllers/authControllers");
 const userControllers = require("./controllers/userControllers");
@@ -24,6 +25,9 @@ router.get("/last-recipes", recipeControllers.browseLast);
 
 // category routes accessible by everyone
 router.get("/categories", categoryControllers.browse);
+
+// contact routes accessible by everyone
+router.post("/contacts", contactControllers.add);
 
 // authentification routes
 router.get("/verify-email/:email", authControllers.checkEmail);
@@ -58,7 +62,13 @@ router.delete("/users/:id", userControllers.destroy);
 // Middleware for checking roles
 router.use(checkRole);
 
-// routes accessible des admin uniquement
+// user routes for admins only
 router.get("/users", userControllers.browse);
+
+// contact routes for admin only
+router.get("/contacts", contactControllers.browse);
+router.get("/contacts/:id", contactControllers.read);
+router.put("/contacts/:id", contactControllers.edit);
+router.delete("/contacts/:id", contactControllers.destroy);
 
 module.exports = router;

@@ -4,6 +4,7 @@ import Layout from "@components/Layout/Layout";
 
 import Error from "@pages/Error";
 import Recipes from "@pages/Recipes";
+import Contact from "@pages/Contact";
 
 import LogIn from "@pages/LogIn";
 import Register from "@pages/Register";
@@ -22,6 +23,7 @@ export default function Router() {
           <Route path="*" element={<Error />} />
           <Route path="/error-404" element={<Error />} />
           <Route path="/recipes" element={<Recipes />} />
+          <Route path="/contact" element={<Contact />} />
 
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />

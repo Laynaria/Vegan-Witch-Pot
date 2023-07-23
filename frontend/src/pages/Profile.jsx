@@ -188,7 +188,7 @@ export default function Profile() {
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Email*"
             value={editInfo.email}
             onChange={handleEditInfo}
           />
@@ -198,7 +198,7 @@ export default function Profile() {
           <input
             type="name"
             name="username"
-            placeholder="Username"
+            placeholder="Username*"
             value={editInfo.username}
             onChange={handleEditInfo}
           />
@@ -218,7 +218,7 @@ export default function Profile() {
           <input
             type={isShown ? "text" : "password"}
             name="password"
-            placeholder="Password"
+            placeholder="Password*"
             value={editInfo.password}
             onChange={handleEditInfo}
           />
@@ -228,7 +228,7 @@ export default function Profile() {
           <input
             type={isShown ? "text" : "password"}
             name="confirmPassword"
-            placeholder="Confirm Password"
+            placeholder="Confirm Password*"
             value={editInfo.confirmPassword}
             onChange={handleEditInfo}
           />
