@@ -4,6 +4,8 @@ import instance from "@services/instance";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
 import icon from "@assets/icons/login.svg";
 
+import "@components/Contact/Contact.scss";
+
 export default function Contact() {
   const { user } = useContext(AuthContext);
 
@@ -39,14 +41,16 @@ export default function Contact() {
   };
 
   return (
-    <section>
+    <section className="Contact">
       <h1>Contact</h1>
       <form>
         <label>
           <input
+            disabled={user.email ? "disabled" : ""}
+            readOnly={user.email ? "readonly" : ""}
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Email*"
             value={contactMail.email}
             onChange={handleChangeMail}
           />
@@ -56,23 +60,24 @@ export default function Contact() {
           <input
             type="text"
             name="object"
-            placeholder="Object"
+            placeholder="Object*"
             value={contactMail.object}
             onChange={handleChangeMail}
           />
         </label>
 
         <label>
-          <input
+          <textarea
             type="text"
             name="message"
-            placeholder="Message"
+            placeholder="Message*"
             value={contactMail.message}
             onChange={handleChangeMail}
           />
         </label>
       </form>
-      <ButtonRecipe icon={icon} text="Log In" handleClick={handleSubmit} />
+
+      <ButtonRecipe icon={icon} text="Send" handleClick={handleSubmit} />
     </section>
   );
 }
