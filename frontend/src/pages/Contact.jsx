@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
-import icon from "@assets/icons/login.svg";
+import icon from "@assets/icons/scroll.svg";
 
 import "@components/Contact/Contact.scss";
 
