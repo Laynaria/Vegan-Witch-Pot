@@ -4,9 +4,10 @@ import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
 import instance from "@services/instance";
 
-import avatar from "@assets/icons/avatar.svg";
+import avatarImg from "@assets/icons/avatar.svg";
 import hide from "@assets/icons/hide.svg";
 import show from "@assets/icons/show.svg";
+import editAvatar from "@assets/icons/potion.svg";
 import editIcon from "@assets/icons/wand.svg";
 import changeIcon from "@assets/icons/register.svg";
 import disconnectIcon from "@assets/icons/login.svg";
@@ -26,6 +27,13 @@ export default function Profile() {
     confirmPassword: "",
   });
 
+  const [avatar, setAvatar] = useState({
+    type: "avatar",
+    img: avatarImg,
+    // if we change our way for removing console error
+    // img : user.avatar ? `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg` : avatarImg
+  });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +44,38 @@ export default function Profile() {
       setIsLoading(false);
     }, 100);
   }, []);
+
+  useEffect(() => {
+    // check if user image exist, if it does it will update avatar state with the proper img > issue of this is that it does a console error if img does not exist,
+    // so maybe updating user would be the best with putting a boolean is_avatar in mysql
+    instance
+      .get(`${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg`)
+      .then(() => {
+        return setAvatar({
+          avatar,
+          img: `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${
+            user.id
+          }.jpg`,
+        });
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const handleEditAvatar = (e) => {
+    if (
+      e.target.files[0].type === "image/jpeg" ||
+      e.target.files[0].type === "image/png"
+    ) {
+      setAvatar({
+        ...avatar,
+        img: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
+
+  const handleSubmitAvatar = (e) => {
+    e.preventDefault();
+  };
 
   const handleEditInfo = (e) => {
     const { name, value } = e.target;
@@ -179,8 +219,22 @@ export default function Profile() {
     <section className={isLoading ? "hide" : "Profile"}>
       <h1>Profile</h1>
 
-      <form className="AvatarForm">
-        <img className="Avatar" src={avatar} alt="avatar" />
+      <form className="AvatarForm" method="post" encType="multipart/form-data">
+        <label>
+          <img className="Avatar" src={avatar.img} alt="avatar" />
+          <input
+            type="file"
+            name="img"
+            value=""
+            accept="image/png, image/jpeg"
+            onChange={handleEditAvatar}
+          />
+        </label>
+        <ButtonRecipe
+          icon={editAvatar}
+          text="Upload"
+          handleClick={handleSubmitAvatar}
+        />
       </form>
 
       <form>

@@ -27,6 +27,11 @@
 
   .AvatarForm {
     grid-area: av;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: $basic-space * 5;
 
     @media screen and (min-width: 480px) {
       display: flex;
@@ -34,13 +39,31 @@
       align-items: center;
       flex-basis: 100%;
     }
-
-    .Avatar {
-      width: 250px;
-      height: 250px;
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 300px;
-      object-fit: cover;
-      object-position: center;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+
+      &:hover {
+        filter: brightness(80%);
+      }
+
+      .Avatar {
+        width: 250px;
+        height: 250px;
+        border-radius: 300px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      input {
+        position: absolute;
+        z-index: 5;
+        display: none;
+      }
     }
   }
 
