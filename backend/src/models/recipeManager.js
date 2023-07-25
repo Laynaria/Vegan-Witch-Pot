@@ -21,9 +21,9 @@ class RecipeManager extends AbstractManager {
 
   insert(recipe) {
     return this.connection.query(
-      `insert into ${this.table} (thumbnail, title, difficulty, cooking_time, user_id, is_shared, is_approved, origin, steps, category_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (is_thumbnail, title, difficulty, cooking_time, user_id, is_shared, is_approved, origin, steps, category_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        recipe.thumbnail,
+        recipe.is_thumbnail,
         recipe.title,
         recipe.difficulty,
         recipe.cooking_time,
@@ -39,9 +39,9 @@ class RecipeManager extends AbstractManager {
 
   update(recipe) {
     return this.connection.query(
-      `update ${this.table} set thumbnail = ?, title = ?, difficulty = ?, cooking_time = ?, is_shared = ?, is_approved = ?, origin = ?, steps = ?, category_id = ? where id = ?`,
+      `update ${this.table} set is_thumbnail = ?, title = ?, difficulty = ?, cooking_time = ?, is_shared = ?, is_approved = ?, origin = ?, steps = ?, category_id = ? where id = ?`,
       [
-        recipe.thumbnail,
+        recipe.is_thumbnail,
         recipe.title,
         recipe.difficulty,
         recipe.cooking_time,

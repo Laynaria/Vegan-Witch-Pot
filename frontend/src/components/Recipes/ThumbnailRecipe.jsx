@@ -2,8 +2,25 @@ import { useState, useEffect } from "react";
 import instance from "@services/instance";
 import "./ThumbnailRecipe.scss";
 
-export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
+export default function FormsRecipe({
+  recipe,
+  setRecipe,
+  handleChange,
+  inputRef,
+  setThumbnail,
+  isEdit = false,
+}) {
   const [categories, setCategories] = useState([{ id: 1 }]);
+
+  const handleChangeThumbnail = (e) => {
+    if (
+      e.target.files[0].type === "image/jpeg" ||
+      e.target.files[0].type === "image/png"
+    ) {
+      setThumbnail(URL.createObjectURL(e.target.files[0]));
+      setRecipe({ ...recipe, is_thumbnail: true });
+    }
+  };
 
   useEffect(() => {
     instance
@@ -30,13 +47,14 @@ export default function FormsRecipe({ recipe, handleChange, isEdit = false }) {
 
       {isEdit ? (
         <label>
-          Picture Link
+          Picture
           {/* should maybe change it to an input type link */}
           <input
-            type="text"
+            type="file"
             name="thumbnail"
-            value={recipe.thumbnail}
-            onChange={handleChange}
+            accept="image/png, image/jpeg"
+            onChange={handleChangeThumbnail}
+            ref={inputRef}
           />
         </label>
       ) : (

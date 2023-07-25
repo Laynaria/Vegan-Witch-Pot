@@ -30,7 +30,7 @@ name VARCHAR(80) NOT NULL);
 CREATE TABLE recipe (
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 title VARCHAR(25) NOT NULL,
-thumbnail VARCHAR(250) NOT NULL DEFAULT 'grilled_peas.png',
+is_thumbnail BOOLEAN NOT NULL DEFAULT FALSE,
 difficulty INT NOT NULL,
 cooking_time VARCHAR(10) NOT NULL,
 steps TEXT NOT NULL,
@@ -105,9 +105,9 @@ INSERT INTO category (name) VALUES
 ('Sauces'),
 ('Beverages');
 
-INSERT INTO recipe (thumbnail, title, difficulty, cooking_time, steps, origin, is_shared, is_approved, user_id, category_id) VALUES
-('grilled_peas.png', 'Grilled Peas', 1, '30min', 'Faites griller les pois chiches', '', true, true, 1, 4),
-('bowl.png', 'Supreme Buddha Bowl', 2, '25min', 'Mettez tout dans une assiette', '', true, true, 1, 4);
+INSERT INTO recipe (title, difficulty, cooking_time, steps, origin, is_thumbnail, is_shared, is_approved, user_id, category_id) VALUES
+('Grilled Peas', 1, '30min', 'Faites griller les pois chiches', '', true, true, true, 1, 4),
+('Supreme Buddha Bowl', 2, '25min', 'Mettez tout dans une assiette', '', true, true, true, 1, 4);
 
 INSERT INTO type (type, unit) VALUES
 ('number', ''),
