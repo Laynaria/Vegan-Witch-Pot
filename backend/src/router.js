@@ -2,7 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
+const multer = require("multer");
+
+const uploadAvatar = multer({ dest: "public/uploads/avatars" });
+
 const { checkAuth, checkRole } = require("./middlewares/auth");
+const uploads = require("./services/upload");
 
 const itemControllers = require("./controllers/itemControllers");
 const recipeControllers = require("./controllers/recipeControllers");
@@ -44,6 +49,11 @@ router.get("/users/:id", userControllers.read);
 router.delete("/users/:id", userControllers.destroy);
 router.put("/users/:id", userControllers.edit);
 router.put("/users/edit-password/:id", userControllers.editPassword);
+router.post(
+  "/uploads/avatars/:id",
+  uploadAvatar.single("avatar"),
+  uploads.uploadAvatars
+);
 router.put("/users/edit-avatar/:id", userControllers.editAvatar);
 
 // recipe routes for authentificated users only

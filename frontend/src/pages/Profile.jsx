@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
@@ -16,6 +16,7 @@ import deleteIcon from "@assets/icons/broom.svg";
 import "@components/Profile/Profile.scss";
 
 export default function Profile() {
+  const inputRef = useRef();
   const { user, setUser } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -28,11 +29,9 @@ export default function Profile() {
   });
 
   const [avatar, setAvatar] = useState({
-    type: "avatar",
     img: user.is_avatar
       ? `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg`
       : avatarImg,
-    file: {},
   });
 
   const navigate = useNavigate();
@@ -54,7 +53,6 @@ export default function Profile() {
       setAvatar({
         ...avatar,
         img: URL.createObjectURL(e.target.files[0]),
-        file: e.target.files[0],
       });
     }
   };
@@ -62,18 +60,26 @@ export default function Profile() {
   const handleSubmitAvatar = (e) => {
     e.preventDefault();
 
-    if (!user.is_avatar) {
-      // if user never had an avatar uploaded, will edit is_avatar value to true in db
-      instance
-        .put(`/users/edit-avatar/${user.id}`, { is_avatar: true })
-        .then(() =>
-          setUser({
-            ...user,
-            is_avatar: true,
-          })
-        )
-        .catch((err) => console.error(err));
-    }
+    const formData = new FormData();
+    formData.append("avatar", inputRef.current.files[0]);
+
+    instance
+      .post(`/uploads/avatars/${user.id}`, formData)
+      .then(() => {
+        if (!user.is_avatar) {
+          // if user never had an avatar uploaded, will edit is_avatar value to true in db
+          instance
+            .put(`/users/edit-avatar/${user.id}`, { is_avatar: true })
+            .then(() =>
+              setUser({
+                ...user,
+                is_avatar: true,
+              })
+            )
+            .catch((err) => console.error(err));
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleEditInfo = (e) => {
@@ -224,9 +230,9 @@ export default function Profile() {
           <input
             type="file"
             name="img"
-            value=""
             accept="image/png, image/jpeg"
             onChange={handleEditAvatar}
+            ref={inputRef}
           />
         </label>
         <ButtonRecipe
