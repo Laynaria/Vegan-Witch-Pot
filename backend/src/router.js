@@ -44,6 +44,7 @@ router.get("/users/:id", userControllers.read);
 router.delete("/users/:id", userControllers.destroy);
 router.put("/users/:id", userControllers.edit);
 router.put("/users/edit-password/:id", userControllers.editPassword);
+router.put("/users/edit-avatar/:id", userControllers.editAvatar);
 
 // recipe routes for authentificated users only
 router.post("/recipes", recipeControllers.add);

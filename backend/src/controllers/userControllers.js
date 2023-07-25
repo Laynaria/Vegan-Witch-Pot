@@ -79,6 +79,26 @@ const editPassword = (req, res) => {
   });
 };
 
+const editAvatar = (req, res) => {
+  const user = req.body;
+
+  user.id = parseInt(req.params.id, 10);
+
+  models.user
+    .updateAvatar(user)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 // This function is used to get all informations need to delete a user or a recipe
 const selectForDelete = (req, res) => {
   models.user
@@ -113,6 +133,7 @@ module.exports = {
   read,
   edit,
   editPassword,
+  editAvatar,
   selectForDelete,
   destroy,
 };

@@ -29,9 +29,10 @@ export default function Profile() {
 
   const [avatar, setAvatar] = useState({
     type: "avatar",
-    img: avatarImg,
-    // if we change our way for removing console error
-    // img : user.avatar ? `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg` : avatarImg
+    img: user.is_avatar
+      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg`
+      : avatarImg,
+    file: {},
   });
 
   const navigate = useNavigate();
@@ -45,22 +46,6 @@ export default function Profile() {
     }, 100);
   }, []);
 
-  useEffect(() => {
-    // check if user image exist, if it does it will update avatar state with the proper img > issue of this is that it does a console error if img does not exist,
-    // so maybe updating user would be the best with putting a boolean is_avatar in mysql
-    instance
-      .get(`${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg`)
-      .then(() => {
-        return setAvatar({
-          avatar,
-          img: `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${
-            user.id
-          }.jpg`,
-        });
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
   const handleEditAvatar = (e) => {
     if (
       e.target.files[0].type === "image/jpeg" ||
@@ -69,12 +54,26 @@ export default function Profile() {
       setAvatar({
         ...avatar,
         img: URL.createObjectURL(e.target.files[0]),
+        file: e.target.files[0],
       });
     }
   };
 
   const handleSubmitAvatar = (e) => {
     e.preventDefault();
+
+    if (!user.is_avatar) {
+      // if user never had an avatar uploaded, will edit is_avatar value to true in db
+      instance
+        .put(`/users/edit-avatar/${user.id}`, { is_avatar: true })
+        .then(() =>
+          setUser({
+            ...user,
+            is_avatar: true,
+          })
+        )
+        .catch((err) => console.error(err));
+    }
   };
 
   const handleEditInfo = (e) => {
