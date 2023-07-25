@@ -49,16 +49,18 @@ router.get("/users/:id", userControllers.read);
 router.delete("/users/:id", userControllers.destroy);
 router.put("/users/:id", userControllers.edit);
 router.put("/users/edit-password/:id", userControllers.editPassword);
+
+// recipe routes for authentificated users only
+router.post("/recipes", recipeControllers.add);
+router.put("/recipes/:id", recipeControllers.edit);
+
+// routes for upload users avatars and recipes pictures
 router.post(
   "/uploads/avatars/:id",
   uploadAvatar.single("avatar"),
   uploads.uploadAvatars
 );
 router.put("/users/edit-avatar/:id", userControllers.editAvatar);
-
-// recipe routes for authentificated users only
-router.post("/recipes", recipeControllers.add);
-router.put("/recipes/:id", recipeControllers.edit);
 
 // recipes routes used to delete recipes and users
 router.get("/users/delete-info/:id", userControllers.selectForDelete);

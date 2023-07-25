@@ -60,6 +60,10 @@ export default function Profile() {
   const handleSubmitAvatar = (e) => {
     e.preventDefault();
 
+    if (!inputRef.current.files[0]) {
+      return;
+    }
+
     const formData = new FormData();
     formData.append("avatar", inputRef.current.files[0]);
 
