@@ -19,7 +19,6 @@ export default function EditRecipe() {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [thumbnail, setThumbnail] = useState(basicThumbnail);
   const [recipe, setRecipe] = useState({
     is_thumbnail: false,
     title: "Grilled Peas",
@@ -33,15 +32,26 @@ export default function EditRecipe() {
     steps: "",
     category_id: 4,
   });
+  const [thumbnail, setThumbnail] = useState(basicThumbnail);
 
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     // must add validations of having nothing null etc
+    const formData = new FormData();
+    formData.append("recipePic", inputRef.current.files[0]);
 
     instance
       .put(`/recipes/${id}`, recipe)
       .then(() => navigate("/recipes"))
+      .then(() => {
+        if (inputRef.current.files[0]) {
+          instance
+            .post(`/uploads/recipes/${recipe.id}`, formData)
+            .catch((err) => console.error(err));
+        }
+      })
+
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
@@ -98,6 +108,14 @@ export default function EditRecipe() {
           }
 
           setRecipe(result.data);
+
+          if (result.data.is_thumbnail) {
+            setThumbnail(
+              `${import.meta.env.VITE_BACKEND_URL}/uploads/recipes/${
+                result.data.id
+              }.png`
+            );
+          }
         })
         .then(() => setIsLoading(false))
         .catch((err) => {

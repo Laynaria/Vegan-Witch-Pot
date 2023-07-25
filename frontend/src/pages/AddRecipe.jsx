@@ -17,7 +17,6 @@ export default function AddRecipe() {
   const { user } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [thumbnail, setThumbnail] = useState(basicThumbnail);
   const [recipe, setRecipe] = useState({
     is_thumbnail: false,
     title: "Grilled Peas",
@@ -31,6 +30,7 @@ export default function AddRecipe() {
     steps: "",
     category_id: 4,
   });
+  const [thumbnail, setThumbnail] = useState(basicThumbnail);
 
   const navigate = useNavigate();
 
