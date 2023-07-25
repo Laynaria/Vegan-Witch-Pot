@@ -14,6 +14,7 @@
   }
 
   h2 {
+    text-align: center;
     font-size: 1.6rem;
     font-weight: 500;
   }
@@ -21,9 +22,14 @@
   .card-img {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: $border-radius $border-radius 0 0;
+    object-fit: cover;
+    object-position: center;
+    // width: 370px;
+    height: 246px;
 
-    @media screen and (min-width: 480px) {
-      height: 267px;
+    @media screen and (min-width: 720px) {
+      // width: 400px;
+      height: 266px;
     }
   }
 
