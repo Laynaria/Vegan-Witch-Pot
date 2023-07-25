@@ -5,6 +5,7 @@ const router = express.Router();
 const multer = require("multer");
 
 const uploadAvatar = multer({ dest: "public/uploads/avatars" });
+const uploadRecipeImage = multer({ dest: "public/uploads/recipes" });
 
 const { checkAuth, checkRole } = require("./middlewares/auth");
 const uploads = require("./services/upload");
@@ -55,6 +56,11 @@ router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
 
 // routes for upload users avatars and recipes pictures
+router.post(
+  "/uploads/recipes/:id",
+  uploadRecipeImage.single("recipePic"),
+  uploads.uploadRecipePictures
+);
 router.post(
   "/uploads/avatars/:id",
   uploadAvatar.single("avatar"),

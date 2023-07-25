@@ -20,7 +20,7 @@ const uploadRecipePictures = (req, res) => {
 
   fs.rename(
     `./public/uploads/recipes/${filename}`,
-    `./public/uploads/recipes/${id}.jpg`,
+    `./public/uploads/recipes/${id}.png`,
     (err) => {
       if (err) throw err;
       res.send("File uploaded");
