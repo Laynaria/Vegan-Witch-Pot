@@ -19,6 +19,7 @@ id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 username VARCHAR(20) NOT NULL,
 email VARCHAR(80) NOT NULL, 
 password VARCHAR(150) NOT NULL,
+is_avatar BOOLEAN NOT NULL DEFAULT FALSE,
 role_id INT NOT NULL DEFAULT 1,
 CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role(id));
 
@@ -89,9 +90,9 @@ INSERT INTO role (role) VALUES
 ('cook'),
 ('admin');
 
-INSERT INTO user (username, email, password, role_id) VALUES
-('Layne', 'layne@layne.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', 3),
-('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$HB7WoL7htUrpFQT+JnazCA$42lqJNUaTvY3+13akIRIDl6uCka5mzMp7xzRoOa0C0A', 1);
+INSERT INTO user (username, email, password, is_avatar, role_id) VALUES
+('Layne', 'layne@layne.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', true, 3),
+('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$HB7WoL7htUrpFQT+JnazCA$42lqJNUaTvY3+13akIRIDl6uCka5mzMp7xzRoOa0C0A', false, 1);
 
 INSERT INTO category (name) VALUES
 ('Breakfasts'),

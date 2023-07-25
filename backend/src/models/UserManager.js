@@ -13,7 +13,7 @@ class UserManager extends AbstractManager {
 
   find(id) {
     return this.connection.query(
-      `select id, username, email, role_id from  ${this.table} where id = ?`,
+      `select id, username, email, is_avatar, role_id from  ${this.table} where id = ?`,
       [id]
     );
   }
