@@ -39,6 +39,23 @@
       width: 280px;
     }
 
+    p {
+      cursor: pointer;
+      pointer-events: initial;
+      transition: all 0.4s ease-in-out;
+      width: 50px;
+      height: 50px;
+      background: left / contain no-repeat url("@assets/icons/upload2.svg");
+
+      &:hover {
+        background: left / contain no-repeat url("@assets/icons/upload3.svg");
+      }
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
     input[type="range"] {
       margin: auto;
       -webkit-appearance: none;
@@ -80,5 +97,9 @@
     select:focus {
       border: 2px solid $secondary-color;
     }
+  }
+
+  .FileUploadLabel {
+    pointer-events: none;
   }
 }

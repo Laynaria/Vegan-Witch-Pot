@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import instance from "@services/instance";
+
 import "./ThumbnailRecipe.scss";
 
 export default function FormsRecipe({
@@ -45,21 +46,6 @@ export default function FormsRecipe({
         />
       </label>
 
-      {isEdit ? (
-        <label>
-          Picture
-          {/* should maybe change it to an input type link */}
-          <input
-            type="file"
-            name="thumbnail"
-            accept="image/png, image/jpeg"
-            onChange={handleChangeThumbnail}
-            ref={inputRef}
-          />
-        </label>
-      ) : (
-        ""
-      )}
       <label>
         Type
         <select
@@ -86,6 +72,22 @@ export default function FormsRecipe({
           onChange={handleChange}
         />
       </label>
+
+      {isEdit ? (
+        <label className="FileUploadLabel">
+          Picture
+          <p />
+          <input
+            type="file"
+            name="thumbnail"
+            accept="image/png, image/jpeg"
+            onChange={handleChangeThumbnail}
+            ref={inputRef}
+          />
+        </label>
+      ) : (
+        ""
+      )}
 
       <label>
         {isEdit ? "Difficulty" : "Difficulty"}
