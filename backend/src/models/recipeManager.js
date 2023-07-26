@@ -7,7 +7,7 @@ class RecipeManager extends AbstractManager {
 
   findLast() {
     return this.connection.query(
-      `select * from  ${this.table} ORDER BY id DESC LIMIT 3`
+      `select * from  ${this.table} WHERE is_shared = true and is_approved = true ORDER BY id DESC LIMIT 3`
     );
   }
 
@@ -16,6 +16,24 @@ class RecipeManager extends AbstractManager {
     return this.connection.query(
       `select id from ${this.table} where user_id = ?`,
       [userId]
+    );
+  }
+
+  findForUpload(recipe) {
+    return this.connection.query(
+      `select id from ${this.table} WHERE is_thumbnail = ? and title = ? and difficulty = ? and cooking_time = ? and user_id = ? and is_shared = ? and is_approved = ? and origin = ? and steps = ? and category_id = ? ORDER BY id DESC LIMIT 1`,
+      [
+        recipe.is_thumbnail,
+        recipe.title,
+        recipe.difficulty,
+        recipe.cooking_time,
+        recipe.user_id,
+        recipe.is_shared,
+        recipe.is_approved,
+        recipe.origin,
+        recipe.steps,
+        recipe.category_id,
+      ]
     );
   }
 

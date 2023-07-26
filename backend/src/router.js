@@ -56,6 +56,7 @@ router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
 
 // routes for upload users avatars and recipes pictures
+router.post("/check-new-recipe", recipeControllers.checkNewRecipe);
 router.post(
   "/uploads/recipes/:id",
   uploadRecipeImage.single("recipePic"),

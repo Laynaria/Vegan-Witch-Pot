@@ -53,10 +53,10 @@ export default function AddRecipe() {
       .then(() => {
         if (inputRef.current.files[0]) {
           instance
-            .get("/last-recipes")
+            .post("/check-new-recipe", recipe)
             .then((result) => {
               instance
-                .post(`/uploads/recipes/${result.data[0].id}`, formData)
+                .post(`/uploads/recipes/${result.data.id}`, formData)
                 .catch((err) => console.error(err));
             })
             .catch((err) => {
