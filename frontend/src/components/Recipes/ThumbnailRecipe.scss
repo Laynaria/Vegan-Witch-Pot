@@ -62,8 +62,11 @@
       appearance: none;
       height: 10px;
       border-radius: 5px;
-      background-color: $background-color;
+      background: $background-color;
+      background-image: linear-gradient($secondary-color, $secondary-color);
       outline: none;
+      background-repeat: no-repeat;
+      background-size: 0% 100%;
     }
 
     input[type="range"]::-webkit-slider-thumb {
@@ -72,7 +75,7 @@
       width: 17px;
       border-radius: 60px;
       border: none;
-      background-color: $secondary-color;
+      background: $secondary-color;
       cursor: pointer;
     }
 
@@ -83,7 +86,7 @@
       width: 17px;
       border-radius: 60px;
       border: none;
-      background-color: $secondary-color;
+      background: $secondary-color;
       cursor: pointer;
     }
 

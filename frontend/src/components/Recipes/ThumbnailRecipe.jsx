@@ -13,6 +13,20 @@ export default function FormsRecipe({
 }) {
   const [categories, setCategories] = useState([{ id: 1 }]);
 
+  // function to fill the input range difficulty color
+  const getBackgroundSize = () => {
+    if (isEdit) {
+      return {
+        backgroundSize: `${
+          (parseInt(recipe.difficulty - 1, 10) * 100) / 4
+        }% 100%`,
+      };
+    }
+    return {
+      backgroundSize: `${(parseInt(recipe.difficulty, 10) * 100) / 5}% 100%`,
+    };
+  };
+
   const handleChangeThumbnail = (e) => {
     if (
       e.target.files[0].type === "image/jpeg" ||
@@ -96,6 +110,7 @@ export default function FormsRecipe({
           name="difficulty"
           value={recipe.difficulty}
           onChange={handleChange}
+          style={getBackgroundSize()}
           min={isEdit ? "1" : "0"}
           max="5"
         />
