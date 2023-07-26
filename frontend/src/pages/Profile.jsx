@@ -4,6 +4,7 @@ import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
 import instance from "@services/instance";
 
+import uploadImg from "@assets/icons/upload.svg";
 import avatarImg from "@assets/icons/avatar.svg";
 import hide from "@assets/icons/hide.svg";
 import show from "@assets/icons/show.svg";
@@ -231,6 +232,7 @@ export default function Profile() {
       <form className="AvatarForm" method="post" encType="multipart/form-data">
         <label>
           <img className="Avatar" src={avatar.img} alt="avatar" />
+          <img className="UploadAvatar" src={uploadImg} alt="upload-button" />
           <input
             type="file"
             name="img"
