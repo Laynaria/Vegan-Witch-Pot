@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
@@ -7,18 +7,20 @@ import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
 
+import basicThumbnail from "@assets/recipes/mini/bowl.png";
 import editIcon from "@assets/icons/wand.svg";
 import deleteIcon from "@assets/icons/broom.svg";
 
 import "@components/Recipes/AddRecipe.scss";
 
 export default function EditRecipe() {
+  const inputRef = useRef();
   const { user } = useContext(AuthContext);
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
   const [recipe, setRecipe] = useState({
-    thumbnail: "grilled_peas.png",
+    is_thumbnail: false,
     title: "Grilled Peas",
     difficulty: 1,
     cooking_time: "3h",
@@ -30,15 +32,34 @@ export default function EditRecipe() {
     steps: "",
     category_id: 4,
   });
+  const [thumbnail, setThumbnail] = useState(basicThumbnail);
 
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     // must add validations of having nothing null etc
+    const formData = new FormData();
+    formData.append("recipePic", inputRef.current.files[0]);
 
     instance
       .put(`/recipes/${id}`, recipe)
       .then(() => navigate("/recipes"))
+      .then(() => {
+        if (inputRef.current.files[0]) {
+          if (
+            inputRef.current.files[0].type !== "image/jpeg" &&
+            inputRef.current.files[0].type !== "image/jpg" &&
+            inputRef.current.files[0].type !== "image/png"
+          ) {
+            return;
+          }
+
+          instance
+            .post(`/uploads/recipes/${recipe.id}`, formData)
+            .catch((err) => console.error(err));
+        }
+      })
+
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
@@ -95,6 +116,14 @@ export default function EditRecipe() {
           }
 
           setRecipe(result.data);
+
+          if (result.data.is_thumbnail) {
+            setThumbnail(
+              `${import.meta.env.VITE_BACKEND_URL}/uploads/recipes/${
+                result.data.id
+              }.png`
+            );
+          }
         })
         .then(() => setIsLoading(false))
         .catch((err) => {
@@ -106,10 +135,15 @@ export default function EditRecipe() {
 
   return (
     <main className={isLoading ? "hide" : "flex-row"}>
-      <FormsRecipe recipe={recipe} setRecipe={setRecipe} />
+      <FormsRecipe
+        recipe={recipe}
+        setRecipe={setRecipe}
+        inputRef={inputRef}
+        setThumbnail={setThumbnail}
+      />
       <section className="preview">
         <h2>Preview</h2>
-        <Card recipe={recipe} />
+        <Card recipe={recipe} thumbnail={thumbnail} />
 
         <ButtonRecipe
           icon={editIcon}

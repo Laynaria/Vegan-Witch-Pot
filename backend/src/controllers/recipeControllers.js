@@ -40,6 +40,24 @@ const add = (req, res) => {
     });
 };
 
+const checkNewRecipe = (req, res) => {
+  const recipe = req.body;
+
+  models.recipe
+    .findForUpload(recipe)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const read = (req, res) => {
   models.recipe
     .find(req.params.id)
@@ -114,6 +132,7 @@ module.exports = {
   browse,
   browseLast,
   add,
+  checkNewRecipe,
   read,
   edit,
   destroy,

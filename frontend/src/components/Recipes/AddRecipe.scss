@@ -14,7 +14,14 @@
   .preview {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: $basic-space * 2;
+    width: 95%;
+
+    @media screen and (min-width: 720px) {
+      width: auto;
+    }
 
     button:not(.PopUpButton) {
       margin-top: $basic-space * 3;

@@ -1,12 +1,14 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
 import instance from "@services/instance";
 
-import avatar from "@assets/icons/avatar.svg";
+import uploadImg from "@assets/icons/upload.svg";
+import avatarImg from "@assets/icons/avatar.svg";
 import hide from "@assets/icons/hide.svg";
 import show from "@assets/icons/show.svg";
+import editAvatar from "@assets/icons/potion.svg";
 import editIcon from "@assets/icons/wand.svg";
 import changeIcon from "@assets/icons/register.svg";
 import disconnectIcon from "@assets/icons/login.svg";
@@ -15,6 +17,7 @@ import deleteIcon from "@assets/icons/broom.svg";
 import "@components/Profile/Profile.scss";
 
 export default function Profile() {
+  const inputRef = useRef();
   const { user, setUser } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +27,12 @@ export default function Profile() {
     username: user.username,
     password: "",
     confirmPassword: "",
+  });
+
+  const [avatar, setAvatar] = useState({
+    img: user.is_avatar
+      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/avatars/${user.id}.jpg`
+      : avatarImg,
   });
 
   const navigate = useNavigate();
@@ -36,6 +45,56 @@ export default function Profile() {
       setIsLoading(false);
     }, 100);
   }, []);
+
+  const handleEditAvatar = (e) => {
+    if (
+      e.target.files[0].type === "image/jpeg" ||
+      e.target.files[0].type === "image/jpg" ||
+      e.target.files[0].type === "image/png"
+    ) {
+      setAvatar({
+        ...avatar,
+        img: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
+
+  const handleSubmitAvatar = (e) => {
+    e.preventDefault();
+
+    if (!inputRef.current.files[0]) {
+      return;
+    }
+
+    if (
+      inputRef.current.files[0].type !== "image/jpeg" &&
+      inputRef.current.files[0].type !== "image/jpg" &&
+      inputRef.current.files[0].type !== "image/png"
+    ) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("avatar", inputRef.current.files[0]);
+
+    instance
+      .post(`/uploads/avatars/${user.id}`, formData)
+      .then(() => {
+        if (!user.is_avatar) {
+          // if user never had an avatar uploaded, will edit is_avatar value to true in db
+          instance
+            .put(`/users/edit-avatar/${user.id}`, { is_avatar: true })
+            .then(() =>
+              setUser({
+                ...user,
+                is_avatar: true,
+              })
+            )
+            .catch((err) => console.error(err));
+        }
+      })
+      .catch((err) => console.error(err));
+  };
 
   const handleEditInfo = (e) => {
     const { name, value } = e.target;
@@ -179,8 +238,23 @@ export default function Profile() {
     <section className={isLoading ? "hide" : "Profile"}>
       <h1>Profile</h1>
 
-      <form className="AvatarForm">
-        <img className="Avatar" src={avatar} alt="avatar" />
+      <form className="AvatarForm" method="post" encType="multipart/form-data">
+        <label>
+          <img className="Avatar" src={avatar.img} alt="avatar" />
+          <img className="UploadAvatar" src={uploadImg} alt="upload-button" />
+          <input
+            type="file"
+            name="img"
+            accept="image/png, image/jpeg"
+            onChange={handleEditAvatar}
+            ref={inputRef}
+          />
+        </label>
+        <ButtonRecipe
+          icon={editAvatar}
+          text="Upload"
+          handleClick={handleSubmitAvatar}
+        />
       </form>
 
       <form>

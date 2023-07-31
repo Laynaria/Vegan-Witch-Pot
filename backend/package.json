@@ -19,6 +19,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
     "template-fullstack": "file:.."
   },
