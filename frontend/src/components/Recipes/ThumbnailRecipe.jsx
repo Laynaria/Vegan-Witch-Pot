@@ -30,6 +30,7 @@ export default function FormsRecipe({
   const handleChangeThumbnail = (e) => {
     if (
       e.target.files[0].type === "image/jpeg" ||
+      e.target.files[0].type === "image/jpg" ||
       e.target.files[0].type === "image/png"
     ) {
       setThumbnail(URL.createObjectURL(e.target.files[0]));

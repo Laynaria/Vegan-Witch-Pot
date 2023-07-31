@@ -2,10 +2,40 @@ const express = require("express");
 
 const router = express.Router();
 
+const path = require("path");
+
 const multer = require("multer");
 
-const uploadAvatar = multer({ dest: "public/uploads/avatars" });
-const uploadRecipeImage = multer({ dest: "public/uploads/recipes" });
+const uploadAvatar = multer({
+  dest: "public/uploads/avatars",
+  fileFilter: (_req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png/;
+    const mimetype = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+    if (mimetype && extname) {
+      return cb(null, true);
+    }
+    cb(
+      `Error: File upload only supports the following filetypes - ${fileTypes}`
+    );
+    return "";
+  },
+});
+const uploadRecipeImage = multer({
+  dest: "public/uploads/recipes",
+  fileFilter: (_req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png/;
+    const mimetype = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+    if (mimetype && extname) {
+      return cb(null, true);
+    }
+    cb(
+      `Error: File upload only supports the following filetypes - ${fileTypes}`
+    );
+    return "";
+  },
+});
 
 const { checkAuth, checkRole } = require("./middlewares/auth");
 const uploads = require("./services/upload");

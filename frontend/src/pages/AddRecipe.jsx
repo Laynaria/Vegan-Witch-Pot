@@ -52,6 +52,14 @@ export default function AddRecipe() {
       .post("/recipes", recipe)
       .then(() => {
         if (inputRef.current.files[0]) {
+          if (
+            inputRef.current.files[0].type !== "image/jpeg" &&
+            inputRef.current.files[0].type !== "image/jpg" &&
+            inputRef.current.files[0].type !== "image/png"
+          ) {
+            return;
+          }
+
           instance
             .post("/check-new-recipe", recipe)
             .then((result) => {

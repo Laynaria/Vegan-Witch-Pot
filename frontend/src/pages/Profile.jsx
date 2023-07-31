@@ -49,6 +49,7 @@ export default function Profile() {
   const handleEditAvatar = (e) => {
     if (
       e.target.files[0].type === "image/jpeg" ||
+      e.target.files[0].type === "image/jpg" ||
       e.target.files[0].type === "image/png"
     ) {
       setAvatar({
@@ -62,6 +63,14 @@ export default function Profile() {
     e.preventDefault();
 
     if (!inputRef.current.files[0]) {
+      return;
+    }
+
+    if (
+      inputRef.current.files[0].type !== "image/jpeg" &&
+      inputRef.current.files[0].type !== "image/jpg" &&
+      inputRef.current.files[0].type !== "image/png"
+    ) {
       return;
     }
 
