@@ -19,6 +19,7 @@ id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 username VARCHAR(20) NOT NULL,
 email VARCHAR(80) NOT NULL, 
 password VARCHAR(150) NOT NULL,
+is_avatar BOOLEAN NOT NULL DEFAULT FALSE,
 role_id INT NOT NULL DEFAULT 1,
 CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role(id));
 
@@ -29,7 +30,7 @@ name VARCHAR(80) NOT NULL);
 CREATE TABLE recipe (
 id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 title VARCHAR(25) NOT NULL,
-thumbnail VARCHAR(250) NOT NULL DEFAULT 'grilled_peas.png',
+is_thumbnail BOOLEAN NOT NULL DEFAULT FALSE,
 difficulty INT NOT NULL,
 cooking_time VARCHAR(10) NOT NULL,
 steps TEXT NOT NULL,
@@ -89,9 +90,9 @@ INSERT INTO role (role) VALUES
 ('cook'),
 ('admin');
 
-INSERT INTO user (username, email, password, role_id) VALUES
-('Layne', 'layne@layne.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', 3),
-('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$HB7WoL7htUrpFQT+JnazCA$42lqJNUaTvY3+13akIRIDl6uCka5mzMp7xzRoOa0C0A', 1);
+INSERT INTO user (username, email, password, is_avatar, role_id) VALUES
+('Layne', 'layne@layne.fr', '$argon2id$v=19$m=65536,t=5,p=1$MyY0DawU/Ud0gQYMIQudng$s8n5gxrjo/djdpUAWwjXozvEbKTKbwsCLYJFNbRBEfQ', true, 3),
+('test', 'test@test.fr', '$argon2id$v=19$m=65536,t=5,p=1$HB7WoL7htUrpFQT+JnazCA$42lqJNUaTvY3+13akIRIDl6uCka5mzMp7xzRoOa0C0A', false, 1);
 
 INSERT INTO category (name) VALUES
 ('Breakfasts'),
@@ -104,9 +105,9 @@ INSERT INTO category (name) VALUES
 ('Sauces'),
 ('Beverages');
 
-INSERT INTO recipe (thumbnail, title, difficulty, cooking_time, steps, origin, is_shared, is_approved, user_id, category_id) VALUES
-('grilled_peas.png', 'Grilled Peas', 1, '30min', 'Faites griller les pois chiches', '', true, true, 1, 4),
-('bowl.png', 'Supreme Buddha Bowl', 2, '25min', 'Mettez tout dans une assiette', '', true, true, 1, 4);
+INSERT INTO recipe (title, difficulty, cooking_time, steps, origin, is_thumbnail, is_shared, is_approved, user_id, category_id) VALUES
+('Grilled Peas', 1, '30min', 'Faites griller les pois chiches', '', true, true, true, 1, 4),
+('Supreme Buddha Bowl', 2, '25min', 'Mettez tout dans une assiette', '', true, true, true, 1, 4);
 
 INSERT INTO type (type, unit) VALUES
 ('number', ''),

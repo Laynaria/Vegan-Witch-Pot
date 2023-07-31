@@ -1,16 +1,18 @@
 import spoon from "@assets/icons/spoon.svg";
 import sand from "@assets/icons/sand.svg";
+import basicThumbnail from "@assets/recipes/mini/bowl.png";
 
 import "./Card.scss";
 
-export default function Card({ recipe }) {
+export default function Card({
+  recipe,
+  thumbnail = recipe.is_thumbnail
+    ? `${import.meta.env.VITE_BACKEND_URL}/uploads/recipes/${recipe.id}.png`
+    : basicThumbnail,
+}) {
   return (
     <div className="card">
-      <img
-        src={`http://localhost:3000/src/assets/recipes/mini/${recipe.thumbnail}`}
-        alt={recipe.title}
-        className="card-img"
-      />
+      <img src={thumbnail} alt={recipe.title} className="card-img" />
       <h2>{recipe.title}</h2>
       <p>
         <span>

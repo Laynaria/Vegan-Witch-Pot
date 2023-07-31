@@ -54,8 +54,11 @@ export default function Recipes() {
           <h1>Recipes</h1>
           <ThumbnailRecipe recipe={filters} handleChange={handleChange} />
           {arrayRecipes
+
             .filter(
               (recipe) =>
+                ((recipe.is_shared === 1 && recipe.is_approved === 1) ||
+                  recipe.user_id === user.id) &&
                 (recipe.category_id === parseInt(filters.category_id, 10) ||
                   filters.category_id === "0") &&
                 (recipe.difficulty === parseInt(filters.difficulty, 10) ||

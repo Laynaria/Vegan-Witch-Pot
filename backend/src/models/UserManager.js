@@ -13,7 +13,7 @@ class UserManager extends AbstractManager {
 
   find(id) {
     return this.connection.query(
-      `select id, username, email, role_id from  ${this.table} where id = ?`,
+      `select id, username, email, is_avatar, role_id from  ${this.table} where id = ?`,
       [id]
     );
   }
@@ -67,6 +67,13 @@ class UserManager extends AbstractManager {
     return this.connection.query(
       `update ${this.table} set password = ? where id = ?`,
       [user.hashedPassword, user.id]
+    );
+  }
+
+  updateAvatar(user) {
+    return this.connection.query(
+      `update ${this.table} set is_avatar = ? where id = ?`,
+      [user.is_avatar, user.id]
     );
   }
 }

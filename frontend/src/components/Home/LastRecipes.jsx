@@ -29,7 +29,7 @@ export default function LastRecipes() {
         <Loading />
       ) : (
         <section className="Recipes">
-          <h1>Our Last Recipes</h1>
+          <h1>Last Recipes</h1>
           {arrayRecipes.map((recipe) => (
             <Card recipe={recipe} key={recipe.id} />
           ))}
