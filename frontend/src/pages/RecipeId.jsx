@@ -52,28 +52,36 @@ export default function RecipeId() {
       ) : (
         <section className="RecipeId">
           <Card recipe={recipe} />
-          <div>
+          <div className="Ingredients">
             <h3>Ingredients</h3>
             <p>
-              {ingredients.map((ingredient) => (
-                <StepsAndIngredients
-                  text={`${ingredient.line}, ${ingredient.recipe_id}, ${ingredient.ingredient_id}, ${ingredient.quantity_id}`}
-                  key={ingredient.id}
-                />
-              ))}
+              {ingredients.length !== 0 ? (
+                ingredients.map((ingredient) => (
+                  <StepsAndIngredients
+                    text={`${ingredient.line}, ${ingredient.recipe_id}, ${ingredient.ingredient_id}, ${ingredient.quantity_id}`}
+                    key={ingredient.id}
+                  />
+                ))
+              ) : (
+                <span>No ingredients registered</span>
+              )}
             </p>
           </div>
 
           <div>
             <h3>Preparation</h3>
             <p>
-              {recipe.steps.split("___").map((step, index) => (
-                <StepsAndIngredients
-                  text={`${index + 1}. ${step}`}
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                />
-              ))}
+              {recipe.length !== 0 ? (
+                recipe.steps.split("___").map((step, index) => (
+                  <StepsAndIngredients
+                    text={`${index + 1}. ${step}`}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
+                  />
+                ))
+              ) : (
+                <span>No instructions registered</span>
+              )}
             </p>
           </div>
           {user.id ? (
