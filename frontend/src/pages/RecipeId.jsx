@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import Loading from "@components/Loading/Loading";
 import Card from "@components/Card/Card";
-import { AuthContext } from "@contexts/AuthContext";
+import ButtonRecipe from "@components/Button/ButtonRecipe";
+import buttonIcon from "@assets/icons/wand.svg";
 
 export default function RecipeId() {
   const [recipe, setRecipe] = useState({});
@@ -19,7 +21,7 @@ export default function RecipeId() {
       instance
         .get(`/recipes/${id}`)
         .then((result) => {
-          if (result.user_id !== user.id && !result.is_approved) {
+          if (result.data.user_id !== user.id && !result.data.is_approved) {
             return navigate("/");
           }
           return setRecipe(result.data);
@@ -38,6 +40,21 @@ export default function RecipeId() {
       ) : (
         <section className="RecipeId">
           <Card recipe={recipe} />
+          <p>
+            <h3>Ingredients</h3>
+          </p>
+          <p>
+            <h3>Preparation</h3>
+          </p>
+          {user.id ? (
+            <ButtonRecipe
+              icon={buttonIcon}
+              text="Edit recipe"
+              handleClick={() => navigate(`/edit-recipe/${id}`)}
+            />
+          ) : (
+            ""
+          )}
         </section>
       )}
     </>
