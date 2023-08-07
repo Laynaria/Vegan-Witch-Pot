@@ -1,0 +1,35 @@
+@import "../../assets/variables";
+
+.RecipeId {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 95%;
+
+  @media screen and (min-width: 480px) {
+    width: 100%;
+    flex-direction: row;
+    gap: 5rem;
+  }
+
+  .card {
+    //upcoming change to card
+  }
+
+  p:not(:has(img)) {
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-color;
+    border-radius: $border-radius;
+    padding: $basic-space;
+    box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+    width: 31.25rem;
+
+    .checked {
+      text-decoration: line-through;
+    }
+  }
+}

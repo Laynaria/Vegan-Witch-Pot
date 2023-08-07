@@ -4,11 +4,15 @@ import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import Loading from "@components/Loading/Loading";
 import Card from "@components/Card/Card";
+import StepsAndIngredients from "@components/RecipeId/StepsAndIngredients";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
 import buttonIcon from "@assets/icons/wand.svg";
 
+import "@components/RecipeId/RecipeId.scss";
+
 export default function RecipeId() {
   const [recipe, setRecipe] = useState({});
+  const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
@@ -26,6 +30,14 @@ export default function RecipeId() {
           }
           return setRecipe(result.data);
         })
+        .then(() =>
+          instance
+            .get(`/recipes/ingredients/${id}`)
+            .then((res) => setIngredients(res.data))
+            .catch((err) => {
+              console.error(err);
+            })
+        )
         .then(() => setIsLoading(false))
         .catch((err) => {
           console.error(err);
@@ -40,11 +52,21 @@ export default function RecipeId() {
       ) : (
         <section className="RecipeId">
           <Card recipe={recipe} />
+          <h3>Ingredients</h3>
           <p>
-            <h3>Ingredients</h3>
+            {ingredients.map((ingredient) => (
+              <StepsAndIngredients
+                text={`${ingredient.line}, ${ingredient.recipe_id}, ${ingredient.ingredient_id}, ${ingredient.quantity_id}`}
+                key={ingredient.id}
+              />
+            ))}
           </p>
+          <h3>Preparation</h3>
           <p>
-            <h3>Preparation</h3>
+            {recipe.steps.split("___").map((step, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <StepsAndIngredients text={`${index + 1}. ${step}`} key={index} />
+            ))}
           </p>
           {user.id ? (
             <ButtonRecipe
