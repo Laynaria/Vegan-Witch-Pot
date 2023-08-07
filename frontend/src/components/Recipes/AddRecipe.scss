@@ -2,11 +2,13 @@
 
 .flex-row {
   @media screen and (min-width: 720px) {
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     text-align: center;
     gap: $basic-space * 5;
-    width: 100%;
+    width: 95%;
     margin: $basic-space * 4 0;
     transition: opacity 0.55s ease;
   }
