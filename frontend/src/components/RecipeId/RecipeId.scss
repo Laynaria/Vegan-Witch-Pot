@@ -40,7 +40,7 @@
 
       h2 {
         grid-area: titl;
-        padding: $half-space;
+        padding: 0 $half-space;
       }
 
       p {
@@ -52,10 +52,6 @@
           border-right: none;
           height: $basic-space * 2;
           width: auto;
-        }
-
-        span {
-          padding: $half-space * 3 0;
         }
 
         span:first-of-type {
