@@ -22,6 +22,7 @@
     @media screen and (min-width: 540px) {
       display: grid;
       align-items: center;
+      justify-items: center;
       grid-template-rows: 1fr 2fr;
       grid-template-columns: 1fr 1fr;
       grid-template-areas: "pic titl" "pic diff";
@@ -39,6 +40,7 @@
 
       h2 {
         grid-area: titl;
+        padding: $half-space;
       }
 
       p {
@@ -50,6 +52,10 @@
           border-right: none;
           height: $basic-space * 2;
           width: auto;
+        }
+
+        span {
+          padding: $half-space * 3 0;
         }
 
         span:first-of-type {
