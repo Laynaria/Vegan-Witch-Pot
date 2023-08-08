@@ -18,47 +18,51 @@
 
   .card {
     width: 95%;
-    //upcoming change to card
     @media screen and (min-width: 540px) {
-      display: grid;
-      align-items: center;
-      justify-items: center;
-      grid-template-rows: 1fr 2fr;
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas: "pic titl" "pic diff";
+      // v2 of figma
       width: 31.25rem;
-      gap: 0;
 
-      img {
-        grid-area: pic;
-        border-bottom: none;
-        border-right: 1px solid rgba(0, 0, 0, 0.5);
-        border-radius: $border-radius 0 0 $border-radius;
-        height: 100%;
-        width: calc(31.25rem / 2);
-      }
+      // if we prefer v3 of the figma
 
-      h2 {
-        grid-area: titl;
-        padding: 0 $half-space;
-      }
+      // display: grid;
+      // align-items: center;
+      // justify-items: center;
+      // grid-template-rows: 1fr 2fr;
+      // grid-template-columns: 1fr 1fr;
+      // grid-template-areas: "pic titl" "pic diff";
+      // width: 31.25rem;
+      // gap: 0;
 
-      p {
-        grid-area: diff;
-        flex-direction: column;
+      // img {
+      //   grid-area: pic;
+      //   border-bottom: none;
+      //   border-right: 1px solid rgba(0, 0, 0, 0.5);
+      //   border-radius: $border-radius 0 0 $border-radius;
+      //   height: 100%;
+      //   width: calc(31.25rem / 2);
+      // }
 
-        img {
-          border-radius: 0;
-          border-right: none;
-          height: $basic-space * 2;
-          width: auto;
-        }
+      // h2 {
+      //   grid-area: titl;
+      //   padding: 0 $half-space;
+      // }
 
-        span:first-of-type {
-          border-right: none;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-        }
-      }
+      // p {
+      //   grid-area: diff;
+      //   flex-direction: column;
+
+      //   img {
+      //     border-radius: 0;
+      //     border-right: none;
+      //     height: $basic-space * 2;
+      //     width: auto;
+      //   }
+
+      //   span:first-of-type {
+      //     border-right: none;
+      //     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      //   }
+      // }
     }
   }
 
