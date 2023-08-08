@@ -68,7 +68,7 @@ export default function RecipeId() {
             </p>
           </div>
 
-          <div>
+          <div className="Preparation">
             <h3>Preparation</h3>
             <p>
               {recipe.length !== 0 ? (

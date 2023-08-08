@@ -3,22 +3,27 @@
 .RecipeId {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 3rem;
   width: 95%;
 
   @media screen and (min-width: 540px) {
-    align-items: flex-start;
     width: 100%;
-    flex-direction: row;
-    gap: 5rem;
+    gap: 3rem 5rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    display: grid;
+    grid-template-areas: "c p" "i p" "b p";
+    align-items: flex-start;
+    justify-items: center;
   }
 
   .card {
     width: 95%;
     @media screen and (min-width: 540px) {
+      grid-area: c;
       // v2 of figma
       width: 31.25rem;
 
@@ -67,6 +72,7 @@
   }
 
   .Ingredients {
+    grid-area: i;
     span {
       &:nth-of-type(2n + 2) {
         background-color: $background-color;
@@ -76,6 +82,17 @@
         border-radius: 0 0 $border-radius $border-radius;
       }
     }
+  }
+
+  .Preparation {
+    grid-area: p;
+    p {
+      padding: $half-space 0;
+    }
+  }
+
+  button {
+    grid-area: b;
   }
 
   div {
