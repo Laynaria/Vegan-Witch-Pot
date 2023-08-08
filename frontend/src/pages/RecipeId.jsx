@@ -84,7 +84,7 @@ export default function RecipeId() {
               )}
             </p>
           </div>
-          {user.id ? (
+          {user.id === recipe.user_id || user.role_id === 3 ? (
             <ButtonRecipe
               icon={buttonIcon}
               text="Edit recipe"

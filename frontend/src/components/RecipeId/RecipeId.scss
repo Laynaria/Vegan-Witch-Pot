@@ -17,6 +17,7 @@
   }
 
   .card {
+    width: 95%;
     //upcoming change to card
     @media screen and (min-width: 540px) {
       display: grid;
