@@ -80,8 +80,8 @@ export default function Recipes() {
                   .startsWith(filters.cooking_time.toLowerCase())
             )
             .map((recipe) => (
-              <Link to={`/recipes/${recipe.id}`}>
-                <Card recipe={recipe} key={recipe.id} />
+              <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
+                <Card recipe={recipe} />
               </Link>
             ))
             .reverse()}

@@ -32,8 +32,8 @@ export default function LastRecipes() {
         <section className="Recipes">
           <h1>Last Recipes</h1>
           {arrayRecipes.map((recipe) => (
-            <Link to={`/recipes/${recipe.id}`}>
-              <Card recipe={recipe} key={recipe.id} />
+            <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
+              <Card recipe={recipe} />
             </Link>
           ))}
 
