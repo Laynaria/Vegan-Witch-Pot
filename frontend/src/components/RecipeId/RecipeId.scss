@@ -17,6 +17,45 @@
 
   .card {
     //upcoming change to card
+    @media screen and (min-width: 480px) {
+      display: grid;
+      align-items: center;
+      grid-template-rows: 1fr 2fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "pic titl" "pic diff";
+      width: 31.25rem;
+      gap: 0;
+
+      img {
+        grid-area: pic;
+        border-bottom: none;
+        border-right: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: $border-radius 0 0 $border-radius;
+        height: 100%;
+        width: calc(31.25rem / 2);
+      }
+
+      h2 {
+        grid-area: titl;
+      }
+
+      p {
+        grid-area: diff;
+        flex-direction: column;
+
+        img {
+          border-radius: 0;
+          border-right: none;
+          height: $basic-space * 2;
+          width: auto;
+        }
+
+        span:first-of-type {
+          border-right: none;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
   }
 
   .Ingredients {
@@ -42,7 +81,7 @@
       background-color: $primary-color;
       border-radius: $border-radius;
       box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
-      min-width: 338.5px;
+      width: 95vw;
 
       @media screen and (min-width: 480px) {
         width: 31.25rem;
