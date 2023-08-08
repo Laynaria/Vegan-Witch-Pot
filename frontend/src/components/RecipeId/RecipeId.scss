@@ -9,7 +9,7 @@
   gap: 3rem;
   width: 95%;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 540px) {
     align-items: flex-start;
     width: 100%;
     flex-direction: row;
@@ -18,7 +18,7 @@
 
   .card {
     //upcoming change to card
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 540px) {
       display: grid;
       align-items: center;
       grid-template-rows: 1fr 2fr;
