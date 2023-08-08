@@ -58,8 +58,16 @@ export default function RecipeId() {
               {ingredients.length !== 0 ? (
                 ingredients.map((ingredient) => (
                   <StepsAndIngredients
-                    text={`${ingredient.line}, ${ingredient.recipe_id}, ${ingredient.ingredient_id}, ${ingredient.quantity_id}`}
-                    key={ingredient.id}
+                    text={`${ingredient.value}${
+                      ingredient.unit === "ml" ||
+                      ingredient.unit === "l" ||
+                      ingredient.unit === "g"
+                        ? ""
+                        : " "
+                    }${ingredient.unit} ${ingredient.unit !== "" ? "of" : ""} ${
+                      ingredient.name
+                    } ${ingredient.type === "to taste" ? "to taste" : ""}`}
+                    key={ingredient.line}
                   />
                 ))
               ) : (
