@@ -4,12 +4,13 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 3rem;
   width: 95%;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 600px) {
+    align-items: flex-start;
     width: 100%;
     flex-direction: row;
     gap: 5rem;
@@ -17,7 +18,7 @@
 
   .card {
     //upcoming change to card
-    @media screen and (min-width: 480px) {
+    @media screen and (min-width: 600px) {
       display: grid;
       align-items: center;
       grid-template-rows: 1fr 2fr;
@@ -81,9 +82,9 @@
       background-color: $primary-color;
       border-radius: $border-radius;
       box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
-      width: 95vw;
+      width: 90vw;
 
-      @media screen and (min-width: 480px) {
+      @media screen and (min-width: 540px) {
         width: 31.25rem;
       }
 
