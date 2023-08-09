@@ -58,6 +58,10 @@ router.delete("/items/:id", itemControllers.destroy);
 router.get("/recipes", recipeControllers.browse);
 router.get("/recipes/:id", recipeControllers.read);
 router.get("/last-recipes", recipeControllers.browseLast);
+router.get(
+  "/recipes/ingredients/:id",
+  recipeIngredientQuantityControllers.readByRecipe
+);
 
 // category routes accessible by everyone
 router.get("/categories", categoryControllers.browse);

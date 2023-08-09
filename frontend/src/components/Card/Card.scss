@@ -15,7 +15,7 @@
 
   h2 {
     text-align: center;
-    font-size: 1.6rem;
+    font-size: $text-size;
     font-weight: 500;
     min-height: 30px;
   }
@@ -36,7 +36,7 @@
   }
 
   p {
-    font-size: 1.6rem;
+    font-size: $text-size;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     width: 100%;
     display: flex;
