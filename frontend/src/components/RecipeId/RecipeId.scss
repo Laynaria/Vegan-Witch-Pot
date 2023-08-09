@@ -64,6 +64,7 @@
       border-radius: $border-radius;
       box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
       width: 90vw;
+      font-size: $text-size;
 
       @media screen and (min-width: 540px) {
         width: 31.25rem;
