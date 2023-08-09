@@ -1,0 +1,18 @@
+@import "../../assets/variables";
+
+.Welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 0 $basic-space;
+
+  .lf-player-container {
+    margin-top: $basic-space * 3;
+    @media screen and (min-width: 480px) {
+      width: 80%;
+    }
+  }
+}
