@@ -1,9 +1,13 @@
 @import "../../assets/variables";
 
 .flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
   @media screen and (min-width: 720px) {
-    display: flex;
-    flex-direction: row;
     align-items: flex-start;
     justify-content: center;
     text-align: center;
