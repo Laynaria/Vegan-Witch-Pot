@@ -24,50 +24,7 @@
     width: 95%;
     @media screen and (min-width: 540px) {
       grid-area: c;
-      // v2 of figma
       width: 31.25rem;
-
-      // if we prefer v3 of the figma
-
-      // display: grid;
-      // align-items: center;
-      // justify-items: center;
-      // grid-template-rows: 1fr 2fr;
-      // grid-template-columns: 1fr 1fr;
-      // grid-template-areas: "pic titl" "pic diff";
-      // width: 31.25rem;
-      // gap: 0;
-
-      // img {
-      //   grid-area: pic;
-      //   border-bottom: none;
-      //   border-right: 1px solid rgba(0, 0, 0, 0.5);
-      //   border-radius: $border-radius 0 0 $border-radius;
-      //   height: 100%;
-      //   width: calc(31.25rem / 2);
-      // }
-
-      // h2 {
-      //   grid-area: titl;
-      //   padding: 0 $half-space;
-      // }
-
-      // p {
-      //   grid-area: diff;
-      //   flex-direction: column;
-
-      //   img {
-      //     border-radius: 0;
-      //     border-right: none;
-      //     height: $basic-space * 2;
-      //     width: auto;
-      //   }
-
-      //   span:first-of-type {
-      //     border-right: none;
-      //     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-      //   }
-      // }
     }
   }
 
