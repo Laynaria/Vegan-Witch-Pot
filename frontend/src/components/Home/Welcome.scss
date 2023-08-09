@@ -9,6 +9,14 @@
   text-align: center;
   padding: 0 $basic-space;
 
+  h1 {
+    transition: "opacity 0.3s ease";
+  }
+
+  p {
+    font-size: $text-size;
+  }
+
   .lf-player-container {
     margin-top: $basic-space * 3;
     @media screen and (min-width: 480px) {

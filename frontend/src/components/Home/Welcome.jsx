@@ -21,6 +21,7 @@ export default function Welcome() {
         className={isLoading ? "hide" : ""}
         style={{ transition: "opacity 0.55s ease" }}
       />
+      <p>May your dishes taste demonicaly good!</p>
     </section>
   );
 }
