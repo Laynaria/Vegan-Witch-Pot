@@ -19,9 +19,9 @@ export default function Welcome() {
         loop
         src={cat}
         className={isLoading ? "hide" : ""}
-        style={{ transition: "opacity 0.55s ease" }}
+        style={{ transition: "opacity 1s ease" }}
       />
-      <p>May your dishes taste demonicaly good!</p>
+      <p>May your dishes taste demonically good!</p>
     </section>
   );
 }
