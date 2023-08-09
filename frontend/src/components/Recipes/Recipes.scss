@@ -23,6 +23,11 @@
   a {
     color: $font-color;
     text-decoration: none;
+    width: 100%;
+
+    @media screen and (min-width: 480px) {
+      width: initial;
+    }
 
     &:hover {
       transform: translateY(-8px);
