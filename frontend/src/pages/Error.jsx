@@ -21,6 +21,7 @@ export default function Error() {
       <p
         className={isLoading ? "hide" : ""}
         style={{
+          fontSize: "1.6rem",
           maxWidth: "95vw",
           textAlign: "center",
           transition: "opacity 0.55s ease",
@@ -32,6 +33,7 @@ export default function Error() {
       <p
         className={isLoading ? "hide" : ""}
         style={{
+          fontSize: "1.6rem",
           maxWidth: "95vw",
           marginBottom: "4rem",
           textAlign: "center",
