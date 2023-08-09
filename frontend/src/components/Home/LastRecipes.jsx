@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import instance from "@services/instance";
 
 import Card from "@components/Card/Card";
@@ -31,7 +32,9 @@ export default function LastRecipes() {
         <section className="Recipes">
           <h1>Last Recipes</h1>
           {arrayRecipes.map((recipe) => (
-            <Card recipe={recipe} key={recipe.id} />
+            <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
+              <Card recipe={recipe} />
+            </Link>
           ))}
 
           <div className="recipeMargin" />

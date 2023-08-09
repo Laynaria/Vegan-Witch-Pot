@@ -106,7 +106,7 @@ INSERT INTO category (name) VALUES
 ('Beverages');
 
 INSERT INTO recipe (title, difficulty, cooking_time, steps, origin, is_thumbnail, is_shared, is_approved, user_id, category_id) VALUES
-('Grilled Peas', 1, '30min', 'Faites griller les pois chiches', '', true, true, true, 1, 4),
+('Grilled Peas', 1, '30min', 'Preheat oven at 200°C___Mix herbs and salt together.___Mix the peas with the oil.___Mix the two preparations together.___Roast the final preparation at 20°C for 15min.___Enjoy your meal.', '', true, true, true, 1, 4),
 ('Supreme Buddha Bowl', 2, '25min', 'Mettez tout dans une assiette', '', true, true, true, 1, 4);
 
 INSERT INTO type (type, unit) VALUES

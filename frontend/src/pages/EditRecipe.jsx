@@ -134,7 +134,7 @@ export default function EditRecipe() {
   }, []);
 
   return (
-    <main className={isLoading ? "hide" : "flex-row"}>
+    <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe
         recipe={recipe}
         setRecipe={setRecipe}
@@ -161,6 +161,6 @@ export default function EditRecipe() {
           textValidation="delete this recipe"
         />
       </section>
-    </main>
+    </div>
   );
 }

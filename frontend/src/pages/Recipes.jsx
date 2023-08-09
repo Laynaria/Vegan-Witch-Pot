@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import instance from "@services/instance";
 
 import ThumbnailRecipe from "@components/Recipes/ThumbnailRecipe";
@@ -79,7 +79,11 @@ export default function Recipes() {
                   .toLowerCase()
                   .startsWith(filters.cooking_time.toLowerCase())
             )
-            .map((recipe) => <Card recipe={recipe} key={recipe.id} />)
+            .map((recipe) => (
+              <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
+                <Card recipe={recipe} />
+              </Link>
+            ))
             .reverse()}
 
           {user.id !== undefined ? (

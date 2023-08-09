@@ -77,7 +77,7 @@ export default function AddRecipe() {
   };
 
   return (
-    <main className={isLoading ? "hide" : "flex-row"}>
+    <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe
         recipe={recipe}
         setRecipe={setRecipe}
@@ -96,6 +96,6 @@ export default function AddRecipe() {
           textValidation="create this recipe"
         />
       </section>
-    </main>
+    </div>
   );
 }
