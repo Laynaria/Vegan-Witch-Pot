@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "@pages/Home";
 import Layout from "@components/Layout/Layout";
 
+import Home from "@pages/Home";
+import AboutUs from "@pages/AboutUs";
 import Error from "@pages/Error";
 import Recipes from "@pages/Recipes";
 import RecipeId from "@pages/RecipeId";
@@ -22,6 +23,7 @@ export default function Router() {
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Error />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/error-404" element={<Error />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/recipes/:id" element={<RecipeId />} />
