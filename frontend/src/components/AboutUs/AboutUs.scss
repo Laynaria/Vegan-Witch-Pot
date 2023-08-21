@@ -23,11 +23,13 @@
     }
 
     h2 {
+      transition: opacity 0.7s ease;
       text-align: center;
       margin-bottom: $basic-space * 1.5;
     }
 
     p {
+      transition: opacity 1.3s ease;
       font-size: $text-size;
     }
 

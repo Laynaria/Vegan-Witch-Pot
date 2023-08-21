@@ -18,7 +18,7 @@ export default function AboutUs() {
     <div className="AboutUs">
       <h1 className={isLoading ? "hide" : ""}>About Us</h1>
       <section>
-        <h2>What is Vegan Witch Pot?</h2>
+        <h2 className={isLoading ? "hide" : ""}>What is Vegan Witch Pot?</h2>
         <Player
           autoplay
           loop
@@ -26,24 +26,24 @@ export default function AboutUs() {
           className={isLoading ? "hide" : ""}
           style={{ transition: "opacity 1s ease" }}
         />
-        <p>
+        <p className={isLoading ? "hide" : ""}>
           VWP is a community web app revolving around creating and sharing
           recipes. Users can either create recipes for themselves or set them as
           accessible by the community.
         </p>
-        <p>
+        <p className={isLoading ? "hide" : ""}>
           Users and unidentified users can then access all accessible recipes
           which were validated by admins. Only vegan recipes are accepted of
           course.
         </p>
-        <p>
+        <p className={isLoading ? "hide" : ""}>
           Identified users will also be able to create their private weekly
           menus, helping themselves for food planification and groceries.
         </p>
       </section>
 
       <section>
-        <h2>Who is the Witch?</h2>
+        <h2 className={isLoading ? "hide" : ""}>Who is the Witch?</h2>
         <Player
           autoplay
           loop
@@ -52,11 +52,11 @@ export default function AboutUs() {
           className={isLoading ? "hide" : ""}
           style={{ transition: "opacity 1s ease" }}
         />
-        <p>It's a secret! {"<3"}</p>
+        <p className={isLoading ? "hide" : ""}>It's a secret! {"<3"}</p>
       </section>
 
       <section>
-        <h2>Why is the Witch Vegan?</h2>
+        <h2 className={isLoading ? "hide" : ""}>Why is the Witch Vegan?</h2>
         <Player
           autoplay
           loop
@@ -64,8 +64,12 @@ export default function AboutUs() {
           className={isLoading ? "hide" : ""}
           style={{ transition: "opacity 1s ease" }}
         />
-        <p>Firstly because she doesn't like animals to suffer.</p>
-        <p>But mainly because more animals means more minions to her!</p>
+        <p className={isLoading ? "hide" : ""}>
+          Firstly because she doesn't like animals to suffer.
+        </p>
+        <p className={isLoading ? "hide" : ""}>
+          But mainly because more animals means more minions to her!
+        </p>
       </section>
     </div>
   );
