@@ -7,17 +7,20 @@
   justify-content: center;
   margin-top: 3rem;
   margin-bottom: 0;
-  //   text-align: center;
-  text-align: left;
   width: 95%;
   padding: 0 $basic-space;
 
   h1 {
-    transition: opacity 0.55s ease;
+    transition: opacity 0.35s ease;
   }
 
   section {
-    width: 50%;
+    text-align: center;
+
+    @media screen and (min-width: 480px) {
+      width: 50%;
+      text-align: left;
+    }
 
     h2 {
       text-align: center;
@@ -28,11 +31,17 @@
       font-size: $text-size;
     }
 
+    p:not(:last-of-type) {
+      padding-bottom: $basic-space;
+    }
+
     &:has(div) {
       display: flex;
       flex-direction: column;
+
       .lf-player-container {
         align-self: center;
+
         @media screen and (min-width: 480px) {
           width: 80%;
         }
