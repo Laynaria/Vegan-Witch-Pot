@@ -17,6 +17,10 @@
   section {
     text-align: center;
 
+    svg {
+      max-height: 550px;
+    }
+
     @media screen and (min-width: 480px) {
       width: 50%;
       text-align: left;
