@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import demon from "@assets/lotties/demon_about_us.json";
 
+import "@components/AboutUs/AboutUs.scss";
+
 export default function AboutUs() {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -11,7 +13,7 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <>
+    <div className="AboutUs">
       <h1>About Us</h1>
       <section>
         <h2>What is Vegan Witch Pot?</h2>
@@ -36,6 +38,6 @@ export default function AboutUs() {
         <p>Firstly because she doesn't like animals to suffer.</p>
         <p>But mainly because more animals means more minions to her!</p>
       </section>
-    </>
+    </div>
   );
 }
