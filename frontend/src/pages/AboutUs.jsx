@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
-import demon from "@assets/lotties/demon_about_us.json";
 import food from "@assets/lotties/food_about_us.json";
-import mixing from "@assets/lotties/mixing_about_us.json";
+import witch from "@assets/lotties/witch_about_us.json";
+import demon from "@assets/lotties/demon_about_us.json";
 
 import "@components/AboutUs/AboutUs.scss";
 
@@ -47,7 +47,8 @@ export default function AboutUs() {
         <Player
           autoplay
           loop
-          src={mixing}
+          speed={1.5}
+          src={witch}
           className={isLoading ? "hide" : ""}
           style={{ transition: "opacity 1s ease" }}
         />
