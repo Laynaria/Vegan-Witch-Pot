@@ -38,7 +38,7 @@ export default function AboutUs() {
         </p>
         <p className={isLoading ? "hide" : ""}>
           Identified users will also be able to create their private weekly
-          menus, helping themselves for food planification and groceries.
+          menus, helping themselves for meal planning and groceries.
         </p>
       </section>
 
@@ -53,13 +53,12 @@ export default function AboutUs() {
           style={{ transition: "opacity 1s ease" }}
         />
         <p className={isLoading ? "hide" : ""}>
-          The witch is a peculiar individual who chose to establish this project
+          The Witch is a peculiar individual who chose to establish this project
           hoping for her minions to cook a bigger variety of dishes for her.
         </p>
         <p className={isLoading ? "hide" : ""}>
-          And if in that process, it can help others to have an easier
-          planification and diversity of recipes it's even better in her
-          opinion.
+          And if in that process, it can help others to have an easier meal
+          planning and more recipes diversity it's even better in her opinion.
         </p>
         <p className={isLoading ? "hide" : ""}>
           Other than that, it's a secret! {"<3"}
@@ -76,10 +75,27 @@ export default function AboutUs() {
           style={{ transition: "opacity 1s ease" }}
         />
         <p className={isLoading ? "hide" : ""}>
-          Firstly because she doesn't like animals to suffer.
+          Everything started during an horrendous magic night where The Witch
+          was brewing potions. That night everything changed for her.
         </p>
         <p className={isLoading ? "hide" : ""}>
-          But mainly because more animals means more minions to her!
+          While preparing one of her potion, she ended up missing some
+          ingredients: toad eyes. As always she went outside to trap some toads.
+        </p>
+        <p className={isLoading ? "hide" : ""}>
+          Back home, just before starting her awful deed, her eyes met the ones
+          of a toad. She always liked toads, which yes is a bit strange maybe
+          but everyone is different and I'm not here to judge.
+        </p>
+        <p className={isLoading ? "hide" : ""}>
+          And at this exact moment she decided: no more of this! Hopefully she
+          loved to experiment things, and after months and months of trials, she
+          finally found how to replace all animals in her potions and also in
+          her dishes.
+        </p>
+        <p className={isLoading ? "hide" : ""}>
+          And you know what? More animals means more minions for her! (And also
+          less work!)
         </p>
       </section>
     </div>

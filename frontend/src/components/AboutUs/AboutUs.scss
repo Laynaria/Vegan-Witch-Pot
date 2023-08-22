@@ -5,8 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 3rem;
-  margin-bottom: 0;
+  margin: 4rem 0;
   width: 95%;
   padding: 0 $basic-space;
 
@@ -16,10 +15,10 @@
 
   section {
     width: 100%;
-    text-align: center;
+    text-align: left;
+    margin-bottom: 2rem;
 
     @media screen and (min-width: 480px) {
-      text-align: left;
       max-width: 904px;
     }
 
