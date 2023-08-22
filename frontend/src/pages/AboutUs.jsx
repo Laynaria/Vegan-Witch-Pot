@@ -52,7 +52,18 @@ export default function AboutUs() {
           className={isLoading ? "hide" : ""}
           style={{ transition: "opacity 1s ease" }}
         />
-        <p className={isLoading ? "hide" : ""}>It's a secret! {"<3"}</p>
+        <p className={isLoading ? "hide" : ""}>
+          The witch is a peculiar individual who chose to establish this project
+          hoping for her minions to cook a bigger variety of dishes for her.
+        </p>
+        <p className={isLoading ? "hide" : ""}>
+          And if in that process, it can help others to have an easier
+          planification and diversity of recipes it's even better in her
+          opinion.
+        </p>
+        <p className={isLoading ? "hide" : ""}>
+          Other than that, it's a secret! {"<3"}
+        </p>
       </section>
 
       <section>
