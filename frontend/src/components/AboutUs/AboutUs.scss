@@ -17,13 +17,13 @@
   section {
     text-align: center;
 
-    svg {
-      max-height: 550px;
+    @media screen and (min-width: 480px) {
+      max-width: 904px;
+      text-align: left;
     }
 
-    @media screen and (min-width: 480px) {
-      width: 50%;
-      text-align: left;
+    svg {
+      max-height: 550px;
     }
 
     h2 {
