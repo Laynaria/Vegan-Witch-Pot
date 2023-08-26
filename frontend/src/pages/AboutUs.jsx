@@ -88,14 +88,14 @@ export default function AboutUs() {
           but everyone is different and I'm not here to judge.
         </p>
         <p className={isLoading ? "hide" : ""}>
-          And at this exact moment she decided: no more of this! Hopefully she
-          loved to experiment things, and after months and months of trials, she
-          finally found how to replace all animals in her potions and also in
+          And at this exact moment she decided: no more of this! She always
+          loved to experiment, and after months and months of trials, she
+          finally found how to replace every animals in her potions and also in
           her dishes.
         </p>
         <p className={isLoading ? "hide" : ""}>
-          And you know what? More animals means more minions for her! (And also
-          less work!)
+          And you know what? More animals means more minions for her! And more
+          minions means less work...
         </p>
       </section>
     </div>
