@@ -1,0 +1,57 @@
+@import "../../assets/variables";
+
+.AboutUs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem 0;
+  width: 95%;
+  padding: 0 $basic-space;
+
+  h1 {
+    transition: opacity 0.35s ease;
+  }
+
+  section {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: 480px) {
+      max-width: 904px;
+    }
+
+    svg {
+      max-height: 550px;
+    }
+
+    h2 {
+      transition: opacity 0.7s ease;
+      text-align: center;
+      margin-bottom: $basic-space * 1.5;
+    }
+
+    p {
+      transition: opacity 1.3s ease;
+      font-size: $text-size;
+    }
+
+    p:not(:last-of-type) {
+      padding-bottom: $basic-space;
+    }
+
+    &:has(div) {
+      display: flex;
+      flex-direction: column;
+
+      .lf-player-container {
+        align-self: center;
+
+        @media screen and (min-width: 480px) {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
