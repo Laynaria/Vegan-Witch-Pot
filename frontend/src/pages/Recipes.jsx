@@ -21,6 +21,7 @@ export default function Recipes() {
     category_id: "0",
     cooking_time: "",
   });
+  const [isMyRecipes, setIsMyRecipes] = useState(false);
 
   const { user } = useContext(AuthContext);
 
@@ -52,7 +53,14 @@ export default function Recipes() {
       ) : (
         <section className="Recipes">
           <h1>Recipes</h1>
-          <ThumbnailRecipe recipe={filters} handleChange={handleChange} />
+          <ThumbnailRecipe
+            recipe={filters}
+            handleChange={handleChange}
+            isMyRecipes={isMyRecipes}
+            setIsMyRecipes={setIsMyRecipes}
+            userId={user.id}
+          />
+
           {arrayRecipes
 
             .filter(
@@ -77,7 +85,8 @@ export default function Recipes() {
                   .includes(filters.title.trim().toLowerCase()) &&
                 recipe.cooking_time
                   .toLowerCase()
-                  .startsWith(filters.cooking_time.toLowerCase())
+                  .startsWith(filters.cooking_time.toLowerCase()) &&
+                (isMyRecipes ? recipe.user_id === user.id : recipe)
             )
             .map((recipe) => (
               <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
