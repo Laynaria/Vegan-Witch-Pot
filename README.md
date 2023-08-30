@@ -1,7 +1,57 @@
+![Logo](./frontend/src/assets/logos/logo.svg)
+
 ## Concept
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+Vegan Witch Pot is a community based website made by [Laynaria](https://github.com/Laynaria) for sharing vegan recipes. Guests can access recipes that are shared by users and approved by admins. Users can create their own recipes and decide to share them or keep them for themselves. They can also create their own weekly menu of recipes and get a shopping list to ease their groceries.
+
+There is three level of authentified users :
+
+- Users > They can create recipes and asks for approval.
+- Cooks > They can approve their own recipes.
+- Admins.
+
+## Features
+
+### In the current version
+
+- View and access recipes.
+- Filters for recipes page (name, type, time, difficulty, my recipes).
+- Authentification. (Login, Register and Disconnect)
+- Profile Editing. (Change Password, Email, Avatar, Delete User)
+- Create & Edit Recipes. (Title, Type, Cooking Time, Picture, Difficulty)
+- Delete Recipes.
+- Uploading Pictures. (User Avatar and Recipe Thumbnail)
+- Contact for both authentified users and guests.
+
+### Upcoming
+
+- Create & Edit Recipes : Ingredients, Steps, Sharing, Approval.
+- Weekly Menu.
+- Shopping List.
+- More Security.
+- Forgotten Password.
+- Commentary on Recipes.
+- Quality Of Life improvements.
+
+## App Structure
+
+```mermaid
+graph TD;
+    Landing-->Home;
+    Home-->About-Us;
+    Home-->Recipe;
+    Home-->Your-Menu;
+    Home-->Contact;
+    Home-->Login;
+    Home-->Profile;
+    Home-->Recipe-Id;
+    Recipe-->Recipe-Id;
+    Recipe-->Add-Recipe;
+    Login-->Register;
+    Login-->Edit-Password;
+    Recipe-Id-->Edit-Recipe-Id;
+    Error404;
+```
 
 ## Setup & Use
 
@@ -23,6 +73,17 @@ It's pre-configured with a set of tools which'll help students produce industry-
 - `fix` : Fixes linter errors (run it if `lint` growls on your code !)
 
 ## FAQ
+
+- The Template used for this project is a fullstack foundation template made by the Wild Code School.
+- All pictures and icons from this project are open source. Most of them come from lotifiles, iconify and unsplash. The witch avatar though comes from the artist [Freepik](https://www.flaticon.com/fr/auteurs/freepik) from Flaticon platform.
+- Don't forget to create your frontend and backend .env files by copying the `.env.sample files` from each directory.
+
+### Technologies
+
+- React
+- Node
+- Express
+- MySQL
 
 ### Tools
 
