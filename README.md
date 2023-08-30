@@ -32,6 +32,7 @@ There is three level of authentified users :
 - Forgotten Password.
 - Commentary on Recipes.
 - Quality Of Life improvements.
+- Admin Pannel.
 
 ## App Structure
 
