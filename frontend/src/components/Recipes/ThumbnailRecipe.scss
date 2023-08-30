@@ -14,6 +14,7 @@
   label {
     display: flex;
     flex-direction: column;
+    // justify-content: space-between; // if needed for the checkbox style
     text-align: left;
     height: 61.5938px;
     font-size: $basic-space;
@@ -104,5 +105,59 @@
 
   .FileUploadLabel {
     pointer-events: none;
+  }
+}
+
+// Checkbox parameters
+/*------ Settings ------*/
+.containerCheckbox {
+  cursor: pointer;
+  user-select: none;
+  fill: #623d9f;
+
+  svg,
+  img {
+    font-size: 41px;
+    width: 30px;
+  }
+
+  .clipboard {
+    animation: keyframes-fill 0.5s;
+  }
+
+  .clipboard-check {
+    display: none;
+    animation: keyframes-fill 0.5s;
+    fill: #95bd52;
+  }
+
+  /* ------ On check event ------ */
+  input:checked ~ .clipboard {
+    display: none;
+  }
+
+  input:checked ~ .clipboard-check {
+    display: block;
+  }
+
+  /* ------ Hide the default checkbox ------ */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+}
+
+/* ------ Animation ------ */
+@keyframes keyframes-fill {
+  0% {
+    transform: rotate(0deg) scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: rotate(-10deg) scale(1.2);
   }
 }
