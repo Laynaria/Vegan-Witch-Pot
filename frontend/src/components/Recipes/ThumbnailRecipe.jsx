@@ -10,6 +10,9 @@ export default function FormsRecipe({
   inputRef,
   setThumbnail,
   isEdit = false,
+  isMyRecipes = false,
+  setIsMyRecipes = false,
+  userId = 0,
 }) {
   const [categories, setCategories] = useState([{ id: 1 }]);
 
@@ -116,6 +119,18 @@ export default function FormsRecipe({
           max="5"
         />
       </label>
+      {isEdit || userId === 0 ? (
+        ""
+      ) : (
+        <label>
+          My Recipes
+          <input
+            type="checkbox"
+            value={isMyRecipes}
+            onClick={() => setIsMyRecipes(!isMyRecipes)}
+          />
+        </label>
+      )}
     </form>
   );
 }
