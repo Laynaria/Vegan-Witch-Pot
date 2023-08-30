@@ -14,6 +14,7 @@
   label {
     display: flex;
     flex-direction: column;
+    // justify-content: space-between; // if needed for the checkbox style
     text-align: left;
     height: 61.5938px;
     font-size: $basic-space;
@@ -21,7 +22,6 @@
 
     input[type="text"],
     input[type="search"],
-    input[type="checkbox"],
     select {
       font-family: $font-main;
       font-size: calc($font-size / 2);
@@ -51,6 +51,12 @@
       &:hover {
         background: left / contain no-repeat url("@assets/icons/upload3.svg");
       }
+    }
+
+    input[type="checkbox"] {
+      // height: 41px;
+      // resize: none;
+      margin: auto; // can be the reason why we can't chose the height of the checkbox
     }
 
     input[type="file"] {
