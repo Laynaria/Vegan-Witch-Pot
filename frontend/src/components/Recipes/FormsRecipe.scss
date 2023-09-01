@@ -20,15 +20,26 @@
     justify-content: center;
     gap: $basic-space;
 
-    &:last-of-type {
-      min-height: 60vh;
-    }
-
     label {
       display: flex;
       flex-direction: column;
       text-align: left;
       font-size: $basic-space;
+    }
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $basic-space * 2;
+
+    @media screen and (min-width: 1080px) {
+      flex-wrap: nowrap;
+    }
+
+    form {
+      width: 100%;
+      min-height: 67vh;
     }
   }
 }

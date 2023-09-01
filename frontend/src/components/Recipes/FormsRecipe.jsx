@@ -23,7 +23,10 @@ export default function FormsRecipe({
         handleChange={handleChange}
         isEdit="true"
       />
-      <form onChange={handleChange}>Yet to come.</form>
+      <div>
+        <form onChange={handleChange}>Ingredients</form>
+        <form onChange={handleChange}>Steps</form>
+      </div>
     </section>
   );
 }
