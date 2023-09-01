@@ -19,6 +19,8 @@ export default function FormsRecipe({
     setArray([...array, ""]);
   };
 
+  // const editItemArray = (array, setArray, index) => {};
+
   const removeItemArray = (array, setArray, step) => {
     setArray(array.filter((item) => item !== step));
   };
@@ -46,12 +48,18 @@ export default function FormsRecipe({
                 // value={stepsArray}
                 onChange={(e) => console.warn(e.target.value)}
               />
-              <button
-                type="button"
-                onClick={() => removeItemArray(stepsArray, setStepsArray, step)}
-              >
-                -
-              </button>
+              {index !== 0 ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    removeItemArray(stepsArray, setStepsArray, step)
+                  }
+                >
+                  -
+                </button>
+              ) : (
+                ""
+              )}
             </label>
           ))}
           <button
