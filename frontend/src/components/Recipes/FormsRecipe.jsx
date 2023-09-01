@@ -46,7 +46,7 @@ export default function FormsRecipe({
               <input
                 type="text"
                 value={step}
-                // value={stepsArray}
+                // value={stepsArray[index]}
                 onChange={(e) => console.warn(e.target.value)}
               />
               {index !== 0 ? (

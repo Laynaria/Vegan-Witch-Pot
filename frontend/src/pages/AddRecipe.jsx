@@ -73,7 +73,16 @@ export default function AddRecipe() {
             });
         }
       })
-      .then(() => navigate("/recipes"))
+      .then(() =>
+        instance
+          .post("/check-new-recipe", recipe)
+          .then((result) => {
+            navigate(`/recipes/${result.data.id}`);
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+      )
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 

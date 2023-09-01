@@ -44,7 +44,7 @@ export default function EditRecipe() {
 
     instance
       .put(`/recipes/${id}`, { ...recipe, steps: stepsArray.join("___") })
-      .then(() => navigate("/recipes"))
+      .then(() => navigate(`/recipes/${id}`))
       .then(() => {
         if (inputRef.current.files[0]) {
           if (
