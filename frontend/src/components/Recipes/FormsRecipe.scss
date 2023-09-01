@@ -69,8 +69,7 @@
         }
 
         textarea,
-        input,
-        button {
+        input {
           font-family: $font-main;
           font-size: calc($font-size / 2);
           padding: 0.5rem 0.2rem;
@@ -81,14 +80,19 @@
           border-radius: calc($border-radius / 2);
           outline: none;
         }
-
-        button {
-          padding: $half-space;
-        }
       }
 
       button {
-        padding: 0 $half-space;
+        font-family: $font-main;
+        font-size: calc($font-size / 2);
+        padding: 0.5rem 0.2rem;
+
+        resize: none;
+        background: $font-color;
+        border: 2px solid $background-color;
+        border-radius: calc($border-radius / 2);
+        outline: none;
+        padding: calc($half-space / 4) $half-space calc($half-space / 2);
       }
     }
   }
