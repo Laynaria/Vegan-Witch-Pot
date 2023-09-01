@@ -162,7 +162,7 @@
   }
 
   button {
-    font-size: $text-size / 1.25;
+    font-size: calc($text-size / 1.25);
     font-family: $font-main;
     border: none;
     border-radius: $border-radius;
