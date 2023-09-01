@@ -27,6 +27,28 @@ export default function Recipes() {
 
   const navigate = useNavigate();
 
+  const filterOptions = (recipe) =>
+    ((recipe.is_shared === 1 && recipe.is_approved === 1) ||
+      recipe.user_id === user.id) &&
+    (recipe.category_id === parseInt(filters.category_id, 10) ||
+      filters.category_id === "0") &&
+    (recipe.difficulty === parseInt(filters.difficulty, 10) ||
+      filters.difficulty === "0") &&
+    filters.title
+      .trim()
+      .split(" ")
+      .some((element) =>
+        recipe.title
+          .toLowerCase()
+          .split(" ")
+          .some((el) => el.startsWith(element.toLowerCase()))
+      ) &&
+    recipe.title.toLowerCase().includes(filters.title.trim().toLowerCase()) &&
+    recipe.cooking_time
+      .toLowerCase()
+      .startsWith(filters.cooking_time.toLowerCase()) &&
+    (isMyRecipes ? recipe.user_id === user.id : recipe);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
@@ -61,39 +83,21 @@ export default function Recipes() {
             userId={user.id}
           />
 
-          {arrayRecipes
-
-            .filter(
-              (recipe) =>
-                ((recipe.is_shared === 1 && recipe.is_approved === 1) ||
-                  recipe.user_id === user.id) &&
-                (recipe.category_id === parseInt(filters.category_id, 10) ||
-                  filters.category_id === "0") &&
-                (recipe.difficulty === parseInt(filters.difficulty, 10) ||
-                  filters.difficulty === "0") &&
-                filters.title
-                  .trim()
-                  .split(" ")
-                  .some((element) =>
-                    recipe.title
-                      .toLowerCase()
-                      .split(" ")
-                      .some((el) => el.startsWith(element.toLowerCase()))
-                  ) &&
-                recipe.title
-                  .toLowerCase()
-                  .includes(filters.title.trim().toLowerCase()) &&
-                recipe.cooking_time
-                  .toLowerCase()
-                  .startsWith(filters.cooking_time.toLowerCase()) &&
-                (isMyRecipes ? recipe.user_id === user.id : recipe)
-            )
-            .map((recipe) => (
-              <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
-                <Card recipe={recipe} />
-              </Link>
-            ))
-            .reverse()}
+          {arrayRecipes.filter((recipe) => filterOptions(recipe)).length !==
+          0 ? (
+            arrayRecipes
+              .filter((recipe) => filterOptions(recipe))
+              .map((recipe) => (
+                <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
+                  <Card recipe={recipe} />
+                </Link>
+              ))
+              .reverse()
+          ) : (
+            <p className="NoRecipes">
+              No recipes available with theses filters.
+            </p>
+          )}
 
           {user.id !== undefined ? (
             <ButtonRecipe
