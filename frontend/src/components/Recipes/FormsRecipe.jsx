@@ -7,6 +7,8 @@ export default function FormsRecipe({
   recipe,
   inputRef,
   setThumbnail,
+  stepsArray,
+  setStepsArray,
 }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,8 +26,27 @@ export default function FormsRecipe({
         isEdit="true"
       />
       <div>
-        <form onChange={handleChange}>Ingredients</form>
-        <form onChange={handleChange}>Steps</form>
+        <form>Ingredients</form>
+        <form>
+          Steps
+          {stepsArray.map((step, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <label key={index}>
+              <input
+                type="text"
+                value={step}
+                // value={stepsArray}
+                onChange={(e) => console.warn(e.target.value)}
+              />
+            </label>
+          ))}
+          <button
+            type="button"
+            onClick={() => setStepsArray([...stepsArray, ""])}
+          >
+            +
+          </button>
+        </form>
       </div>
     </section>
   );

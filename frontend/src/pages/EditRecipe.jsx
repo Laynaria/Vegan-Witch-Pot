@@ -33,6 +33,7 @@ export default function EditRecipe() {
     category_id: 4,
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
+  const [stepsArray, setStepsArray] = useState([]);
 
   const navigate = useNavigate();
 
@@ -116,6 +117,7 @@ export default function EditRecipe() {
           }
 
           setRecipe(result.data);
+          setStepsArray(result.data.steps.split("___"));
 
           if (result.data.is_thumbnail) {
             setThumbnail(
@@ -140,6 +142,8 @@ export default function EditRecipe() {
         setRecipe={setRecipe}
         inputRef={inputRef}
         setThumbnail={setThumbnail}
+        stepsArray={stepsArray}
+        setStepsArray={setStepsArray}
       />
       <section className="preview">
         <h2>Preview</h2>
