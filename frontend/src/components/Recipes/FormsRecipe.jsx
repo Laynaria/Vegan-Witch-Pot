@@ -52,7 +52,7 @@ export default function FormsRecipe({
             // eslint-disable-next-line react/no-array-index-key
             <label key={index}>
               <p>{index + 1}.</p>
-              <input
+              <textarea
                 type="text"
                 value={step}
                 // value={stepsArray[index]}
