@@ -25,12 +25,12 @@ export default function EditRecipe() {
     difficulty: 1,
     cooking_time: "3h",
     user_id: user.id,
+    steps: "",
+    category_id: 4,
     // Waiting their form inputs
     is_shared: 1,
     is_approved: 1,
     origin: "",
-    steps: "",
-    category_id: 4,
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
   const [stepsArray, setStepsArray] = useState([]);
@@ -43,7 +43,7 @@ export default function EditRecipe() {
     formData.append("recipePic", inputRef.current.files[0]);
 
     instance
-      .put(`/recipes/${id}`, recipe)
+      .put(`/recipes/${id}`, { ...recipe, steps: stepsArray.join("___") })
       .then(() => navigate("/recipes"))
       .then(() => {
         if (inputRef.current.files[0]) {

@@ -23,6 +23,7 @@ export default function FormsRecipe({
 
   const removeItemArray = (array, setArray, step) => {
     setArray(array.filter((item) => item !== step));
+    // current issue : remove all steps that have the same text.
   };
 
   return (
