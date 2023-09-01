@@ -15,6 +15,10 @@ export default function FormsRecipe({
     setRecipe({ ...recipe, [name]: value });
   };
 
+  const addToArray = (array, setArray) => {
+    setArray([...array, ""]);
+  };
+
   return (
     <section className="edit">
       <ThumbnailRecipe
@@ -42,7 +46,7 @@ export default function FormsRecipe({
           ))}
           <button
             type="button"
-            onClick={() => setStepsArray([...stepsArray, ""])}
+            onClick={() => addToArray(stepsArray, setStepsArray)}
           >
             +
           </button>
