@@ -19,6 +19,10 @@ export default function FormsRecipe({
     setArray([...array, ""]);
   };
 
+  const removeItemArray = (array, setArray, step) => {
+    setArray(array.filter((item) => item !== step));
+  };
+
   return (
     <section className="edit">
       <ThumbnailRecipe
@@ -42,6 +46,12 @@ export default function FormsRecipe({
                 // value={stepsArray}
                 onChange={(e) => console.warn(e.target.value)}
               />
+              <button
+                type="button"
+                onClick={() => removeItemArray(stepsArray, setStepsArray, step)}
+              >
+                -
+              </button>
             </label>
           ))}
           <button
