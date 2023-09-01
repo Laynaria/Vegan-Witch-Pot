@@ -43,7 +43,10 @@ export default function EditRecipe() {
     formData.append("recipePic", inputRef.current.files[0]);
 
     instance
-      .put(`/recipes/${id}`, { ...recipe, steps: stepsArray.join("___") })
+      .put(`/recipes/${id}`, {
+        ...recipe,
+        steps: stepsArray.filter((item) => item !== "").join("___"),
+      })
       .then(() => navigate(`/recipes/${id}`))
       .then(() => {
         if (inputRef.current.files[0]) {

@@ -50,7 +50,10 @@ export default function AddRecipe() {
     formData.append("recipePic", inputRef.current.files[0]);
 
     instance
-      .post("/recipes", { ...recipe, steps: stepsArray.join("___") })
+      .post("/recipes", {
+        ...recipe,
+        steps: stepsArray.filter((item) => item !== "").join("___"),
+      })
       .then(() => {
         if (inputRef.current.files[0]) {
           if (
