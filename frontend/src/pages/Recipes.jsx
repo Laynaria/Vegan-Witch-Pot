@@ -68,6 +68,16 @@ export default function Recipes() {
     }, 550);
   }, []);
 
+  const handleResetFilter = () => {
+    setIsMyRecipes(false);
+    setFilters({
+      title: "",
+      difficulty: "0",
+      category_id: "0",
+      cooking_time: "",
+    });
+  };
+
   return (
     <>
       {isLoading ? (
@@ -81,6 +91,7 @@ export default function Recipes() {
             isMyRecipes={isMyRecipes}
             setIsMyRecipes={setIsMyRecipes}
             userId={user.id}
+            handleResetFilter={handleResetFilter}
           />
 
           {arrayRecipes.filter((recipe) => filterOptions(recipe)).length !==
