@@ -21,9 +21,8 @@ export default function FormsRecipe({
 
   // const editItemArray = (array, setArray, index) => {};
 
-  const removeItemArray = (array, setArray, step) => {
-    setArray(array.filter((item) => item !== step));
-    // current issue : remove all steps that have the same text.
+  const removeItemArray = (array, setArray, index) => {
+    setArray(array.filter((item, i) => i !== index));
   };
 
   return (
@@ -43,6 +42,7 @@ export default function FormsRecipe({
           {stepsArray.map((step, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <label key={index}>
+              <p>{index + 1}.</p>
               <input
                 type="text"
                 value={step}
@@ -53,7 +53,7 @@ export default function FormsRecipe({
                 <button
                   type="button"
                   onClick={() =>
-                    removeItemArray(stepsArray, setStepsArray, step)
+                    removeItemArray(stepsArray, setStepsArray, index)
                   }
                 >
                   -
