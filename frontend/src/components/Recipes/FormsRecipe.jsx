@@ -20,6 +20,8 @@ export default function FormsRecipe({
   };
 
   const editItemArray = (array, setArray, e, index) => {
+    if (e.nativeEvent.inputType === "insertLineBreak") return;
+
     const newArray = array.map((item, i) => {
       if (index === i && !e.target.value.includes("_")) {
         return [`${e.target.value}`];
