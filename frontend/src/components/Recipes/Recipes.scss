@@ -20,6 +20,12 @@
     width: 100%;
   }
 
+  .NoRecipes {
+    display: flex;
+    align-items: center;
+    height: 394px;
+  }
+
   a {
     color: $font-color;
     text-decoration: none;

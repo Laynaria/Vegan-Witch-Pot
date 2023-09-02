@@ -23,14 +23,15 @@ export default function AddRecipe() {
     difficulty: 1,
     cooking_time: "3h",
     user_id: user.id,
+    steps: "",
+    category_id: 4,
     // Waiting their form inputs
     is_shared: 1,
     is_approved: 1,
     origin: "",
-    steps: "",
-    category_id: 4,
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
+  const [stepsArray, setStepsArray] = useState([""]);
 
   const navigate = useNavigate();
 
@@ -49,7 +50,10 @@ export default function AddRecipe() {
     formData.append("recipePic", inputRef.current.files[0]);
 
     instance
-      .post("/recipes", recipe)
+      .post("/recipes", {
+        ...recipe,
+        steps: stepsArray.filter((item) => item !== "").join("___"),
+      })
       .then(() => {
         if (inputRef.current.files[0]) {
           if (
@@ -72,7 +76,16 @@ export default function AddRecipe() {
             });
         }
       })
-      .then(() => navigate("/recipes"))
+      .then(() =>
+        instance
+          .post("/check-new-recipe", recipe)
+          .then((result) => {
+            navigate(`/recipes/${result.data.id}`);
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+      )
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
@@ -83,6 +96,8 @@ export default function AddRecipe() {
         setRecipe={setRecipe}
         inputRef={inputRef}
         setThumbnail={setThumbnail}
+        stepsArray={stepsArray}
+        setStepsArray={setStepsArray}
       />
       <section className="preview">
         <h2>Preview</h2>

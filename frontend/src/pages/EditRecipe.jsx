@@ -25,14 +25,15 @@ export default function EditRecipe() {
     difficulty: 1,
     cooking_time: "3h",
     user_id: user.id,
+    steps: "",
+    category_id: 4,
     // Waiting their form inputs
     is_shared: 1,
     is_approved: 1,
     origin: "",
-    steps: "",
-    category_id: 4,
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
+  const [stepsArray, setStepsArray] = useState([]);
 
   const navigate = useNavigate();
 
@@ -42,8 +43,11 @@ export default function EditRecipe() {
     formData.append("recipePic", inputRef.current.files[0]);
 
     instance
-      .put(`/recipes/${id}`, recipe)
-      .then(() => navigate("/recipes"))
+      .put(`/recipes/${id}`, {
+        ...recipe,
+        steps: stepsArray.filter((item) => item !== "").join("___"),
+      })
+      .then(() => navigate(`/recipes/${id}`))
       .then(() => {
         if (inputRef.current.files[0]) {
           if (
@@ -116,6 +120,7 @@ export default function EditRecipe() {
           }
 
           setRecipe(result.data);
+          setStepsArray(result.data.steps.split("___"));
 
           if (result.data.is_thumbnail) {
             setThumbnail(
@@ -140,6 +145,8 @@ export default function EditRecipe() {
         setRecipe={setRecipe}
         inputRef={inputRef}
         setThumbnail={setThumbnail}
+        stepsArray={stepsArray}
+        setStepsArray={setStepsArray}
       />
       <section className="preview">
         <h2>Preview</h2>
