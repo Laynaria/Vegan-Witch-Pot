@@ -57,6 +57,7 @@ export default function LogIn() {
             type="email"
             name="email"
             placeholder="Email"
+            autoComplete="email"
             value={loginInfo.email}
             onChange={handleChangeLogin}
           />
@@ -66,6 +67,7 @@ export default function LogIn() {
             type="password"
             name="password"
             placeholder="Password"
+            autoComplete="off"
             value={loginInfo.password}
             onChange={handleChangeLogin}
           />

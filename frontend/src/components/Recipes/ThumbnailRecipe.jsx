@@ -130,6 +130,7 @@ export default function FormsRecipe({
           My Recipes
           <input
             checked={isMyRecipes ? "checked" : ""}
+            name="my_recipes"
             type="checkbox"
             value={isMyRecipes}
             onChange={() => setIsMyRecipes(!isMyRecipes)}
