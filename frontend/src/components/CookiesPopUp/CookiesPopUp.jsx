@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import cookies from "@assets/icons/cookies.svg";
 
 import "./CookiesPopUp.scss";
 
@@ -27,6 +28,7 @@ export default function Error({ setIsCookiesPopUpShown }) {
 
   return (
     <section className={!isLoading ? "CookiesPopUp" : "CookiesPopUp hide"}>
+      <img src={cookies} alt="accept cookies" />
       <p>
         We use some cookies crumbs for your magic experience. Only functionnal
         ones of course.
