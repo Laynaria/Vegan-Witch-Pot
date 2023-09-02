@@ -25,9 +25,9 @@ export default function AddRecipe() {
     user_id: user.id,
     steps: "",
     category_id: 4,
+    is_shared: 0,
+    is_approved: 0,
     // Waiting their form inputs
-    is_shared: 1,
-    is_approved: 1,
     origin: "",
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
@@ -65,7 +65,10 @@ export default function AddRecipe() {
           }
 
           instance
-            .post("/check-new-recipe", recipe)
+            .post("/check-new-recipe", {
+              ...recipe,
+              steps: stepsArray.filter((item) => item !== "").join("___"),
+            })
             .then((result) => {
               instance
                 .post(`/uploads/recipes/${result.data.id}`, formData)
@@ -76,22 +79,26 @@ export default function AddRecipe() {
             });
         }
       })
-      .then(() =>
+      .then(() => {
         instance
-          .post("/check-new-recipe", recipe)
+          .post("/check-new-recipe", {
+            ...recipe,
+            steps: stepsArray.filter((item) => item !== "").join("___"),
+          })
           .then((result) => {
             navigate(`/recipes/${result.data.id}`);
           })
           .catch((err) => {
             console.error(err);
-          })
-      )
+          });
+      })
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
   return (
     <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe
+        user={user}
         recipe={recipe}
         setRecipe={setRecipe}
         inputRef={inputRef}

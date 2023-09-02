@@ -96,4 +96,70 @@
       }
     }
   }
+
+  .ShareAndApprove {
+    flex-direction: column;
+    padding: $basic-space;
+    /*------ Settings ------*/
+    .containerCheckbox {
+      cursor: pointer;
+      user-select: none;
+      fill: $background-color;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: $basic-space;
+
+      p {
+        font-size: $text-size;
+      }
+
+      svg,
+      img {
+        font-size: 41px;
+        width: 30px;
+      }
+
+      .clipboard {
+        animation: keyframes-fill 0.5s;
+      }
+
+      .clipboard-check {
+        display: none;
+        animation: keyframes-fill 0.5s;
+        fill: $secondary-color;
+      }
+
+      /* ------ On check event ------ */
+      input:checked ~ .clipboard {
+        display: none;
+      }
+
+      input:checked ~ .clipboard-check {
+        display: block;
+      }
+
+      /* ------ Hide the default checkbox ------ */
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+    }
+
+    /* ------ Animation ------ */
+    @keyframes keyframes-fill {
+      0% {
+        transform: rotate(0deg) scale(0);
+        opacity: 0;
+      }
+
+      50% {
+        transform: rotate(-10deg) scale(1.2);
+      }
+    }
+  }
 }

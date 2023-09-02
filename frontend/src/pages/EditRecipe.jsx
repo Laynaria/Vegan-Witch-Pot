@@ -27,9 +27,9 @@ export default function EditRecipe() {
     user_id: user.id,
     steps: "",
     category_id: 4,
+    is_shared: false,
+    is_approved: false,
     // Waiting their form inputs
-    is_shared: 1,
-    is_approved: 1,
     origin: "",
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
@@ -119,7 +119,7 @@ export default function EditRecipe() {
             navigate("/login");
           }
 
-          setRecipe(result.data);
+          setRecipe({ ...result.data, is_approved: false });
           setStepsArray(result.data.steps.split("___"));
 
           if (result.data.is_thumbnail) {
@@ -141,6 +141,7 @@ export default function EditRecipe() {
   return (
     <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe
+        user={user}
         recipe={recipe}
         setRecipe={setRecipe}
         inputRef={inputRef}
