@@ -79,7 +79,7 @@ export default function RecipeId() {
           <div className="Preparation">
             <h3>Preparation</h3>
             <p>
-              {recipe.length !== 0 ? (
+              {recipe.steps.length !== 0 ? (
                 recipe.steps.split("___").map((step, index) => (
                   <StepsAndIngredients
                     text={`${index + 1}. ${step}`}

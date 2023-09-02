@@ -106,58 +106,82 @@
   .FileUploadLabel {
     pointer-events: none;
   }
-}
 
-// Checkbox parameters
-/*------ Settings ------*/
-.containerCheckbox {
-  cursor: pointer;
-  user-select: none;
-  fill: #623d9f;
-
-  svg,
-  img {
-    font-size: 41px;
-    width: 30px;
-  }
-
-  .clipboard {
-    animation: keyframes-fill 0.5s;
-  }
-
-  .clipboard-check {
-    display: none;
-    animation: keyframes-fill 0.5s;
-    fill: #95bd52;
-  }
-
-  /* ------ On check event ------ */
-  input:checked ~ .clipboard {
-    display: none;
-  }
-
-  input:checked ~ .clipboard-check {
-    display: block;
-  }
-
-  /* ------ Hide the default checkbox ------ */
-  input {
-    position: absolute;
-    opacity: 0;
+  // Checkbox parameters
+  /*------ Settings ------*/
+  .containerCheckbox {
     cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-}
+    user-select: none;
+    fill: $background-color;
 
-/* ------ Animation ------ */
-@keyframes keyframes-fill {
-  0% {
-    transform: rotate(0deg) scale(0);
-    opacity: 0;
+    svg,
+    img {
+      font-size: 41px;
+      width: 30px;
+    }
+
+    .clipboard {
+      animation: keyframes-fill 0.5s;
+    }
+
+    .clipboard-check {
+      display: none;
+      animation: keyframes-fill 0.5s;
+      fill: $secondary-color;
+    }
+
+    /* ------ On check event ------ */
+    input:checked ~ .clipboard {
+      display: none;
+    }
+
+    input:checked ~ .clipboard-check {
+      display: block;
+    }
+
+    /* ------ Hide the default checkbox ------ */
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
   }
 
-  50% {
-    transform: rotate(-10deg) scale(1.2);
+  /* ------ Animation ------ */
+  @keyframes keyframes-fill {
+    0% {
+      transform: rotate(0deg) scale(0);
+      opacity: 0;
+    }
+
+    50% {
+      transform: rotate(-10deg) scale(1.2);
+    }
+  }
+
+  button {
+    font-size: calc($text-size / 1.25);
+    font-family: $font-main;
+    border: none;
+    border-radius: $border-radius;
+    background-color: $secondary-color;
+    color: $background-color;
+    padding: $half-space $basic-space;
+    cursor: pointer;
+    transition: opacity 0.75s ease;
+    margin-top: calc(0.1rem + 19px);
+    height: 41px;
+
+    &:hover {
+      color: $secondary-color;
+      background-color: $background-color;
+    }
+
+    &:active {
+      transition: 0.25s ease;
+      transform: scale(0.9);
+    }
   }
 }

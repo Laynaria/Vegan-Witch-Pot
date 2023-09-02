@@ -20,15 +20,80 @@
     justify-content: center;
     gap: $basic-space;
 
-    &:last-of-type {
-      min-height: 60vh;
-    }
-
     label {
       display: flex;
       flex-direction: column;
       text-align: left;
       font-size: $basic-space;
+    }
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $basic-space * 2;
+    flex: 5 1;
+
+    @media screen and (min-width: 1080px) {
+      flex-wrap: nowrap;
+    }
+
+    form {
+      // min-height: 67vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      // align-items: flex-start;
+      padding: $basic-space $half-space;
+
+      // &:nth-of-type(1) {
+      //   flex-grow: 1;
+      // }
+
+      // &:nth-of-type(2) {
+      //   flex-grow: 1;
+      // }
+
+      label {
+        width: 80%;
+        flex-direction: row;
+        align-items: center;
+        gap: $half-space;
+        font-size: calc($font-size / 2);
+
+        textarea,
+        input {
+          width: 80%;
+          height: calc($font-size * 1.5);
+        }
+
+        textarea,
+        input {
+          font-family: $font-main;
+          font-size: calc($font-size / 2);
+          padding: 0.5rem 0.2rem;
+
+          resize: none;
+          background: $font-color;
+          border: 2px solid $background-color;
+          border-radius: calc($border-radius / 2);
+          outline: none;
+        }
+      }
+
+      button {
+        font-family: $font-main;
+        font-size: calc($font-size / 2);
+        padding: 0.5rem 0.2rem;
+
+        resize: none;
+        background: $font-color;
+        border: 2px solid $background-color;
+        border-radius: calc($border-radius / 2);
+        outline: none;
+        padding: calc($half-space / 4) $half-space calc($half-space / 2);
+      }
     }
   }
 }
