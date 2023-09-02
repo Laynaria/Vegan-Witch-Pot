@@ -25,9 +25,9 @@ export default function AddRecipe() {
     user_id: user.id,
     steps: "",
     category_id: 4,
+    is_shared: 0,
+    is_approved: 0,
     // Waiting their form inputs
-    is_shared: 1,
-    is_approved: 1,
     origin: "",
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
@@ -92,6 +92,7 @@ export default function AddRecipe() {
   return (
     <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe
+        user={user}
         recipe={recipe}
         setRecipe={setRecipe}
         inputRef={inputRef}
