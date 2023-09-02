@@ -25,7 +25,11 @@ export default function RecipeId() {
       instance
         .get(`/recipes/${id}`)
         .then((result) => {
-          if (result.data.user_id !== user.id && !result.data.is_approved) {
+          if (
+            result.data.user_id !== user.id &&
+            !result.data.is_approved &&
+            user.role_id !== 3
+          ) {
             return navigate("/");
           }
           return setRecipe(result.data);
