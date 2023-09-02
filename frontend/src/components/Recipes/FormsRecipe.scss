@@ -98,6 +98,8 @@
   }
 
   .ShareAndApprove {
+    flex-direction: column;
+    padding: $basic-space;
     /*------ Settings ------*/
     .containerCheckbox {
       cursor: pointer;
@@ -108,7 +110,6 @@
       flex-direction: row;
       align-items: center;
       gap: $basic-space;
-      padding: $basic-space;
 
       p {
         font-size: $text-size;
