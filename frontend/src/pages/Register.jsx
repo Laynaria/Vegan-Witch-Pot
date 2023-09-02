@@ -90,6 +90,7 @@ export default function Register() {
             type="email"
             name="email"
             placeholder="Email"
+            autoComplete="off"
             value={registerInfo.email}
             onChange={handleChangeRegister}
           />
@@ -99,6 +100,7 @@ export default function Register() {
             type="name"
             name="username"
             placeholder="Username"
+            autoComplete="username"
             value={registerInfo.username}
             onChange={handleChangeRegister}
           />
@@ -108,6 +110,7 @@ export default function Register() {
             type={isShown ? "text" : "password"}
             name="password"
             placeholder="Password"
+            autoComplete="off"
             value={registerInfo.password}
             onChange={handleChangeRegister}
           />
@@ -117,6 +120,7 @@ export default function Register() {
             type={isShown ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
+            autoComplete="off"
             value={registerInfo.confirmPassword}
             onChange={handleChangeRegister}
           />

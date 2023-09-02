@@ -51,6 +51,7 @@ export default function Contact() {
             type="email"
             name="email"
             placeholder="Email*"
+            autoComplete="email"
             value={contactMail.email}
             onChange={handleChangeMail}
           />
@@ -61,6 +62,7 @@ export default function Contact() {
             type="text"
             name="object"
             placeholder="Object*"
+            autoComplete="off"
             value={contactMail.object}
             onChange={handleChangeMail}
           />
@@ -71,6 +73,7 @@ export default function Contact() {
             type="text"
             name="message"
             placeholder="Message*"
+            autoComplete="off"
             value={contactMail.message}
             onChange={handleChangeMail}
           />
