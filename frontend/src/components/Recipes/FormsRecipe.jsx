@@ -121,7 +121,8 @@ export default function FormsRecipe({
           </svg>
         </label>
 
-        {user.role_id === 3 || (user.role_id === 2 && user.id === recipe.id) ? (
+        {user.role_id === 3 ||
+        (user.role_id === 2 && user.id === recipe.user_id) ? (
           <label className="containerCheckbox">
             <p>Do you wish to approve this recipes?</p>
             <input
