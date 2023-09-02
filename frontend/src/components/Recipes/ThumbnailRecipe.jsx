@@ -60,6 +60,7 @@ export default function FormsRecipe({
         <input
           type={isEdit ? "text" : "search"}
           name="title"
+          autoComplete="off"
           value={recipe.title}
           onChange={handleChange}
         />
@@ -87,6 +88,7 @@ export default function FormsRecipe({
           type={isEdit ? "text" : "search"}
           className="cookingTime"
           name="cooking_time"
+          autoComplete="off"
           value={recipe.cooking_time}
           onChange={handleChange}
         />
