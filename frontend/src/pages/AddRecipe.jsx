@@ -65,7 +65,10 @@ export default function AddRecipe() {
           }
 
           instance
-            .post("/check-new-recipe", recipe)
+            .post("/check-new-recipe", {
+              ...recipe,
+              steps: stepsArray.filter((item) => item !== "").join("___"),
+            })
             .then((result) => {
               instance
                 .post(`/uploads/recipes/${result.data.id}`, formData)
@@ -76,16 +79,19 @@ export default function AddRecipe() {
             });
         }
       })
-      .then(() =>
+      .then(() => {
         instance
-          .post("/check-new-recipe", recipe)
+          .post("/check-new-recipe", {
+            ...recipe,
+            steps: stepsArray.filter((item) => item !== "").join("___"),
+          })
           .then((result) => {
             navigate(`/recipes/${result.data.id}`);
           })
           .catch((err) => {
             console.error(err);
-          })
-      )
+          });
+      })
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
