@@ -66,7 +66,9 @@ export default function FormsRecipe({
               <textarea
                 type="text"
                 value={step}
+                name={`step${index}`}
                 // value={stepsArray[index]}
+                autoComplete="off"
                 onChange={(e) =>
                   editItemArray(stepsArray, setStepsArray, e, index)
                 }
@@ -100,6 +102,7 @@ export default function FormsRecipe({
           <input
             checked={recipe.is_shared ? "checked" : ""}
             type="checkbox"
+            name="is_shared"
             value={recipe.is_shared}
             onChange={handleShare}
           />
@@ -128,6 +131,7 @@ export default function FormsRecipe({
             <input
               checked={recipe.is_approved ? "checked" : ""}
               type="checkbox"
+              name="is_approved"
               value={recipe.is_approved}
               onChange={handleApprove}
             />

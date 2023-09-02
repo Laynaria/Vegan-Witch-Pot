@@ -263,6 +263,7 @@ export default function Profile() {
             type="email"
             name="email"
             placeholder="Email*"
+            autoComplete="email"
             value={editInfo.email}
             onChange={handleEditInfo}
           />
@@ -273,6 +274,7 @@ export default function Profile() {
             type="name"
             name="username"
             placeholder="Username*"
+            autoComplete="username"
             value={editInfo.username}
             onChange={handleEditInfo}
           />
@@ -293,6 +295,7 @@ export default function Profile() {
             type={isShown ? "text" : "password"}
             name="password"
             placeholder="Password*"
+            autoComplete="off"
             value={editInfo.password}
             onChange={handleEditInfo}
           />
@@ -303,6 +306,7 @@ export default function Profile() {
             type={isShown ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password*"
+            autoComplete="off"
             value={editInfo.confirmPassword}
             onChange={handleEditInfo}
           />
