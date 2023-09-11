@@ -1,5 +1,5 @@
-// import { useState, useEffect } from "react";
-// import instance from "@services/instance";
+import { useState, useEffect } from "react";
+import instance from "@services/instance";
 import ThumbnailRecipe from "./ThumbnailRecipe";
 
 import "./FormsRecipe.scss";
@@ -15,6 +15,8 @@ export default function FormsRecipe({
   ingredients,
   setIngredients,
 }) {
+  const [type, setType] = useState([]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
@@ -49,16 +51,19 @@ export default function FormsRecipe({
     setRecipe({ ...recipe, is_approved: !recipe.is_approved });
   };
 
-  // useEffect(() => {
-  //   instance
-  //     .get("/categories")
-  //     .then((result) => {
-  //       setCategories(result.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    console.warn(setIngredients, type);
+
+    instance
+      .get("/type")
+      .then((result) => {
+        // console.log(result.data);
+        setType(result.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   // Ingredient object look
   //   {
@@ -73,8 +78,6 @@ export default function FormsRecipe({
   //     "type": "to taste",
   //     "unit": ""
   // }
-
-  console.warn(setIngredients);
 
   return (
     <section className="edit">
@@ -95,7 +98,10 @@ export default function FormsRecipe({
               <label>{ingredient.name}</label>
               <label>{ingredient.unit}</label>
               <label>{ingredient.value}</label>
-              <label>{ingredient.type}</label>
+              <label>
+                {ingredient.type}
+                {/* <select><option>id/type/unit</option></select> */}
+              </label>
               <label>{ingredient.line}</label>
             </p>
             // à changer : peut être qu'on va se retrouver avec des forms dans un form.
