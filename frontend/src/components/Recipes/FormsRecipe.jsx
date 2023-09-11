@@ -1,3 +1,5 @@
+// import { useState, useEffect } from "react";
+// import instance from "@services/instance";
 import ThumbnailRecipe from "./ThumbnailRecipe";
 
 import "./FormsRecipe.scss";
@@ -10,6 +12,8 @@ export default function FormsRecipe({
   setThumbnail,
   stepsArray,
   setStepsArray,
+  ingredients,
+  setIngredients,
 }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,6 +49,33 @@ export default function FormsRecipe({
     setRecipe({ ...recipe, is_approved: !recipe.is_approved });
   };
 
+  // useEffect(() => {
+  //   instance
+  //     .get("/categories")
+  //     .then((result) => {
+  //       setCategories(result.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
+
+  // Ingredient object look
+  //   {
+  //     "id": 8,
+  //     "line": 4,
+  //     "recipe_id": 1,
+  //     "ingredient_id": 4,
+  //     "quantity_id": 86,
+  //     "name": "Salt",
+  //     "value": "",
+  //     "type_id": 8,
+  //     "type": "to taste",
+  //     "unit": ""
+  // }
+
+  console.warn(setIngredients);
+
   return (
     <section className="edit">
       <ThumbnailRecipe
@@ -56,7 +87,21 @@ export default function FormsRecipe({
         isEdit="true"
       />
       <div>
-        <form>Ingredients</form>
+        <form>
+          Ingredients
+          {ingredients.map((ingredient, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <p key={index}>
+              <label>{ingredient.name}</label>
+              <label>{ingredient.unit}</label>
+              <label>{ingredient.value}</label>
+              <label>{ingredient.type}</label>
+              <label>{ingredient.line}</label>
+            </p>
+            // à changer : peut être qu'on va se retrouver avec des forms dans un form.
+            // ou alors avec un p englobant des label >input
+          ))}
+        </form>
         <form>
           Steps
           {stepsArray.map((step, index) => (

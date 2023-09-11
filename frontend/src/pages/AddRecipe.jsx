@@ -32,6 +32,7 @@ export default function AddRecipe() {
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
   const [stepsArray, setStepsArray] = useState([""]);
+  const [ingredients, setIngredients] = useState([{}]);
 
   const navigate = useNavigate();
 
@@ -105,6 +106,8 @@ export default function AddRecipe() {
         setThumbnail={setThumbnail}
         stepsArray={stepsArray}
         setStepsArray={setStepsArray}
+        ingredients={ingredients}
+        setIngredients={setIngredients}
       />
       <section className="preview">
         <h2>Preview</h2>

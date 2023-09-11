@@ -88,6 +88,10 @@ router.put("/users/edit-password/:id", userControllers.editPassword);
 // recipe routes for authentificated users only
 router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
+router.get(
+  "/recipes/edit/ingredients/:id",
+  recipeIngredientQuantityControllers.readByRecipeForEdit
+);
 
 // routes for upload users avatars and recipes pictures
 router.post("/check-new-recipe", recipeControllers.checkNewRecipe);

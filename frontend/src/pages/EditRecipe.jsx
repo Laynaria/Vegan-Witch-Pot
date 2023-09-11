@@ -33,7 +33,8 @@ export default function EditRecipe() {
     origin: "",
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
-  const [stepsArray, setStepsArray] = useState([]);
+  const [stepsArray, setStepsArray] = useState([""]);
+  const [ingredients, setIngredients] = useState([{}]);
 
   const navigate = useNavigate();
 
@@ -130,6 +131,14 @@ export default function EditRecipe() {
             );
           }
         })
+        .then(() =>
+          instance
+            .get(`/recipes/edit/ingredients/${id}`)
+            .then((res) => setIngredients(res.data))
+            .catch((err) => {
+              console.error(err);
+            })
+        )
         .then(() => setIsLoading(false))
         .catch((err) => {
           console.error("Error: This recipe doesn't exist", err);
@@ -148,6 +157,8 @@ export default function EditRecipe() {
         setThumbnail={setThumbnail}
         stepsArray={stepsArray}
         setStepsArray={setStepsArray}
+        ingredients={ingredients}
+        setIngredients={setIngredients}
       />
       <section className="preview">
         <h2>Preview</h2>
