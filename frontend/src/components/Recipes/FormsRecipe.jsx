@@ -24,7 +24,10 @@ export default function FormsRecipe({
 
   const addToArray = (array, setArray, object = false) => {
     if (object === true) {
-      return setArray([...array, { line: array.length + 1, name: "" }]);
+      return setArray([
+        ...array,
+        { line: array.length + 1, value: "", name: "", type_id: 1 },
+      ]);
     }
     return setArray([...array, ""]);
   };
@@ -81,13 +84,14 @@ export default function FormsRecipe({
 
   const editIngredient = (e, currentIndex) => {
     const { name, value } = e.target;
+
     const newIngredients = ingredients.map((ingredient, index) => {
       if (index === currentIndex && name === "type_id") {
         return {
           ...ingredient,
           type: types[value - 1].type,
           unit: types[value - 1].unit,
-          value: "",
+          value: value === "8" ? "" : ingredient.value,
           [name]: value,
         };
       }
@@ -123,6 +127,7 @@ export default function FormsRecipe({
                   <input
                     type="text"
                     name="value"
+                    autoComplete="off"
                     value={ingredient.value}
                     onChange={(e) => editIngredient(e, index)}
                   />
@@ -151,6 +156,7 @@ export default function FormsRecipe({
                 <input
                   type="text"
                   name="name"
+                  autoComplete="off"
                   value={ingredient.name}
                   onChange={(e) => editIngredient(e, index)}
                 />

@@ -32,7 +32,9 @@ export default function AddRecipe() {
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
   const [stepsArray, setStepsArray] = useState([""]);
-  const [ingredients, setIngredients] = useState([{ line: 1 }]);
+  const [ingredients, setIngredients] = useState([
+    { line: 1, value: "", name: "" },
+  ]);
 
   const navigate = useNavigate();
 
