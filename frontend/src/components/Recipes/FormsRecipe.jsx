@@ -15,15 +15,18 @@ export default function FormsRecipe({
   ingredients,
   setIngredients,
 }) {
-  const [type, setType] = useState([]);
+  const [types, setTypes] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
   };
 
-  const addToArray = (array, setArray) => {
-    setArray([...array, ""]);
+  const addToArray = (array, setArray, object = false) => {
+    if (object === true) {
+      return setArray([...array, { line: array.length + 1, name: "" }]);
+    }
+    return setArray([...array, ""]);
   };
 
   const editItemArray = (array, setArray, e, index) => {
@@ -52,13 +55,10 @@ export default function FormsRecipe({
   };
 
   useEffect(() => {
-    console.warn(setIngredients, type);
-
     instance
       .get("/type")
       .then((result) => {
-        // console.log(result.data);
-        setType(result.data);
+        setTypes(result.data);
       })
       .catch((err) => {
         console.error(err);
@@ -79,6 +79,26 @@ export default function FormsRecipe({
   //     "unit": ""
   // }
 
+  const editIngredient = (e, currentIndex) => {
+    const { name, value } = e.target;
+    const newIngredients = ingredients.map((ingredient, index) => {
+      if (index === currentIndex && name === "type_id") {
+        return {
+          ...ingredient,
+          type: types[value - 1].type,
+          unit: types[value - 1].unit,
+          [name]: value,
+        };
+      }
+
+      if (index === currentIndex) {
+        return { ...ingredient, [name]: value };
+      }
+      return ingredient;
+    });
+    setIngredients(newIngredients);
+  };
+
   return (
     <section className="edit">
       <ThumbnailRecipe
@@ -90,23 +110,75 @@ export default function FormsRecipe({
         isEdit="true"
       />
       <div>
-        <form>
+        <form className="ingredientForm">
           Ingredients
           {ingredients.map((ingredient, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <p key={index}>
-              <label>{ingredient.name}</label>
-              <label>{ingredient.unit}</label>
-              <label>{ingredient.value}</label>
+              <span>{ingredient.line}.</span>
+              {ingredient.type !== "to taste" ? (
+                <label>
+                  Value:
+                  <input
+                    type="text"
+                    name="value"
+                    value={ingredient.value}
+                    onChange={(e) => editIngredient(e, index)}
+                  />
+                </label>
+              ) : (
+                <span />
+              )}
+
               <label>
-                {ingredient.type}
-                {/* <select><option>id/type/unit</option></select> */}
+                Type:
+                <select
+                  name="type_id"
+                  value={ingredient.type_id}
+                  onChange={(e) => editIngredient(e, index)}
+                >
+                  {types.map((type) => (
+                    <option key={type.id} value={type.id}>
+                      {type.type}
+                    </option>
+                  ))}
+                </select>
               </label>
-              <label>{ingredient.line}</label>
+
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={ingredient.name}
+                  onChange={(e) => editIngredient(e, index)}
+                />
+              </label>
+
+              {index !== 0 ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    removeItemArray(ingredients, setIngredients, index)
+                  }
+                >
+                  -
+                </button>
+              ) : (
+                <button type="button" className="hidden">
+                  -
+                </button>
+              )}
             </p>
             // à changer : peut être qu'on va se retrouver avec des forms dans un form.
             // ou alors avec un p englobant des label >input
           ))}
+          <button
+            type="button"
+            onClick={() => addToArray(ingredients, setIngredients, true)}
+          >
+            +
+          </button>
         </form>
         <form>
           Steps
