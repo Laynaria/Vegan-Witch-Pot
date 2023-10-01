@@ -87,6 +87,7 @@ export default function FormsRecipe({
           ...ingredient,
           type: types[value - 1].type,
           unit: types[value - 1].unit,
+          value: "",
           [name]: value,
         };
       }
@@ -170,8 +171,6 @@ export default function FormsRecipe({
                 </button>
               )}
             </p>
-            // à changer : peut être qu'on va se retrouver avec des forms dans un form.
-            // ou alors avec un p englobant des label >input
           ))}
           <button
             type="button"
