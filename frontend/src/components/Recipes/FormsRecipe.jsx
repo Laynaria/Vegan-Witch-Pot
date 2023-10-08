@@ -74,20 +74,6 @@ export default function FormsRecipe({
       });
   }, []);
 
-  // Ingredient object look
-  //   {
-  //     "id": 8,
-  //     "line": 4,
-  //     "recipe_id": 1,
-  //     "ingredient_id": 4,
-  //     "quantity_id": 86,
-  //     "name": "Salt",
-  //     "value": "",
-  //     "type_id": 8,
-  //     "type": "to taste",
-  //     "unit": ""
-  // }
-
   const editIngredient = (e, currentIndex) => {
     const { name, value } = e.target;
 
@@ -112,7 +98,13 @@ export default function FormsRecipe({
   };
 
   const registerIngredient = () => {
-    ingredients.forEach(async (ingredient) => {
+    const ingredientsToPush = ingredients.filter((ingredient) =>
+      parseInt(ingredient.type_id, 10) !== 8
+        ? ingredient.value !== "" && ingredient.name !== ""
+        : ingredient.name !== ""
+    );
+
+    ingredientsToPush.forEach(async (ingredient) => {
       const currentIngredient = {
         line: ingredient.line,
         recipe_id: recipe.id,
