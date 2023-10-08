@@ -26,7 +26,13 @@ export default function FormsRecipe({
     if (object === true) {
       return setArray([
         ...array,
-        { line: array.length + 1, value: "", name: "", type_id: 1 },
+        {
+          line: array.length + 1,
+          value: "",
+          name: "",
+          type_id: 1,
+          isEdit: true,
+        },
       ]);
     }
     return setArray([...array, ""]);
@@ -106,10 +112,46 @@ export default function FormsRecipe({
   };
 
   const registerIngredient = () => {
-    ingredients.forEach((ingredient) => {
+    ingredients.forEach(async (ingredient) => {
+      const currentIngredient = { line: ingredient.line, ingredient_id: 0 };
+
+      // we need some validation steps here first, checking if ingredient.name,
+      // ingredient.value ne sont pas empty > ptet même une regex pour value
+
       if (ingredient.isEdit) {
-        console.warn(ingredient);
+        try {
+          // try to get the ingredient from table ingredient
+          const ingredientExist = await instance.get(
+            `/ingredients/${ingredient.name}`
+          );
+
+          currentIngredient.ingredient_id = await ingredientExist.data.id;
+        } catch {
+          // if error, no ingredient > we create it
+          await instance.post("/ingredients", { name: ingredient.name });
+
+          const ingredientExist = await instance.get(
+            `/ingredients/${ingredient.name}`
+          );
+
+          currentIngredient.ingredient_id = await ingredientExist.data.id;
+        }
       }
+
+      if (ingredient.isEdit) {
+        try {
+          // now we try to get a quantity from quantity table
+        } catch {
+          // if error, no quantity > we create it
+        }
+      }
+      console.warn(currentIngredient);
+
+      // lastly we check if a line + recipe_id exist from recipe_ingredient_quantity
+      // if it does, we update
+      // if error > we post
+
+      // fin d'un ingrédient, fini par faire marcher grâce au try catch
     });
   };
 
