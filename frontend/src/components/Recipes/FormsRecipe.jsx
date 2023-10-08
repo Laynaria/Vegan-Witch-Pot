@@ -113,7 +113,12 @@ export default function FormsRecipe({
 
   const registerIngredient = () => {
     ingredients.forEach(async (ingredient) => {
-      const currentIngredient = { line: ingredient.line, ingredient_id: 0 };
+      const currentIngredient = {
+        line: ingredient.line,
+        recipe_id: recipe.id,
+        ingredient_id: 0,
+        quantity_id: 0,
+      };
 
       // we need some validation steps here first, checking if ingredient.name,
       // ingredient.value ne sont pas empty > ptet même une regex pour value
@@ -141,8 +146,23 @@ export default function FormsRecipe({
       if (ingredient.isEdit) {
         try {
           // now we try to get a quantity from quantity table
+          const quantityExist = await instance.get(
+            `/quantity/${ingredient.value}/${ingredient.type_id}`
+          );
+
+          currentIngredient.quantity_id = await quantityExist.data.id;
         } catch {
           // if error, no quantity > we create it
+          await instance.post("/quantity", {
+            value: ingredient.value,
+            type_id: ingredient.type_id,
+          });
+
+          const quantityExist = await instance.get(
+            `/quantity/${ingredient.value}/${ingredient.type_id}`
+          );
+
+          currentIngredient.quantity_id = await quantityExist.data.id;
         }
       }
       console.warn(currentIngredient);

@@ -49,6 +49,7 @@ const userControllers = require("./controllers/userControllers");
 const recipeIngredientQuantityControllers = require("./controllers/recipeIngredientQuantityControllers");
 const typeControllers = require("./controllers/typeControllers");
 const ingredientControllers = require("./controllers/ingredientControllers");
+const quantityControllers = require("./controllers/quantityControllers");
 
 router.get("/items", itemControllers.browse);
 router.get("/items/:id", itemControllers.read);
@@ -97,6 +98,11 @@ router.get(
 router.get("/type", typeControllers.browse);
 router.get("/ingredients/:name", ingredientControllers.readByName);
 router.post("/ingredients", ingredientControllers.add);
+router.get(
+  "/quantity/:value/:typeId",
+  quantityControllers.readByValueAndTypeId
+);
+router.post("/quantity", quantityControllers.add);
 
 // routes for upload users avatars and recipes pictures
 router.post("/check-new-recipe", recipeControllers.checkNewRecipe);

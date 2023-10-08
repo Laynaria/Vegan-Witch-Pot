@@ -6,9 +6,10 @@ class ItemManager extends AbstractManager {
   }
 
   findByName(name) {
-    return this.connection.query(`SELECT * from ${this.table} where name = ?`, [
-      name,
-    ]);
+    return this.connection.query(
+      `SELECT id from ${this.table} where name = ?`,
+      [name]
+    );
   }
 
   insert(ingredient) {
