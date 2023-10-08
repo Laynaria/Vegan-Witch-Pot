@@ -92,16 +92,25 @@ export default function FormsRecipe({
           type: types[value - 1].type,
           unit: types[value - 1].unit,
           value: value === "8" ? "" : ingredient.value,
+          isEdit: true,
           [name]: value,
         };
       }
 
       if (index === currentIndex) {
-        return { ...ingredient, [name]: value };
+        return { ...ingredient, isEdit: true, [name]: value };
       }
       return ingredient;
     });
     setIngredients(newIngredients);
+  };
+
+  const registerIngredient = () => {
+    ingredients.forEach((ingredient) => {
+      if (ingredient.isEdit) {
+        console.warn(ingredient);
+      }
+    });
   };
 
   return (
@@ -183,6 +192,9 @@ export default function FormsRecipe({
             onClick={() => addToArray(ingredients, setIngredients, true)}
           >
             +
+          </button>
+          <button type="button" onClick={() => registerIngredient()}>
+            Test
           </button>
         </form>
         <form>
