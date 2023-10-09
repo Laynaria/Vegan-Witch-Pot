@@ -38,6 +38,7 @@ export default function EditRecipe() {
   const [ingredients, setIngredients] = useState([
     { line: 1, value: "", name: "", type_id: 1 },
   ]);
+  const [ingredientsOriginLength, setIngredientsOriginLength] = useState(0);
 
   const navigate = useNavigate();
 
@@ -67,7 +68,7 @@ export default function EditRecipe() {
             .catch((err) => console.error(err));
         }
       })
-      .then(() => registerIngredient(ingredients, id))
+      .then(() => registerIngredient(ingredients, id, ingredientsOriginLength))
       .then(() => navigate(`/recipes/${id}`))
       .catch(() => console.warn("Une erreur est survenue!"));
   };
@@ -138,7 +139,10 @@ export default function EditRecipe() {
         .then(() =>
           instance
             .get(`/recipes/edit/ingredients/${id}`)
-            .then((res) => setIngredients(res.data))
+            .then((res) => {
+              setIngredients(res.data);
+              setIngredientsOriginLength(res.data.length);
+            })
             .catch((err) => {
               console.error(err);
             })

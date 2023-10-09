@@ -54,6 +54,13 @@ class RecipeIngredientQuantityManager extends AbstractManager {
     );
   }
 
+  deleteByMaxLine(ingredient) {
+    return this.connection.query(
+      `delete from ${this.table} where recipe_id = ? and line > ?`,
+      [ingredient.recipe_id, ingredient.line]
+    );
+  }
+
   deleteByRecipeId(recipesId) {
     // This requset is to find all recipes_ingredient_quantity tuples from multiple recipe, to get their id for some delete purposes.
     return this.connection.query(

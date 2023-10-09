@@ -115,6 +115,10 @@ router.put(
   "/recipe-ingredient-quantity/:id",
   recipeIngredientQuantityControllers.edit
 );
+router.delete(
+  "/recipe-ingredient-quantity/:line/:recipeId",
+  recipeIngredientQuantityControllers.destroyByMaxLine
+);
 
 // routes for upload users avatars and recipes pictures
 router.post("/check-new-recipe", recipeControllers.checkNewRecipe);

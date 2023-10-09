@@ -88,6 +88,27 @@ const edit = (req, res) => {
     });
 };
 
+const destroyByMaxLine = (req, res) => {
+  const ingredient = {
+    line: parseInt(req.params.line, 10),
+    recipe_id: parseInt(req.params.recipeId, 10),
+  };
+
+  models.recipe_ingredient_quantity
+    .deleteByMaxLine(ingredient)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const destroy = (req, res) => {
   const { arr } = req.body;
 
@@ -114,5 +135,6 @@ module.exports = {
   readByRecipeForEdit,
   add,
   edit,
+  destroyByMaxLine,
   destroy,
 };

@@ -1,15 +1,11 @@
 import instance from "./instance";
 
-const registerIngredient = (ingredients, recipeId) => {
+const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
   const ingredientsToPush = ingredients.filter((ingredient) =>
     parseInt(ingredient.type_id, 10) !== 8
       ? ingredient.value !== "" && ingredient.name !== ""
       : ingredient.name !== ""
   );
-
-  // need to delete the rows which may not exist anymore
-  // need to make an originalLength of ingredients once we put this
-  // function in another file
 
   ingredientsToPush.forEach(async (ingredient) => {
     const currentIngredient = {
@@ -86,6 +82,17 @@ const registerIngredient = (ingredients, recipeId) => {
 
     // fin d'un ingrédient, fini par faire marcher grâce au try catch
   });
+
+  // need to delete the rows which may not exist anymore
+  // need to make an originalLength of ingredients once we put this
+  // function in another file
+
+  if (originalLength !== 0 && ingredientsToPush.length < originalLength) {
+    // on delete du back.
+    instance.delete(
+      `/recipe-ingredient-quantity/${ingredientsToPush.length}/${recipeId}`
+    );
+  }
 };
 
 export default registerIngredient;
