@@ -11,7 +11,7 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
   // need to make an originalLength of ingredients once we put this
   // function in another file
 
-  if (originalLength !== 0 && ingredientsToPush.length < originalLength) {
+  if (originalLength !== 0 && ingredients.length < originalLength) {
     // on delete du back.
     instance.delete(
       `/recipe-ingredient-quantity/${ingredientsToPush.length}/${recipeId}`
@@ -71,7 +71,6 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
         currentIngredient.quantity_id = await quantityExist.data.id;
       }
     }
-    console.warn(currentIngredient);
 
     // lastly we check if a line + recipe_id exist from recipe_ingredient_quantity
     if (ingredient.isEdit) {

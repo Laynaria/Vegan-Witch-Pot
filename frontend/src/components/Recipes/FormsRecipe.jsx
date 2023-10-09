@@ -57,7 +57,7 @@ export default function FormsRecipe({
         array
           .filter((item, i) => i !== index)
           .map((ingredient, id) => {
-            return { ...ingredient, line: id + 1 };
+            return { ...ingredient, line: id + 1, isEdit: true };
           })
       );
     }

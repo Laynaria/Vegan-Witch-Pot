@@ -43,7 +43,7 @@ class RecipeIngredientQuantityManager extends AbstractManager {
 
   update(ingredient) {
     return this.connection.query(
-      `update ${this.table} set  line = ?, recipe_id = ?, ingredient_id = ?, quantity_id = ? where id = ?`,
+      `update ${this.table} set line = ?, recipe_id = ?, ingredient_id = ?, quantity_id = ? where id = ?`,
       [
         ingredient.line,
         ingredient.recipe_id,

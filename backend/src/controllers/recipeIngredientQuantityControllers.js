@@ -72,6 +72,9 @@ const edit = (req, res) => {
   // TODO validations (length, format...)
 
   ingredient.id = parseInt(req.params.id, 10);
+  ingredient.ingredient_id = parseInt(ingredient.ingredient_id, 10);
+  ingredient.recipe_id = parseInt(ingredient.recipe_id, 10);
+  ingredient.quantity_id = parseInt(ingredient.quantity_id, 10);
 
   models.recipe_ingredient_quantity
     .update(ingredient)
