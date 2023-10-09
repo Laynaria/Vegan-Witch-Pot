@@ -7,6 +7,17 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
       : ingredient.name !== ""
   );
 
+  // need to delete the rows which may not exist anymore
+  // need to make an originalLength of ingredients once we put this
+  // function in another file
+
+  if (originalLength !== 0 && ingredientsToPush.length < originalLength) {
+    // on delete du back.
+    instance.delete(
+      `/recipe-ingredient-quantity/${ingredientsToPush.length}/${recipeId}`
+    );
+  }
+
   ingredientsToPush.forEach(async (ingredient) => {
     const currentIngredient = {
       line: ingredient.line,
@@ -82,17 +93,6 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
 
     // fin d'un ingrédient, fini par faire marcher grâce au try catch
   });
-
-  // need to delete the rows which may not exist anymore
-  // need to make an originalLength of ingredients once we put this
-  // function in another file
-
-  if (originalLength !== 0 && ingredientsToPush.length < originalLength) {
-    // on delete du back.
-    instance.delete(
-      `/recipe-ingredient-quantity/${ingredientsToPush.length}/${recipeId}`
-    );
-  }
 };
 
 export default registerIngredient;

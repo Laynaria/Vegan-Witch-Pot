@@ -51,8 +51,18 @@ export default function FormsRecipe({
     setArray(newArray);
   };
 
-  const removeItemArray = (array, setArray, index) => {
-    setArray(array.filter((item, i) => i !== index));
+  const removeItemArray = (array, setArray, index, object = false) => {
+    if (object === true) {
+      return setArray(
+        array
+          .filter((item, i) => i !== index)
+          .map((ingredient, id) => {
+            return { ...ingredient, line: id + 1 };
+          })
+      );
+    }
+
+    return setArray(array.filter((item, i) => i !== index));
   };
 
   const handleShare = () => {
@@ -83,7 +93,7 @@ export default function FormsRecipe({
           ...ingredient,
           type: types[value - 1].type,
           unit: types[value - 1].unit,
-          value: value === "8" ? "" : ingredient.value,
+          value: value === "8" ? "0" : ingredient.value,
           isEdit: true,
           [name]: value,
         };
@@ -159,7 +169,7 @@ export default function FormsRecipe({
                 <button
                   type="button"
                   onClick={() =>
-                    removeItemArray(ingredients, setIngredients, index)
+                    removeItemArray(ingredients, setIngredients, index, true)
                   }
                 >
                   -

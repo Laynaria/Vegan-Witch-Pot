@@ -62,7 +62,7 @@ export default function RecipeId() {
               {ingredients.length !== 0 ? (
                 ingredients.map((ingredient) => (
                   <StepsAndIngredients
-                    text={`${ingredient.value}${
+                    text={`${ingredient.value !== "0" ? ingredient.value : ""}${
                       ingredient.unit === "ml" ||
                       ingredient.unit === "l" ||
                       ingredient.unit === "g"

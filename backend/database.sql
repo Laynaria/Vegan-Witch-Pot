@@ -205,7 +205,7 @@ INSERT INTO quantity (value, type_id) VALUES
 ('600', 7),
 ('700', 7),
 ('800', 7),
-('', 8);
+('0', 8);
 
 
 INSERT INTO ingredient (name) VALUES
