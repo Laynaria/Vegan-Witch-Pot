@@ -73,7 +73,7 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
     }
 
     // lastly we check if a line + recipe_id exist from recipe_ingredient_quantity
-    if (ingredient.isEdit) {
+    if (ingredient.isEdit && originalLength !== 0) {
       try {
         // if recipe_ingredient_quantity exist, then we update
         const recipeIngredientQuantityExist = await instance.get(
@@ -88,6 +88,10 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
         // if error, then we post a new row to recipe_ingredient_quantity
         await instance.post("/recipe-ingredient-quantity/", currentIngredient);
       }
+    }
+
+    if (ingredient.isEdit && originalLength === 0) {
+      await instance.post("/recipe-ingredient-quantity/", currentIngredient);
     }
 
     // fin d'un ingrédient, fini par faire marcher grâce au try catch

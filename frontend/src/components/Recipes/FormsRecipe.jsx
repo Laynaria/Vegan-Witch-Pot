@@ -165,7 +165,7 @@ export default function FormsRecipe({
                 />
               </label>
 
-              {index !== 0 ? (
+              {ingredients.length !== 1 ? (
                 <button
                   type="button"
                   onClick={() =>
