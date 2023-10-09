@@ -11,6 +11,7 @@ import basicThumbnail from "@assets/recipes/mini/bowl.png";
 import buttonIcon from "@assets/logos/logo_mini.svg";
 
 import "@components/Recipes/AddRecipe.scss";
+import registerIngredient from "@services/registerIngredient";
 
 export default function AddRecipe() {
   const inputRef = useRef();
@@ -48,6 +49,7 @@ export default function AddRecipe() {
   }, []);
 
   const handleSubmit = () => {
+    let recipeId = 0;
     // must add validations of having nothing null etc
     const formData = new FormData();
     formData.append("recipePic", inputRef.current.files[0]);
@@ -89,7 +91,11 @@ export default function AddRecipe() {
             steps: stepsArray.filter((item) => item !== "").join("___"),
           })
           .then((result) => {
-            navigate(`/recipes/${result.data.id}`);
+            recipeId = result.data.id;
+          })
+          .then(() => registerIngredient(ingredients, recipeId))
+          .then(() => {
+            navigate(`/recipes/${recipeId}`);
           })
           .catch((err) => {
             console.error(err);

@@ -6,6 +6,7 @@ import instance from "@services/instance";
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
+import registerIngredient from "@services/registerIngredient";
 
 import basicThumbnail from "@assets/recipes/mini/bowl.png";
 import editIcon from "@assets/icons/wand.svg";
@@ -66,7 +67,8 @@ export default function EditRecipe() {
             .catch((err) => console.error(err));
         }
       })
-
+      .then(() => registerIngredient(ingredients, id))
+      .then(() => navigate(`/recipes/${id}`))
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
