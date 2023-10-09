@@ -16,6 +16,24 @@ const readByRecipe = (req, res) => {
     });
 };
 
+const readByLineAndRecipeId = (req, res) => {
+  const ingredient = { line: req.params.line, recipe_id: req.params.recipeId };
+
+  models.recipe_ingredient_quantity
+    .findByLineAndRecipeId(ingredient)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const readByRecipeForEdit = (req, res) => {
   models.recipe_ingredient_quantity
     .findByRecipeForEdit(req.params.id)
@@ -24,6 +42,44 @@ const readByRecipeForEdit = (req, res) => {
         res.sendStatus(404);
       } else {
         res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const add = (req, res) => {
+  const ingredient = req.body;
+
+  // TODO validations (length, format...)
+
+  models.recipe_ingredient_quantity
+    .insert(ingredient)
+    .then(([result]) => {
+      res.location(`/items/${result.insertId}`).sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const edit = (req, res) => {
+  const ingredient = req.body;
+
+  // TODO validations (length, format...)
+
+  ingredient.id = parseInt(req.params.id, 10);
+
+  models.recipe_ingredient_quantity
+    .update(ingredient)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
       }
     })
     .catch((err) => {
@@ -52,10 +108,11 @@ const destroy = (req, res) => {
 
 module.exports = {
   // browse,
-  // add,
   // read,
-  // edit,
   readByRecipe,
+  readByLineAndRecipeId,
   readByRecipeForEdit,
+  add,
+  edit,
   destroy,
 };

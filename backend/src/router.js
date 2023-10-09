@@ -103,6 +103,18 @@ router.get(
   quantityControllers.readByValueAndTypeId
 );
 router.post("/quantity", quantityControllers.add);
+router.get(
+  "/recipe-ingredient-quantity/:line/:recipeId",
+  recipeIngredientQuantityControllers.readByLineAndRecipeId
+);
+router.post(
+  "/recipe-ingredient-quantity",
+  recipeIngredientQuantityControllers.add
+);
+router.put(
+  "/recipe-ingredient-quantity/:id",
+  recipeIngredientQuantityControllers.edit
+);
 
 // routes for upload users avatars and recipes pictures
 router.post("/check-new-recipe", recipeControllers.checkNewRecipe);

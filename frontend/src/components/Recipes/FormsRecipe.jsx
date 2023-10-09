@@ -104,6 +104,10 @@ export default function FormsRecipe({
         : ingredient.name !== ""
     );
 
+    // need to delete the rows which may not exist anymore
+    // need to make an originalLength of ingredients once we put this
+    // function in another file
+
     ingredientsToPush.forEach(async (ingredient) => {
       const currentIngredient = {
         line: ingredient.line,
@@ -160,8 +164,25 @@ export default function FormsRecipe({
       console.warn(currentIngredient);
 
       // lastly we check if a line + recipe_id exist from recipe_ingredient_quantity
-      // if it does, we update
-      // if error > we post
+      if (ingredient.isEdit) {
+        try {
+          // if recipe_ingredient_quantity exist, then we update
+          const recipeIngredientQuantityExist = await instance.get(
+            `/recipe-ingredient-quantity/${currentIngredient.line}/${currentIngredient.recipe_id}`
+          );
+
+          await instance.put(
+            `/recipe-ingredient-quantity/${recipeIngredientQuantityExist.data.id}`,
+            currentIngredient
+          );
+        } catch {
+          // if error, then we post a new row to recipe_ingredient_quantity
+          await instance.post(
+            "/recipe-ingredient-quantity/",
+            currentIngredient
+          );
+        }
+      }
 
       // fin d'un ingrédient, fini par faire marcher grâce au try catch
     });
