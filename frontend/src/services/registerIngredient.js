@@ -54,7 +54,11 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
       try {
         // now we try to get a quantity from quantity table
         let quantityExist = await instance.get(
-          `/quantity/${ingredient.value}/${ingredient.type_id}`
+          `/quantity/${
+            ingredient.value.includes("/")
+              ? ingredient.value.split("/").join(":")
+              : ingredient.value
+          }/${ingredient.type_id}`
         );
 
         if (quantityExist.data === "No quantity with these values.") {
@@ -64,7 +68,11 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
           });
 
           quantityExist = await instance.get(
-            `/quantity/${ingredient.value}/${ingredient.type_id}`
+            `/quantity/${
+              ingredient.value.includes("/")
+                ? ingredient.value.split("/").join(":")
+                : ingredient.value
+            }/${ingredient.type_id}`
           );
         }
 

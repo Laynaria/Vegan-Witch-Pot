@@ -29,7 +29,12 @@ const read = (req, res) => {
 };
 
 const readByValueAndTypeId = (req, res) => {
-  const quantityInfo = { value: req.params.value, type_id: req.params.typeId };
+  const quantityInfo = {
+    value: req.params.value.includes(":")
+      ? req.params.value.split(":").join("/")
+      : req.params.value,
+    type_id: req.params.typeId,
+  };
 
   models.quantity
     .findByValueAndTypeId(quantityInfo)
