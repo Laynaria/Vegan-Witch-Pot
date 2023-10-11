@@ -83,7 +83,7 @@ export default function EditRecipe() {
         res.data.forEach((el) => {
           // we check if recipe_id from each entry are equal to the current recipe id
           // and push the valid ones in an array
-          if (el.recipe_id === parseInt(id, 2)) {
+          if (el.recipe_id === parseInt(id, 10)) {
             recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
           }
         })
@@ -92,9 +92,7 @@ export default function EditRecipe() {
       .then(() => {
         if (recipeIngredientQuantityIds.length !== 0) {
           instance
-            .delete("/recipe/delete-info/", {
-              data: { arr: recipeIngredientQuantityIds },
-            })
+            .delete(`/recipe-ingredient-quantity/0/${id}`)
             .catch((err) => {
               console.error(err);
             });
