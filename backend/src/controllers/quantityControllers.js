@@ -35,7 +35,7 @@ const readByValueAndTypeId = (req, res) => {
     .findByValueAndTypeId(quantityInfo)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.sendStatus(404);
+        res.send("No quantity with these values.");
       } else {
         res.send(rows[0]);
       }

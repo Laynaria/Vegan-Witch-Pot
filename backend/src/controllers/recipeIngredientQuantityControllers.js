@@ -23,7 +23,7 @@ const readByLineAndRecipeId = (req, res) => {
     .findByLineAndRecipeId(ingredient)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.sendStatus(404);
+        res.send("No ingredient for this recipe with these values.");
       } else {
         res.send(rows[0]);
       }

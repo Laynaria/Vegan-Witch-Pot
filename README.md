@@ -18,20 +18,19 @@ There is three level of authentified users :
 - Filters for recipes page (name, type, time, difficulty, my recipes).
 - Authentification. (Login, Register and Disconnect)
 - Profile Editing. (Change Password, Email, Avatar, Delete User)
-- Create & Edit Recipes. (Title, Type, Cooking Time, Picture, Difficulty, Steps, Sharing, Approval)
+- Create & Edit Recipes. (Title, Type, Cooking Time, Picture, Difficulty, Steps, Sharing, Approval, Ingredients)
 - Delete Recipes.
 - Uploading Pictures. (User Avatar and Recipe Thumbnail)
 - Contact for both authentified users and guests.
 
 ### Upcoming
 
-- Create & Edit Recipes : Ingredients.
 - Weekly Menu.
 - Shopping List.
 - More Security.
 - Forgotten Password.
 - Commentary on Recipes.
-- Quality Of Life improvements.
+- Quality Of Life Improvements.
 - Admin Pannel.
 
 ## App Structure

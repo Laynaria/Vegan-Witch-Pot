@@ -32,43 +32,45 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
     if (ingredient.isEdit) {
       try {
         // try to get the ingredient from table ingredient
-        const ingredientExist = await instance.get(
+        let ingredientExist = await instance.get(
           `/ingredients/${ingredient.name}`
         );
+
+        if (ingredientExist.data === "No ingredient with this name.") {
+          await instance.post("/ingredients", { name: ingredient.name });
+
+          ingredientExist = await instance.get(
+            `/ingredients/${ingredient.name}`
+          );
+        }
 
         currentIngredient.ingredient_id = await ingredientExist.data.id;
       } catch {
-        // if error, no ingredient > we create it
-        await instance.post("/ingredients", { name: ingredient.name });
-
-        const ingredientExist = await instance.get(
-          `/ingredients/${ingredient.name}`
-        );
-
-        currentIngredient.ingredient_id = await ingredientExist.data.id;
+        // if error, something
       }
     }
 
     if (ingredient.isEdit) {
       try {
         // now we try to get a quantity from quantity table
-        const quantityExist = await instance.get(
+        let quantityExist = await instance.get(
           `/quantity/${ingredient.value}/${ingredient.type_id}`
         );
+
+        if (quantityExist.data === "No quantity with these values.") {
+          await instance.post("/quantity", {
+            value: ingredient.value,
+            type_id: ingredient.type_id,
+          });
+
+          quantityExist = await instance.get(
+            `/quantity/${ingredient.value}/${ingredient.type_id}`
+          );
+        }
 
         currentIngredient.quantity_id = await quantityExist.data.id;
       } catch {
         // if error, no quantity > we create it
-        await instance.post("/quantity", {
-          value: ingredient.value,
-          type_id: ingredient.type_id,
-        });
-
-        const quantityExist = await instance.get(
-          `/quantity/${ingredient.value}/${ingredient.type_id}`
-        );
-
-        currentIngredient.quantity_id = await quantityExist.data.id;
       }
     }
 
@@ -80,13 +82,22 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
           `/recipe-ingredient-quantity/${currentIngredient.line}/${currentIngredient.recipe_id}`
         );
 
-        await instance.put(
-          `/recipe-ingredient-quantity/${recipeIngredientQuantityExist.data.id}`,
-          currentIngredient
-        );
+        if (
+          recipeIngredientQuantityExist.data ===
+          "No ingredient for this recipe with these values."
+        ) {
+          await instance.post(
+            "/recipe-ingredient-quantity/",
+            currentIngredient
+          );
+        } else {
+          await instance.put(
+            `/recipe-ingredient-quantity/${recipeIngredientQuantityExist.data.id}`,
+            currentIngredient
+          );
+        }
       } catch {
         // if error, then we post a new row to recipe_ingredient_quantity
-        await instance.post("/recipe-ingredient-quantity/", currentIngredient);
       }
     }
 

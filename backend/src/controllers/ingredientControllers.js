@@ -33,7 +33,7 @@ const readByName = (req, res) => {
     .findByName(req.params.name)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.sendStatus(404);
+        res.send("No ingredient with this name.");
       } else {
         res.send(rows[0]);
       }
