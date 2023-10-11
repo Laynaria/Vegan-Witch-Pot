@@ -107,7 +107,7 @@ INSERT INTO category (name) VALUES
 
 INSERT INTO recipe (title, difficulty, cooking_time, steps, origin, is_thumbnail, is_shared, is_approved, user_id, category_id) VALUES
 ('Grilled Peas', 1, '30min', 'Preheat oven at 200°C___Mix herbs and salt together.___Mix the peas with the oil.___Mix the two preparations together.___Roast the final preparation at 20°C for 15min.___Enjoy your meal.', '', true, true, true, 1, 4),
-('Supreme Buddha Bowl', 2, '25min', 'Mettez tout dans une assiette', '', true, true, true, 1, 4);
+('Supreme Buddha Bowl', 2, '25min', 'Coupez tous les ingrédients.___Mettez tout dans une assiette!', '', true, true, true, 1, 4);
 
 INSERT INTO type (type, unit) VALUES
 ('number', ''),
@@ -221,13 +221,21 @@ INSERT INTO ingredient (name) VALUES
 ('Small Tomatoes'),
 ('Purslane'),
 ('Red Cabbage'),
-('Mangoe');
+('Mangoe'),
+('Sweet Potatoes'),
+('Salad Leaves'),
+('Tomatoes');
 
 INSERT INTO recipe_ingredient_quantity (line, recipe_id, ingredient_id, quantity_id) VALUES
 (1, 1, 1, 82),
 (2, 1, 2, 20),
 (3, 1, 3, 20),
-(4, 1, 4, 86);
+(4, 1, 4, 86),
+(1, 2, 8, 1),
+(3, 2, 1, 69),
+(2, 2, 14, 2),
+(4, 2, 15, 3),
+(5, 2, 16, 2);
 
 -- INSERT INTO menu (start_date) VALUES
 -- ();
