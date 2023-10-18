@@ -6,6 +6,7 @@ import instance from "@services/instance";
 import FormsRecipe from "@components/Recipes/FormsRecipe";
 import Card from "@components/Card/Card";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
+import registerIngredient from "@services/registerIngredient";
 
 import basicThumbnail from "@assets/recipes/mini/bowl.png";
 import editIcon from "@assets/icons/wand.svg";
@@ -33,7 +34,11 @@ export default function EditRecipe() {
     origin: "",
   });
   const [thumbnail, setThumbnail] = useState(basicThumbnail);
-  const [stepsArray, setStepsArray] = useState([]);
+  const [stepsArray, setStepsArray] = useState([""]);
+  const [ingredients, setIngredients] = useState([
+    { line: 1, value: "", name: "", type_id: 1 },
+  ]);
+  const [ingredientsOriginLength, setIngredientsOriginLength] = useState(0);
 
   const navigate = useNavigate();
 
@@ -63,7 +68,8 @@ export default function EditRecipe() {
             .catch((err) => console.error(err));
         }
       })
-
+      .then(() => registerIngredient(ingredients, id, ingredientsOriginLength))
+      .then(() => navigate(`/recipes/${id}`))
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
@@ -77,7 +83,7 @@ export default function EditRecipe() {
         res.data.forEach((el) => {
           // we check if recipe_id from each entry are equal to the current recipe id
           // and push the valid ones in an array
-          if (el.recipe_id === parseInt(id, 2)) {
+          if (el.recipe_id === parseInt(id, 10)) {
             recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
           }
         })
@@ -86,9 +92,7 @@ export default function EditRecipe() {
       .then(() => {
         if (recipeIngredientQuantityIds.length !== 0) {
           instance
-            .delete("/recipe/delete-info/", {
-              data: { arr: recipeIngredientQuantityIds },
-            })
+            .delete(`/recipe-ingredient-quantity/0/${id}`)
             .catch((err) => {
               console.error(err);
             });
@@ -130,6 +134,17 @@ export default function EditRecipe() {
             );
           }
         })
+        .then(() =>
+          instance
+            .get(`/recipes/edit/ingredients/${id}`)
+            .then((res) => {
+              setIngredients(res.data);
+              setIngredientsOriginLength(res.data.length);
+            })
+            .catch((err) => {
+              console.error(err);
+            })
+        )
         .then(() => setIsLoading(false))
         .catch((err) => {
           console.error("Error: This recipe doesn't exist", err);
@@ -148,6 +163,8 @@ export default function EditRecipe() {
         setThumbnail={setThumbnail}
         stepsArray={stepsArray}
         setStepsArray={setStepsArray}
+        ingredients={ingredients}
+        setIngredients={setIngredients}
       />
       <section className="preview">
         <h2>Preview</h2>
