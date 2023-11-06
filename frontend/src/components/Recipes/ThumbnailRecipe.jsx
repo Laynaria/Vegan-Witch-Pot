@@ -16,7 +16,6 @@ export default function FormsRecipe({
   handleResetFilter,
 }) {
   const [categories, setCategories] = useState([{ id: 1 }]);
-
   // function to fill the input range difficulty color
   const getBackgroundSize = () => {
     if (isEdit) {

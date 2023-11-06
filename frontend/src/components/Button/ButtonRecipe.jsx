@@ -18,7 +18,7 @@ export default function ButtonRecipe({
         className="recipe-button"
         onClick={(e) => (hassPopUp ? setIsPopUp(true) : handleClick(e))}
       >
-        <img src={icon} alt="add recipe icon" /> {text}
+        <img src={icon} alt={`${text} icon`} /> {text}
       </button>
       {isPopUp ? (
         <PopUpValidation

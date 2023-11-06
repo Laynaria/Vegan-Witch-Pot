@@ -7,12 +7,8 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
       : ingredient.name !== ""
   );
 
-  // need to delete the rows which may not exist anymore
-  // need to make an originalLength of ingredients once we put this
-  // function in another file
-
   if (originalLength !== 0 && ingredients.length < originalLength) {
-    // on delete du back.
+    // We delete rows of ingredients if they don't exist anymore after edit
     instance.delete(
       `/recipe-ingredient-quantity/${ingredientsToPush.length}/${recipeId}`
     );
@@ -78,7 +74,7 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
 
         currentIngredient.quantity_id = await quantityExist.data.id;
       } catch {
-        // if error, no quantity > we create it
+        // if error, something
       }
     }
 
@@ -105,7 +101,7 @@ const registerIngredient = (ingredients, recipeId, originalLength = 0) => {
           );
         }
       } catch {
-        // if error, then we post a new row to recipe_ingredient_quantity
+        // if error, something
       }
     }
 

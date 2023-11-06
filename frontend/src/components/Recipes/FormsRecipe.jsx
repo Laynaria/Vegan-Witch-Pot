@@ -198,7 +198,6 @@ export default function FormsRecipe({
                 type="text"
                 value={step}
                 name={`step${index}`}
-                // value={stepsArray[index]}
                 autoComplete="off"
                 onChange={(e) =>
                   editItemArray(stepsArray, setStepsArray, e, index)
