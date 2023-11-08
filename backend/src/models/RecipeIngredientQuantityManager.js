@@ -61,12 +61,11 @@ class RecipeIngredientQuantityManager extends AbstractManager {
     );
   }
 
-  deleteByRecipeId(recipesId) {
+  deleteByRecipeId(idArray) {
     // This requset is to find all recipes_ingredient_quantity tuples from multiple recipe, to get their id for some delete purposes.
-    return this.connection.query(
-      `delete from ${this.table} where recipe_id IN (?)`,
-      [recipesId]
-    );
+    return this.connection.query(`delete from ${this.table} where id IN (?)`, [
+      idArray,
+    ]);
   }
 }
 
