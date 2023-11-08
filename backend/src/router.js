@@ -47,6 +47,9 @@ const categoryControllers = require("./controllers/categoryControllers");
 const authControllers = require("./controllers/authControllers");
 const userControllers = require("./controllers/userControllers");
 const recipeIngredientQuantityControllers = require("./controllers/recipeIngredientQuantityControllers");
+const typeControllers = require("./controllers/typeControllers");
+const ingredientControllers = require("./controllers/ingredientControllers");
+const quantityControllers = require("./controllers/quantityControllers");
 
 router.get("/items", itemControllers.browse);
 router.get("/items/:id", itemControllers.read);
@@ -88,6 +91,34 @@ router.put("/users/edit-password/:id", userControllers.editPassword);
 // recipe routes for authentificated users only
 router.post("/recipes", recipeControllers.add);
 router.put("/recipes/:id", recipeControllers.edit);
+router.get(
+  "/recipes/edit/ingredients/:id",
+  recipeIngredientQuantityControllers.readByRecipeForEdit
+);
+router.get("/type", typeControllers.browse);
+router.get("/ingredients/:name", ingredientControllers.readByName);
+router.post("/ingredients", ingredientControllers.add);
+router.get(
+  "/quantity/:value/:typeId",
+  quantityControllers.readByValueAndTypeId
+);
+router.post("/quantity", quantityControllers.add);
+router.get(
+  "/recipe-ingredient-quantity/:line/:recipeId",
+  recipeIngredientQuantityControllers.readByLineAndRecipeId
+);
+router.post(
+  "/recipe-ingredient-quantity",
+  recipeIngredientQuantityControllers.add
+);
+router.put(
+  "/recipe-ingredient-quantity/:id",
+  recipeIngredientQuantityControllers.edit
+);
+router.delete(
+  "/recipe-ingredient-quantity/:line/:recipeId",
+  recipeIngredientQuantityControllers.destroyByMaxLine
+);
 
 // routes for upload users avatars and recipes pictures
 router.post("/check-new-recipe", recipeControllers.checkNewRecipe);
