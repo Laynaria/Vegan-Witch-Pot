@@ -49,7 +49,9 @@ export default function AddRecipe() {
   }, []);
 
   const handleSubmit = async () => {
-    // must add validations of having nothing null etc
+    // must add more validations
+
+    // First we check if there is at least one valid ingredient, knowing only valid ingredients will be saved in db.
     const ingredientsToPush = ingredients.filter((ingredient) =>
       parseInt(ingredient.type_id, 10) !== 8
         ? ingredient.value !== "" && ingredient.name !== ""
@@ -60,6 +62,7 @@ export default function AddRecipe() {
       return;
     }
 
+    // Second we check if there is a picture, and if this picture is valid.
     if (inputRef.current.files[0]) {
       if (
         inputRef.current.files[0].type !== "image/jpeg" &&
@@ -71,23 +74,28 @@ export default function AddRecipe() {
     }
 
     try {
+      // We create a new form for the recipe picture.
       const formData = await new FormData();
       await formData.append("recipePic", inputRef.current.files[0]);
 
+      // We post the main informations of the recipe.
       await instance.post("/recipes", {
         ...recipe,
         steps: stepsArray.filter((item) => item !== "").join("___"),
       });
 
+      // We get back the id from our newly created recipe, by checking everything to be equal.
       const recipeId = await instance.post("/check-new-recipe", {
         ...recipe,
         steps: stepsArray.filter((item) => item !== "").join("___"),
       });
 
+      // If we have a picture, we upload it.
       if (inputRef.current.files[0]) {
         await instance.post(`/uploads/recipes/${recipeId.data.id}`, formData);
       }
 
+      // We call the function to register ingredients for that recipe, and navigate to that new recipe page
       await registerIngredient(ingredients, recipeId.data.id);
 
       navigate(`/recipes/${recipeId.data.id}`);
