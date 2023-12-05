@@ -50,6 +50,15 @@ export default function AddRecipe() {
 
   const handleSubmit = async () => {
     // must add validations of having nothing null etc
+    const ingredientsToPush = ingredients.filter((ingredient) =>
+      parseInt(ingredient.type_id, 10) !== 8
+        ? ingredient.value !== "" && ingredient.name !== ""
+        : ingredient.name !== ""
+    );
+
+    if (ingredientsToPush.length === 0) {
+      return;
+    }
 
     if (inputRef.current.files[0]) {
       if (
