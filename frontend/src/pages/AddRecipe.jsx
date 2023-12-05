@@ -48,60 +48,43 @@ export default function AddRecipe() {
     }, 100);
   }, []);
 
-  const handleSubmit = () => {
-    let recipeId = 0;
+  const handleSubmit = async () => {
     // must add validations of having nothing null etc
-    const formData = new FormData();
-    formData.append("recipePic", inputRef.current.files[0]);
 
-    instance
-      .post("/recipes", {
+    if (inputRef.current.files[0]) {
+      if (
+        inputRef.current.files[0].type !== "image/jpeg" &&
+        inputRef.current.files[0].type !== "image/jpg" &&
+        inputRef.current.files[0].type !== "image/png"
+      ) {
+        return;
+      }
+    }
+
+    try {
+      const formData = await new FormData();
+      await formData.append("recipePic", inputRef.current.files[0]);
+
+      await instance.post("/recipes", {
         ...recipe,
         steps: stepsArray.filter((item) => item !== "").join("___"),
-      })
-      .then(() => {
-        if (inputRef.current.files[0]) {
-          if (
-            inputRef.current.files[0].type !== "image/jpeg" &&
-            inputRef.current.files[0].type !== "image/jpg" &&
-            inputRef.current.files[0].type !== "image/png"
-          ) {
-            return;
-          }
+      });
 
-          instance
-            .post("/check-new-recipe", {
-              ...recipe,
-              steps: stepsArray.filter((item) => item !== "").join("___"),
-            })
-            .then((result) => {
-              instance
-                .post(`/uploads/recipes/${result.data.id}`, formData)
-                .catch((err) => console.error(err));
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
-      })
-      .then(() => {
-        instance
-          .post("/check-new-recipe", {
-            ...recipe,
-            steps: stepsArray.filter((item) => item !== "").join("___"),
-          })
-          .then((result) => {
-            recipeId = result.data.id;
-          })
-          .then(() => registerIngredient(ingredients, recipeId))
-          .then(() => {
-            navigate(`/recipes/${recipeId}`);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      })
-      .catch(() => console.warn("Une erreur est survenue!"));
+      const recipeId = await instance.post("/check-new-recipe", {
+        ...recipe,
+        steps: stepsArray.filter((item) => item !== "").join("___"),
+      });
+
+      if (inputRef.current.files[0]) {
+        await instance.post(`/uploads/recipes/${recipeId.data.id}`, formData);
+      }
+
+      await registerIngredient(ingredients, recipeId.data.id);
+
+      navigate(`/recipes/${recipeId.data.id}`);
+    } catch {
+      console.warn("Une erreur est survenue!");
+    }
   };
 
   return (
