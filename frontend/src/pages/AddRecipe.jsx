@@ -48,60 +48,60 @@ export default function AddRecipe() {
     }, 100);
   }, []);
 
-  const handleSubmit = () => {
-    let recipeId = 0;
-    // must add validations of having nothing null etc
-    const formData = new FormData();
-    formData.append("recipePic", inputRef.current.files[0]);
+  const handleSubmit = async () => {
+    // must add more validations
 
-    instance
-      .post("/recipes", {
+    // First we check if there is at least one valid ingredient, knowing only valid ingredients will be saved in db.
+    const ingredientsToPush = ingredients.filter((ingredient) =>
+      parseInt(ingredient.type_id, 10) !== 8
+        ? ingredient.value !== "" && ingredient.name !== ""
+        : ingredient.name !== ""
+    );
+
+    if (ingredientsToPush.length === 0) {
+      return;
+    }
+
+    // Second we check if there is a picture, and if this picture is valid.
+    if (inputRef.current.files[0]) {
+      if (
+        inputRef.current.files[0].type !== "image/jpeg" &&
+        inputRef.current.files[0].type !== "image/jpg" &&
+        inputRef.current.files[0].type !== "image/png"
+      ) {
+        return;
+      }
+    }
+
+    try {
+      // We create a new form for the recipe picture.
+      const formData = await new FormData();
+      await formData.append("recipePic", inputRef.current.files[0]);
+
+      // We post the main informations of the recipe.
+      await instance.post("/recipes", {
         ...recipe,
         steps: stepsArray.filter((item) => item !== "").join("___"),
-      })
-      .then(() => {
-        if (inputRef.current.files[0]) {
-          if (
-            inputRef.current.files[0].type !== "image/jpeg" &&
-            inputRef.current.files[0].type !== "image/jpg" &&
-            inputRef.current.files[0].type !== "image/png"
-          ) {
-            return;
-          }
+      });
 
-          instance
-            .post("/check-new-recipe", {
-              ...recipe,
-              steps: stepsArray.filter((item) => item !== "").join("___"),
-            })
-            .then((result) => {
-              instance
-                .post(`/uploads/recipes/${result.data.id}`, formData)
-                .catch((err) => console.error(err));
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
-      })
-      .then(() => {
-        instance
-          .post("/check-new-recipe", {
-            ...recipe,
-            steps: stepsArray.filter((item) => item !== "").join("___"),
-          })
-          .then((result) => {
-            recipeId = result.data.id;
-          })
-          .then(() => registerIngredient(ingredients, recipeId))
-          .then(() => {
-            navigate(`/recipes/${recipeId}`);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      })
-      .catch(() => console.warn("Une erreur est survenue!"));
+      // We get back the id from our newly created recipe, by checking everything to be equal.
+      const recipeId = await instance.post("/check-new-recipe", {
+        ...recipe,
+        steps: stepsArray.filter((item) => item !== "").join("___"),
+      });
+
+      // If we have a picture, we upload it.
+      if (inputRef.current.files[0]) {
+        await instance.post(`/uploads/recipes/${recipeId.data.id}`, formData);
+      }
+
+      // We call the function to register ingredients for that recipe, and navigate to that new recipe page
+      await registerIngredient(ingredients, recipeId.data.id);
+
+      navigate(`/recipes/${recipeId.data.id}`);
+    } catch {
+      console.warn("Une erreur est survenue!");
+    }
   };
 
   return (
