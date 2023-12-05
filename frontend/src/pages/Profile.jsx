@@ -187,51 +187,39 @@ export default function Profile() {
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
-  const handleDeleteUser = (e) => {
+  const handleDeleteUser = async (e) => {
     e.preventDefault();
-    // First we get the recipe_ingredient_quantity ids needed for deleting all users info
-    const recipeIngredientQuantityIds = [];
 
-    instance
-      .get(`/users/delete-info/${user.id}`)
-      .then((res) =>
-        res.data.forEach((el) => {
-          recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
-        })
-      )
+    try {
+      // First we get the recipe_ingredient_quantity ids needed for deleting all users info
+      const recipeIngredientQuantityIds = [];
+      const { data } = await instance.get(`/users/delete-info/${user.id}`);
+
+      await data.forEach((el) => {
+        recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
+      });
+
       // We can now delete entries from the joint table using the array
-      .then(() => {
-        if (recipeIngredientQuantityIds.length !== 0) {
-          instance
-            .delete("/recipe/delete-info/", {
-              data: { arr: recipeIngredientQuantityIds },
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
-      })
+      if (recipeIngredientQuantityIds.length !== 0) {
+        await instance.delete("/recipe/delete-info/", {
+          data: { arr: recipeIngredientQuantityIds },
+        });
+      }
+
       // Now we delete all recipes based on user ID
-      .then(() =>
-        instance.delete(`/users/recipes/${user.id}`).catch((err) => {
-          console.error(err);
-        })
-      )
-      // And finally we delete user
-      .then(() =>
-        instance.delete(`/users/${user.id}`).catch((err) => {
-          console.error(err);
-        })
-      )
-      .then(() =>
-        instance
-          .post("/logout")
-          .catch(() => console.warn("Une erreur est survenue!"))
-      )
-      .then(localStorage.removeItem("token"))
-      .then(() => setUser({}))
-      .then(() => navigate("/"))
-      .catch(() => console.warn("Une erreur est survenue!"));
+      await instance.delete(`/users/recipes/${user.id}`);
+
+      // Then we delete user
+      await instance.delete(`/users/${user.id}`);
+
+      // We log the user out
+      await instance.post("/logout");
+      await localStorage.removeItem("token");
+      await setUser({});
+      navigate("/");
+    } catch {
+      console.warn("Une erreur est survenue!");
+    }
   };
 
   return (
