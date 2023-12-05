@@ -73,39 +73,34 @@ export default function EditRecipe() {
       .catch(() => console.warn("Une erreur est survenue!"));
   };
 
-  const handleDelete = () => {
-    // First we get the recipe_ingredient_quantity ids needed for deleting all users info
-    const recipeIngredientQuantityIds = [];
+  const handleDelete = async () => {
+    try {
+      // First we get the recipe_ingredient_quantity ids needed for deleting all users info
+      const recipeIngredientQuantityIds = [];
+      const { data } = await instance.get(
+        `/users/delete-info/${recipe.user_id}`
+      );
 
-    instance
-      .get(`/users/delete-info/${recipe.user_id}`)
-      .then((res) =>
-        res.data.forEach((el) => {
-          // we check if recipe_id from each entry are equal to the current recipe id
-          // and push the valid ones in an array
-          if (el.recipe_id === parseInt(id, 10)) {
-            recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
-          }
-        })
-      )
-      // We can now delete entries from the joint table using the array
-      .then(() => {
-        if (recipeIngredientQuantityIds.length !== 0) {
-          instance
-            .delete(`/recipe-ingredient-quantity/0/${id}`)
-            .catch((err) => {
-              console.error(err);
-            });
+      await data.forEach((el) => {
+        // we check if recipe_id from each entry are equal to the current recipe id
+        // and push the valid ones in an array
+        if (el.recipe_id === parseInt(id, 10)) {
+          recipeIngredientQuantityIds.push(el.recipe_ingredient_quantity_id);
         }
-      })
-      // finally we delete the recipe and navigate back to recipes page
-      .then(() =>
-        instance.delete(`/recipes/${id}`).catch((err) => {
-          console.error(err);
-        })
-      )
-      .then(() => navigate("/recipes"))
-      .catch(() => console.warn("Une erreur est survenue!"));
+      });
+
+      // We can now delete entries from the joint table if the array is not empty
+      if (recipeIngredientQuantityIds.length !== 0) {
+        await instance.delete(`/recipe-ingredient-quantity/0/${id}`);
+      }
+
+      // // finally we delete the recipe and navigate back to recipes page
+      await instance.delete(`/recipes/${id}`);
+
+      navigate("/recipes");
+    } catch {
+      //
+    }
   };
 
   useEffect(() => {
