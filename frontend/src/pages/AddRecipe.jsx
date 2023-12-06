@@ -74,10 +74,6 @@ export default function AddRecipe() {
     }
 
     try {
-      // We create a new form for the recipe picture.
-      const formData = await new FormData();
-      await formData.append("recipePic", inputRef.current.files[0]);
-
       // We post the main informations of the recipe.
       await instance.post("/recipes", {
         ...recipe,
@@ -90,8 +86,10 @@ export default function AddRecipe() {
         steps: stepsArray.filter((item) => item !== "").join("___"),
       });
 
-      // If we have a picture, we upload it.
+      // If we have a picture, we create a new form for that recipe and upload it
       if (inputRef.current.files[0]) {
+        const formData = await new FormData();
+        await formData.append("recipePic", inputRef.current.files[0]);
         await instance.post(`/uploads/recipes/${recipeId.data.id}`, formData);
       }
 
