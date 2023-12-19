@@ -23,10 +23,6 @@
 
     max-width: 95%;
 
-    @media screen and (min-width: 1380px) {
-      min-height: 173px;
-    }
-
     input,
     textarea {
       font-family: $font-main;

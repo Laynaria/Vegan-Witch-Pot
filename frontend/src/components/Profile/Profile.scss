@@ -86,15 +86,12 @@
       1.5rem,
       $basic-space * 2 4rem,
       $basic-space * 2 7rem,
-      $basic-space * 2 9rem
+      $basic-space * 2 9rem,
+      173px
     );
 
     padding: $basic-space * 2 1.5rem;
     max-width: 95%;
-
-    @media screen and (min-width: 1380px) {
-      min-height: 173px;
-    }
 
     &:nth-of-type(2) {
       grid-area: f1;
