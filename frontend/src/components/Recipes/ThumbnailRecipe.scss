@@ -1,7 +1,7 @@
 @import "../../assets/variables";
 
 .recipeForm {
-  background-color: rgba(255, 255, 255, 0.29);
+  background-color: $transparent-color;
   border-radius: $border-radius;
   min-height: 5.875rem;
   display: flex;

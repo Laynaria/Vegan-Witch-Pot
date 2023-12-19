@@ -1,4 +1,5 @@
 @import "../../assets/variables";
+@import "../../assets/mixins";
 
 .Profile {
   display: flex;
@@ -81,14 +82,14 @@
   }
 
   form:not(.AvatarForm) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    background-color: transparentize($font-color, 0.71);
-    border-radius: $border-radius;
+    @include formMixin(
+      1.5rem,
+      $basic-space * 2 4rem,
+      $basic-space * 2 7rem,
+      $basic-space * 2 9rem
+    );
+
     padding: $basic-space * 2 1.5rem;
-    transition: padding-left 0.3s ease, padding-right 0.3s ease;
     max-width: 95%;
 
     @media screen and (min-width: 1380px) {
@@ -101,18 +102,6 @@
 
     &:nth-of-type(3) {
       grid-area: f2;
-    }
-
-    @media screen and (min-width: 480px) {
-      padding: $basic-space * 2 4rem;
-    }
-
-    @media screen and (min-width: 580px) {
-      padding: $basic-space * 2 7rem;
-    }
-
-    @media screen and (min-width: 680px) {
-      padding: $basic-space * 2 9rem;
     }
 
     input {

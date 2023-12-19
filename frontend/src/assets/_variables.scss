@@ -23,6 +23,7 @@ $title-size: 2.25rem;
 $background-color: #473663;
 $primary-color: #623d9f;
 $secondary-color: lighten(complement($primary-color), 10%);
+$transparent-color: transparentize($font-color, 0.71);
 
 // border radius
 $border-radius: 10px;

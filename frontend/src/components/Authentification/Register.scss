@@ -1,4 +1,5 @@
 @import "../../assets/variables";
+@import "../../assets/mixins";
 
 .Register {
   display: flex;
@@ -10,18 +11,7 @@
   max-width: 95vw;
 
   form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem 1.5rem;
-    background-color: transparentize($font-color, 0.71);
-    border-radius: $border-radius;
-    padding: 3rem 1.5rem;
-    transition: padding-left 0.3s ease, padding-right 0.3s ease;
-
-    @media screen and (min-width: 480px) {
-      padding: 3rem 2.5rem;
-    }
+    @include formMixin(3rem 1.5rem, 3rem 2.5rem);
 
     @media screen and (min-width: 880px) {
       display: grid;
