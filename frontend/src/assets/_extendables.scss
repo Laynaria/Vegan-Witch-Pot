@@ -1,1 +1,28 @@
 @import "./variables";
+
+%input {
+  font-family: $font-main;
+  font-size: calc($font-size / 1.5);
+  width: 18rem;
+  padding: 0.5rem 0.2rem;
+  transition: width 0.3s ease;
+
+  resize: none;
+  background: $font-color;
+  border: 2px solid $background-color;
+  border-radius: calc($border-radius / 2);
+  padding: calc($basic-space / 2);
+  outline: none;
+
+  @media screen and (min-width: 480px) {
+    width: 20rem;
+  }
+
+  &:focus {
+    border: 2px solid $secondary-color;
+  }
+
+  &:focus:invalid {
+    border: 2px solid rgb(192, 66, 66);
+  }
+}
