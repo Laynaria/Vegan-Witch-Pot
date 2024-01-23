@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import ButtonRecipe from "@components/Button/ButtonRecipe";
@@ -8,6 +8,7 @@ import "@components/Contact/Contact.scss";
 
 export default function Contact() {
   const { user } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [contactMail, setContactMail] = useState({
     email: user.email ? user.email : "",
@@ -40,8 +41,14 @@ export default function Contact() {
       .catch((err) => console.error(err));
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+  }, []);
+
   return (
-    <section className="Contact">
+    <section className={isLoading ? "hide" : "Contact"}>
       <h1>Contact</h1>
       <form>
         <label>
