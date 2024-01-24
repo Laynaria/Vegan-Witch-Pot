@@ -25,10 +25,14 @@ $primary-color: #623d9f;
 $secondary-color: lighten(complement($primary-color), 10%);
 $transparent-color: transparentize($font-color, 0.71);
 
-// borders and box-shadows
+// borders
 $border-radius: 10px;
 $border-transparent: 1px solid rgba(0, 0, 0, 0.5);
+
+// shadow
 $box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+$drop-shadow-main: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+$drop-shadow-secondary: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 // margin and padding
 $basic-space: 1rem;
