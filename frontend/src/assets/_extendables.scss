@@ -26,3 +26,32 @@
     border: 2px solid rgb(192, 66, 66);
   }
 }
+
+%recipesForm {
+  background-color: $transparent-color;
+  border-radius: $border-radius;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $basic-space;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: $basic-space;
+  }
+}
+
+%recipesInput {
+  font-family: $font-main;
+  font-size: calc($font-size / 2);
+  padding: 0.5rem 0.2rem;
+
+  resize: none;
+  background: $font-color;
+  border: 2px solid $background-color;
+  border-radius: calc($border-radius / 2);
+  outline: none;
+}
