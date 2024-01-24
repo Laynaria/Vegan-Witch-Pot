@@ -27,6 +27,7 @@ $transparent-color: transparentize($font-color, 0.71);
 
 // borders and box-shadows
 $border-radius: 10px;
+$border-transparent: 1px solid rgba(0, 0, 0, 0.5);
 $box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
 
 // margin and padding

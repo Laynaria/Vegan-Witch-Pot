@@ -21,7 +21,7 @@
   }
 
   .card-img {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: $border-transparent;
     border-radius: $border-radius $border-radius 0 0;
     object-fit: cover;
     object-position: center;
@@ -35,7 +35,7 @@
 
   p {
     font-size: $text-size;
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-top: $border-transparent;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -59,7 +59,7 @@
 
       &:first-of-type {
         gap: 0.1rem;
-        border-right: 1px solid rgba(0, 0, 0, 0.5);
+        border-right: $border-transparent;
       }
     }
   }
