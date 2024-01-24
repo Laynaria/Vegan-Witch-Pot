@@ -17,9 +17,13 @@
     p {
       display: flex;
       align-items: flex-start;
-      justify-content: space-evenly;
+      justify-content: center;
       gap: $half-space;
       flex-wrap: wrap;
+
+      @media screen and (min-width: 480px) {
+        justify-content: space-evenly;
+      }
 
       .hidden {
         visibility: hidden;
@@ -77,6 +81,16 @@
       flex-direction: column;
       justify-content: flex-start;
       padding: $basic-space $half-space;
+
+      &:first-of-type {
+        p {
+          padding-bottom: $basic-space * 1.5;
+
+          @media screen and (min-width: 480px) {
+            padding-bottom: $basic-space;
+          }
+        }
+      }
 
       label {
         width: 80%;
