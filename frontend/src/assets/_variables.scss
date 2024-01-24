@@ -25,8 +25,9 @@ $primary-color: #623d9f;
 $secondary-color: lighten(complement($primary-color), 10%);
 $transparent-color: transparentize($font-color, 0.71);
 
-// border radius
+// borders and box-shadows
 $border-radius: 10px;
+$box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
 
 // margin and padding
 $basic-space: 1rem;

@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: $basic-space;
-  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: $box-shadow;
   width: 100%;
 
   @media screen and (min-width: 480px) {
