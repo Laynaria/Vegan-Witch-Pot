@@ -3,9 +3,9 @@ import { Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
 import Header from "@components/Header/Header";
+import AsideAdminNav from "@components/AdminNav/AdminNav";
 import CookiesPopUp from "@components/CookiesPopUp/CookiesPopUp";
 import Footer from "@components/Footer/Footer";
-import AsideAdminNav from "@components/AsideAdminNav/AsideAdminNav";
 
 export default function Layout({ children }) {
   const { user, setUser } = useContext(AuthContext);
