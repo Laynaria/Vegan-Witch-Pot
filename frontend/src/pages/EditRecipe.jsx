@@ -84,7 +84,9 @@ export default function EditRecipe() {
       // We call the function to register ingredients for that recipe, and navigate to that new recipe page
       await registerIngredient(ingredients, id, ingredientsOriginLength);
 
-      navigate(`/recipes/${id}`);
+      setTimeout(() => {
+        navigate(`/recipes/${id}`);
+      }, 100);
     } catch {
       console.warn("Une erreur est survenue!");
     }

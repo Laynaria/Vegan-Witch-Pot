@@ -1,0 +1,40 @@
+@import "./variables";
+
+@mixin formMixin(
+  $gapForm,
+  $media-pad-480,
+  $media-pad-580: 0,
+  $media-pad-680: 0,
+  $media-min-height-1380: 0
+) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gapForm;
+  background-color: $transparent-color;
+  border-radius: $border-radius;
+  padding: 3rem 1.5rem;
+  transition: padding-left 0.3s ease, padding-right 0.3s ease;
+
+  @media screen and (min-width: 480px) {
+    padding: $media-pad-480;
+  }
+
+  @if $media-pad-580 != 0 {
+    @media screen and (min-width: 580px) {
+      padding: $media-pad-580;
+    }
+  }
+
+  @if $media-pad-680 != 0 {
+    @media screen and (min-width: 680px) {
+      padding: $media-pad-680;
+    }
+  }
+
+  @if $media-min-height-1380 != 0 {
+    @media screen and (min-width: 1380px) {
+      min-height: $media-min-height-1380;
+    }
+  }
+}
