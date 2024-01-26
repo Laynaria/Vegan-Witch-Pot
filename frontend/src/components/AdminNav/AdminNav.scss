@@ -1,1 +1,60 @@
 @import "../../assets/variables";
+
+.AdminNav {
+  position: fixed;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: $half-space;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    height: 50%;
+    padding: $basic-space;
+    background-color: $primary-color;
+    list-style: none;
+    border-radius: 1rem 0px 0px 1rem;
+    transition: all ease 500ms;
+    width: 2rem;
+
+    &:hover {
+      border-radius: 1rem;
+      width: fit-content;
+
+      a {
+        &:hover {
+          color: $secondary-color;
+        }
+
+        li {
+          span {
+            opacity: 1;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $font-color;
+
+      li {
+        display: flex;
+        gap: $basic-space;
+        img {
+          width: $font-size;
+        }
+        span {
+          transition: all ease 500ms;
+          display: none;
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
