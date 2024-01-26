@@ -1,4 +1,6 @@
 @import "../../assets/variables";
+@import "../../assets/extendables";
+@import "../../assets/mixins";
 
 .Register {
   display: flex;
@@ -10,18 +12,7 @@
   max-width: 95vw;
 
   form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem 1.5rem;
-    background-color: transparentize($font-color, 0.71);
-    border-radius: $border-radius;
-    padding: 3rem 1.5rem;
-    transition: padding-left 0.3s ease, padding-right 0.3s ease;
-
-    @media screen and (min-width: 480px) {
-      padding: 3rem 2.5rem;
-    }
+    @include formMixin(3rem 1.5rem, 3rem 2.5rem);
 
     @media screen and (min-width: 880px) {
       display: grid;
@@ -35,30 +26,7 @@
     }
 
     input {
-      font-family: $font-main;
-      font-size: calc($font-size / 1.5);
-      width: 18rem;
-      padding: 0.5rem 0.2rem;
-
-      resize: none;
-      background: $font-color;
-      border: 2px solid $background-color;
-      border-radius: calc($border-radius / 2);
-      padding: calc($basic-space / 2);
-      outline: none;
-
-      @media screen and (min-width: 480px) {
-        width: 20rem;
-      }
-    }
-
-    input:focus,
-    textarea:focus {
-      border: 2px solid $secondary-color;
-    }
-
-    input:focus:invalid {
-      border: 2px solid rgb(192, 66, 66);
+      @extend %input;
     }
 
     p {

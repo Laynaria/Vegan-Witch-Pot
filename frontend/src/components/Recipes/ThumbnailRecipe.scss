@@ -1,37 +1,21 @@
 @import "../../assets/variables";
+@import "../../assets/extendables";
+@import "../../assets/mixins";
 
 .recipeForm {
-  background-color: rgba(255, 255, 255, 0.29);
-  border-radius: $border-radius;
+  @extend %recipesForm;
   min-height: 5.875rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: $basic-space;
   padding: $half-space;
 
   label {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
     height: 61.5938px;
-    font-size: $basic-space;
     gap: calc($basic-space / 10);
 
     input[type="text"],
     input[type="search"],
     select {
-      font-family: $font-main;
-      font-size: calc($font-size / 2);
-      padding: 0.5rem 0.2rem;
       height: 41px;
-
-      resize: none;
-      background: $font-color;
-      border: 2px solid $background-color;
-      border-radius: calc($border-radius / 2);
-      outline: none;
+      @extend %recipesInput;
     }
 
     input[type="search"],
@@ -104,60 +88,6 @@
 
   .FileUploadLabel {
     pointer-events: none;
-  }
-
-  // Checkbox parameters
-  /*------ Settings ------*/
-  .containerCheckbox {
-    cursor: pointer;
-    user-select: none;
-    fill: $background-color;
-
-    svg,
-    img {
-      font-size: 41px;
-      width: 30px;
-    }
-
-    .clipboard {
-      animation: keyframes-fill 0.5s;
-    }
-
-    .clipboard-check {
-      display: none;
-      animation: keyframes-fill 0.5s;
-      fill: $secondary-color;
-    }
-
-    /* ------ On check event ------ */
-    input:checked ~ .clipboard {
-      display: none;
-    }
-
-    input:checked ~ .clipboard-check {
-      display: block;
-    }
-
-    /* ------ Hide the default checkbox ------ */
-    input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-  }
-
-  /* ------ Animation ------ */
-  @keyframes keyframes-fill {
-    0% {
-      transform: rotate(0deg) scale(0);
-      opacity: 0;
-    }
-
-    50% {
-      transform: rotate(-10deg) scale(1.2);
-    }
   }
 
   button {

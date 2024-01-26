@@ -10,13 +10,13 @@ footer {
   font-family: $font-title;
   font-size: $title-size;
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: $border-transparent;
   z-index: -1;
   grid-row: 3 / 4;
 
   p {
     gap: 0.5rem;
-    filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 1));
+    filter: $drop-shadow-main;
 
     @media screen and (min-width: 480px) {
       display: flex;
