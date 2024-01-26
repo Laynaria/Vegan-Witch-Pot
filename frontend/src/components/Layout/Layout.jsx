@@ -5,6 +5,7 @@ import instance from "@services/instance";
 import Header from "@components/Header/Header";
 import CookiesPopUp from "@components/CookiesPopUp/CookiesPopUp";
 import Footer from "@components/Footer/Footer";
+import AsideAdminNav from "@components/AsideAdminNav/AsideAdminNav";
 
 export default function Layout({ children }) {
   const { user, setUser } = useContext(AuthContext);
@@ -28,11 +29,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      {user.role_id === 3 ? (
-        <p style={{ position: "fixed", zIndex: 5000 }}>Admin</p>
-      ) : (
-        ""
-      )}
+      {user.role_id === 3 ? <AsideAdminNav /> : ""}
       <main>
         {children}
         <Outlet />
