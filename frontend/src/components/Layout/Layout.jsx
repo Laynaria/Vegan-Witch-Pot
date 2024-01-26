@@ -7,7 +7,7 @@ import CookiesPopUp from "@components/CookiesPopUp/CookiesPopUp";
 import Footer from "@components/Footer/Footer";
 
 export default function Layout({ children }) {
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [IsCookiesPopUpShown, setIsCookiesPopUpShown] = useState(true);
 
   const location = useLocation();
@@ -28,6 +28,11 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
+      {user.role_id === 3 ? (
+        <p style={{ position: "fixed", zIndex: 5000 }}>Admin</p>
+      ) : (
+        ""
+      )}
       <main>
         {children}
         <Outlet />
