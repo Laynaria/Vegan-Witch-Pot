@@ -17,9 +17,8 @@
     list-style: none;
     transition: all ease 1s;
     min-width: 2rem;
-    border: 2px solid $secondary-color;
     border-radius: 0px 1rem 1rem 0px;
-    border-left: 0px;
+    box-shadow: $box-shadow;
 
     @media screen and (min-width: 480px) {
       padding: $basic-space * 3 $basic-space;
