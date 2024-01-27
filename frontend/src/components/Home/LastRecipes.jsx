@@ -29,15 +29,13 @@ export default function LastRecipes() {
       {isLoading ? (
         <Loading />
       ) : (
-        <section className="Recipes">
+        <section className="Recipes" style={{ paddingBottom: "6rem" }}>
           <h1>Last Recipes</h1>
           {arrayRecipes.map((recipe) => (
             <Link to={`/recipes/${recipe.id}`} key={recipe.id}>
               <Card recipe={recipe} />
             </Link>
           ))}
-
-          <div className="recipeMargin" />
         </section>
       )}
     </>
