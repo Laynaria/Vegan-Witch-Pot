@@ -11,6 +11,8 @@ function AdminRecipes() {
       navigate("/");
     } else {
       document.title = "Recipes - Admin - Vegan Witch Pot";
+
+      // /recipes
     }
   }, []);
 

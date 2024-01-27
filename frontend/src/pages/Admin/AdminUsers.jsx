@@ -11,6 +11,8 @@ function AdminUsers() {
       navigate("/");
     } else {
       document.title = "Users - Admin - Vegan Witch Pot";
+
+      // /users
     }
   }, []);
 

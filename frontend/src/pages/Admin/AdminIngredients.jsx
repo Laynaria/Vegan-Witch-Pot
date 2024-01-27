@@ -11,6 +11,8 @@ function AdminIngredients() {
       navigate("/");
     } else {
       document.title = "Ingredients - Admin - Vegan Witch Pot";
+
+      // peut être devoir créé un /ingredients en back
     }
   }, []);
 

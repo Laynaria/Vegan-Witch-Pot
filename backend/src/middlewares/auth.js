@@ -33,8 +33,9 @@ const checkAuth = (req, res, next) => {
 
 const checkRole = (req, res, next) => {
   const roleId = req.body.role_id;
+  const headersRoleId = parseInt(req.headers.authorization, 10);
 
-  if (roleId === 3) {
+  if (roleId === 3 || headersRoleId === 3) {
     next();
   } else {
     res
