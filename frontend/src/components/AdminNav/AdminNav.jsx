@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import buttonIcon from "@assets/logos/logo_mini.svg";
+import recipesIcon from "@assets/logos/logo_mini.svg";
+import ingredientsIcon from "@assets/icons/spoon.svg";
+import userIcon from "@assets/icons/potion.svg";
+import contactsIcon from "@assets/icons/scroll.svg";
 import "./AdminNav.scss";
 
 export default function AdminNav() {
@@ -8,25 +11,25 @@ export default function AdminNav() {
       <ul>
         <Link to="/Admin-Dashboard/Recipes">
           <li>
-            <img src={buttonIcon} alt="" />
+            <img src={recipesIcon} alt="Recipes Dashboard" />
             <span>Recipes</span>
           </li>
         </Link>
         <Link to="/Admin-Dashboard/Ingredients">
           <li>
-            <img src={buttonIcon} alt="" />
+            <img src={ingredientsIcon} alt="Ingredients Dashboard" />
             <span>Ingredients</span>
           </li>
         </Link>
         <Link to="/Admin-Dashboard/Users">
           <li>
-            <img src={buttonIcon} alt="" />
+            <img src={userIcon} alt="Users Dashboard" />
             <span>Users</span>
           </li>
         </Link>
         <Link to="/Admin-Dashboard/Contacts">
           <li>
-            <img src={buttonIcon} alt="" />
+            <img src={contactsIcon} alt="Contacts Dashboard" />
             <span>Contacts</span>
           </li>
         </Link>
