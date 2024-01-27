@@ -11,7 +11,7 @@ export default function PopUpValidation({
   };
 
   return (
-    <div className="PopUpValidation">
+    <dialog className="PopUpValidation">
       <p className="PopUpText">
         <span className="PopUpSpan">
           Do you really want to {textValidation} ?
@@ -31,6 +31,6 @@ export default function PopUpValidation({
           No
         </button>
       </p>
-    </div>
+    </dialog>
   );
 }

@@ -11,9 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
   gap: 0;
 
   p {
+    color: $font-color;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
