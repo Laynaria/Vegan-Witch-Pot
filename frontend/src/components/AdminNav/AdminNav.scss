@@ -7,23 +7,22 @@
   align-items: center;
   height: 100%;
 
-  @media screen and (min-width: 480px) {
-    padding-left: $half-space;
-  }
-
   ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2.5rem;
-    height: 50%;
-    padding: $basic-space;
+    padding: $basic-space * 2.5 $basic-space;
     background-color: $primary-color;
     list-style: none;
     border-radius: 1rem 0px 0px 1rem;
     border-radius: 0px 1rem 1rem 0px;
     transition: all ease 1s;
     min-width: 2rem;
+
+    @media screen and (min-width: 480px) {
+      padding: $basic-space * 3 $basic-space;
+    }
 
     &:hover {
       a {
