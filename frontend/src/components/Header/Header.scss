@@ -44,6 +44,7 @@ header {
     justify-content: center;
     text-decoration: none;
     color: $font-color;
+    transition: all ease 0.3s;
 
     &:hover {
       color: $background-color;
