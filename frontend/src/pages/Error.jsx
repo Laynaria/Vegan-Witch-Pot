@@ -9,6 +9,11 @@ export default function Error() {
       setIsLoading(false);
     }, 100);
   }, []);
+
+  useEffect(() => {
+    document.title = "Error - Vegan Witch Pot";
+  }, []);
+
   return (
     <>
       <Player

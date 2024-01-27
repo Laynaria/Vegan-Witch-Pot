@@ -167,6 +167,12 @@ export default function EditRecipe() {
     }, 100);
   }, []);
 
+  useEffect(() => {
+    if (recipe.title) {
+      document.title = `Edit - ${recipe.title} - Vegan Witch Pot`;
+    }
+  }, [recipe]);
+
   return (
     <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe

@@ -48,6 +48,10 @@ export default function LogIn() {
       .catch((err) => console.error(err));
   };
 
+  useEffect(() => {
+    document.title = "Login - Vegan Witch Pot";
+  }, []);
+
   return (
     <section className={isLoading ? "hide" : "LogIn"}>
       <h1>Log In</h1>

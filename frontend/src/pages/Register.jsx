@@ -81,6 +81,10 @@ export default function Register() {
       .catch((err) => console.error(err));
   };
 
+  useEffect(() => {
+    document.title = "Register - Vegan Witch Pot";
+  }, []);
+
   return (
     <section className={isLoading ? "hide" : "Register"}>
       <h1>Register</h1>

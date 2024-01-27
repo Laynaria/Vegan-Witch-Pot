@@ -78,6 +78,10 @@ export default function Recipes() {
     });
   };
 
+  useEffect(() => {
+    document.title = "Recipes - Vegan Witch Pot";
+  }, []);
+
   return (
     <>
       {isLoading ? (

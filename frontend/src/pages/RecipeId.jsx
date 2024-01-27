@@ -49,6 +49,12 @@ export default function RecipeId() {
     }, 550);
   }, []);
 
+  useEffect(() => {
+    if (recipe.title) {
+      document.title = `${recipe.title} - Vegan Witch Pot`;
+    }
+  }, [recipe]);
+
   return (
     <>
       {isLoading ? (

@@ -47,6 +47,10 @@ export default function Contact() {
     }, 100);
   }, []);
 
+  useEffect(() => {
+    document.title = "Contact - Vegan Witch Pot";
+  }, []);
+
   return (
     <section className={isLoading ? "hide" : "Contact"}>
       <h1>Contact</h1>

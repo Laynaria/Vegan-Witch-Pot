@@ -222,6 +222,10 @@ export default function Profile() {
     }
   };
 
+  useEffect(() => {
+    document.title = "Profile - Vegan Witch Pot";
+  }, []);
+
   return (
     <section className={isLoading ? "hide" : "Profile"}>
       <h1>Profile</h1>

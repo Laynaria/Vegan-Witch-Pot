@@ -14,6 +14,10 @@ export default function AboutUs() {
     }, 100);
   }, []);
 
+  useEffect(() => {
+    document.title = "About Us - Vegan Witch Pot";
+  }, []);
+
   return (
     <div className="AboutUs">
       <h1 className={isLoading ? "hide" : ""}>About Us</h1>

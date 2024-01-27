@@ -102,6 +102,10 @@ export default function AddRecipe() {
     }
   };
 
+  useEffect(() => {
+    document.title = "New Recipe - Vegan Witch Pot";
+  }, []);
+
   return (
     <div className={isLoading ? "hide" : "flex-row"}>
       <FormsRecipe
