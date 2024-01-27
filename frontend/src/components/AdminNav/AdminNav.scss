@@ -2,7 +2,7 @@
 
 .AdminNav {
   position: fixed;
-  z-index: 5000;
+  z-index: 5;
   display: flex;
   align-items: center;
   height: 100%;
@@ -15,10 +15,11 @@
     padding: $basic-space * 2.5 $basic-space;
     background-color: $primary-color;
     list-style: none;
-    border-radius: 1rem 0px 0px 1rem;
-    border-radius: 0px 1rem 1rem 0px;
     transition: all ease 1s;
     min-width: 2rem;
+    border: 2px solid $secondary-color;
+    border-radius: 0px 1rem 1rem 0px;
+    border-left: 0px;
 
     @media screen and (min-width: 480px) {
       padding: $basic-space * 3 $basic-space;
