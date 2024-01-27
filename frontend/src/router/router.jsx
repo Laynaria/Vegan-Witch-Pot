@@ -14,6 +14,10 @@ import Profile from "@pages/Profile";
 
 import AddRecipe from "@pages/AddRecipe";
 import EditRecipe from "@pages/EditRecipe";
+import AdminRecipes from "@pages/Admin/AdminRecipes";
+import AdminContacts from "@pages/Admin/AdminContacts";
+import AdminUsers from "@pages/Admin/AdminUsers";
+import AdminIngredients from "@pages/Admin/AdminIngredients";
 
 export default function Router() {
   return (
@@ -35,6 +39,14 @@ export default function Router() {
 
           <Route path="/add-recipe" element={<AddRecipe />} />
           <Route path="/edit-recipe/:id" element={<EditRecipe />} />
+
+          <Route path="/admin-dashboard/recipes" element={<AdminRecipes />} />
+          <Route
+            path="/admin-dashboard/ingredients"
+            element={<AdminIngredients />}
+          />
+          <Route path="/admin-dashboard/users" element={<AdminUsers />} />
+          <Route path="/admin-dashboard/contacts" element={<AdminContacts />} />
         </Route>
       </Routes>
     </BrowserRouter>

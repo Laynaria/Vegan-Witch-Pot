@@ -9,25 +9,25 @@ export default function AdminNav() {
   return (
     <nav className="AdminNav">
       <ul>
-        <Link to="/Admin-Dashboard/Recipes">
+        <Link to="/admin-dashboard/recipes">
           <li>
             <img src={recipesIcon} alt="Recipes Dashboard" />
             <span>Recipes</span>
           </li>
         </Link>
-        <Link to="/Admin-Dashboard/Ingredients">
+        <Link to="/admin-dashboard/ingredients">
           <li>
             <img src={ingredientsIcon} alt="Ingredients Dashboard" />
             <span>Ingredients</span>
           </li>
         </Link>
-        <Link to="/Admin-Dashboard/Users">
+        <Link to="/admin-dashboard/users">
           <li>
             <img src={userIcon} alt="Users Dashboard" />
             <span>Users</span>
           </li>
         </Link>
-        <Link to="/Admin-Dashboard/Contacts">
+        <Link to="/admin-dashboard/contacts">
           <li>
             <img src={contactsIcon} alt="Contacts Dashboard" />
             <span>Contacts</span>
