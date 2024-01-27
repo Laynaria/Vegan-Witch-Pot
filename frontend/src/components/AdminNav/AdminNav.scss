@@ -6,7 +6,10 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding-left: $half-space;
+
+  @media screen and (min-width: 480px) {
+    padding-left: $half-space;
+  }
 
   ul {
     display: flex;
@@ -18,13 +21,11 @@
     background-color: $primary-color;
     list-style: none;
     border-radius: 1rem 0px 0px 1rem;
-    transition: all ease 500ms;
-    width: 2rem;
+    border-radius: 0px 1rem 1rem 0px;
+    transition: all ease 1s;
+    min-width: 2rem;
 
     &:hover {
-      border-radius: 1rem;
-      width: fit-content;
-
       a {
         &:hover {
           color: $secondary-color;
@@ -32,8 +33,9 @@
 
         li {
           span {
+            transition: margin-left ease 1s, opacity ease 1s 0.6s;
+            margin-left: 0;
             opacity: 1;
-            display: inline-block;
           }
         }
       }
@@ -46,12 +48,14 @@
       li {
         display: flex;
         gap: $basic-space;
+
         img {
           width: $font-size;
         }
+
         span {
-          transition: all ease 500ms;
-          display: none;
+          transition: margin-left ease 1s 0.6s, opacity ease 1s;
+          margin-left: -300px;
           opacity: 0;
         }
       }

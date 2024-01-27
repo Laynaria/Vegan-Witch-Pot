@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import "./AdminNav.scss";
-
 import buttonIcon from "@assets/logos/logo_mini.svg";
+import "./AdminNav.scss";
 
 export default function AdminNav() {
   return (
