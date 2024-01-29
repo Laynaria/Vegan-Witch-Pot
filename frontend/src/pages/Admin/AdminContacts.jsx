@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@contexts/AuthContext";
 import instance from "@services/instance";
-// import RecipeCheckbox from "@components/Recipes/RecipeCheckbox";
+
+import "@components/Admin/AdminContacts.scss";
 
 function AdminContacts() {
   const { user } = useContext(AuthContext);
@@ -28,31 +29,40 @@ function AdminContacts() {
     }
   }, []);
 
+  const handleCheckbox = (e) => {
+    const newMailsArray = [];
+
+    contactsMails.forEach((mail) => {
+      if (mail.id === parseInt(e.target.value, 10)) {
+        newMailsArray.push({ ...mail, is_read: !mail.is_read });
+      } else {
+        newMailsArray.push(mail);
+      }
+    });
+
+    setContactsMails(newMailsArray);
+  };
+
   return (
-    <section
-      className="AdminContacts"
-      style={{
-        maxWidth: "80%",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        gap: "4rem",
-        margin: "5rem",
-      }}
-    >
-      <h1 style={{ marginBottom: "5rem" }}>AdminContacts</h1>
+    <section className="AdminContacts">
+      <h1>AdminContacts</h1>
+      <p>Email</p>
+      <p>Read</p>
+      <p>Object</p>
       {contactsMails?.map((contactMail) => (
-        <p
-          key={contactMail.id}
-          style={{ display: "flex", gap: "4rem", textAlign: "left" }}
-        >
-          <span>email: {contactMail.email},</span>
-          <input type="checkbox" checked={contactMail.is_read} />
-          <span>message: {contactMail.message},</span>
-          <span>object: {contactMail.object}</span>
-          {/* RecipeChecbox component */}
-          {/* <RecipeCheckbox value={contactMail.is_read} /> */}
-        </p>
+        <Fragment key={contactMail.id}>
+          <p>{contactMail.email}</p>
+          <p>
+            <input
+              type="checkbox"
+              checked={contactMail.is_read}
+              value={contactMail.id}
+              onChange={(e) => handleCheckbox(e)}
+            />
+          </p>
+          <p>{contactMail.object}</p>
+          <p className="messages">{contactMail.message}</p>
+        </Fragment>
       ))}
     </section>
   );

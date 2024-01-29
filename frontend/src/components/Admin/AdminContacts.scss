@@ -1,0 +1,51 @@
+@import "../../assets/variables";
+
+.AdminContacts {
+  max-width: 80%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  margin: 5rem;
+
+  h1 {
+    grid-column: 1 / 4;
+    margin-bottom: 5rem;
+  }
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $secondary-color;
+    border-left: 1px solid $secondary-color;
+    padding: 1rem;
+
+    &:nth-of-type(1),
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
+      border-top: 1px solid $secondary-color;
+    }
+
+    &:nth-of-type(3),
+    &:nth-of-type(4n + 6),
+    &:nth-of-type(4n + 7) {
+      border-right: 1px solid $secondary-color;
+    }
+
+    &:nth-of-type(1) {
+      border-radius: $border-radius 0 0 0;
+    }
+
+    &:nth-of-type(3) {
+      border-radius: 0 $border-radius 0 0;
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+
+  .messages {
+    grid-column: 1 / 4;
+  }
+}
