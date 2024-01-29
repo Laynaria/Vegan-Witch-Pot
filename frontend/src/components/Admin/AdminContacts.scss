@@ -43,6 +43,15 @@
     &:last-of-type {
       border-radius: 0 0 $border-radius $border-radius;
     }
+
+    a {
+      color: $font-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
   }
 
   .messages {

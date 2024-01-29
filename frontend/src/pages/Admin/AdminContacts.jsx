@@ -35,6 +35,18 @@ function AdminContacts() {
     contactsMails.forEach((mail) => {
       if (mail.id === parseInt(e.target.value, 10)) {
         newMailsArray.push({ ...mail, is_read: !mail.is_read });
+
+        instance.put(
+          `/contacts/${parseInt(e.target.value, 10)}`,
+          {
+            is_read: !mail.is_read,
+          },
+          {
+            headers: {
+              Authorization: user.role_id,
+            },
+          }
+        );
       } else {
         newMailsArray.push(mail);
       }
@@ -51,7 +63,9 @@ function AdminContacts() {
       <p>Object</p>
       {contactsMails?.map((contactMail) => (
         <Fragment key={contactMail.id}>
-          <p>{contactMail.email}</p>
+          <p>
+            <a href={`mailto:${contactMail.email}`}>{contactMail.email}</a>
+          </p>
           <p>
             <input
               type="checkbox"
